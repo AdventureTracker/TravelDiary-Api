@@ -1,80 +1,82 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://api-traveldiary.jakubdubec.me
 
 # Travel Diary API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Simple RESTful API service for synchronization of traveling diaries between mobile application and database server.
 
-## Questions Collection [/questions]
+## Enums [/statuses]
 
-### List All Questions [GET]
+### List all enums [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
-        ]
+  {
+    "statuses":
+    [
+      {
+        "id": 0,
+        "code": "IN_PROGRESS",
+        "description": "Trip is in progress"
+      }
+    ],
+    "trip_types":
+    [
+      {
+        "id": 0,
+        "code": "CAMPING",
+        "description": "A new camping record"
+      }
+    ]
+  }
 
-### Create a New Question [POST]
+## Trips Collection [/trips]
 
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### List all trips [GET]
+
++ Response 200 (application/json)
+
+  [
+    {
+      "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+      "name": "Norway 2015",
+      "destination": "Trolltunga, Odda, Norway",
+      "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+      "start_date": "2015-07-7",
+      "estimated_arrival": "2015-08-01",
+      "created_at": "2016-02-28T12:48:15+00:00",
+      "updated_at": null
+    }
+  ]
+
+### Create a New Trip [POST]
 
 + Request (application/json)
 
-        {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
-        }
+  {
+    "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+    "name": "Norway 2015",
+    "destination": "Trolltunga, Odda, Norway",
+    "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+    "start_date": "2015-07-7",
+    "estimated_arrival": "2015-08-01"
+  }
 
 + Response 201 (application/json)
 
-    + Headers
+  + Headers
 
-            Location: /questions/2
+    Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
 
-    + Body
+  + Body
 
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
-            }
+    {
+      "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+      "name": "Norway 2015",
+      "destination": "Trolltunga, Odda, Norway",
+      "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+      "start_date": "2015-07-7",
+      "estimated_arrival": "2015-08-01",
+      "created_at": "2016-02-28T12:48:15+00:00",
+      "updated_at": null
+    }
