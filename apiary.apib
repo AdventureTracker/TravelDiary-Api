@@ -59,6 +59,12 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (required, string) - Description of trip
         + start_date: `2015-07-12` (required, string) - Start date of trip in format Y-m-d
         + estimated_arrival: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
+        + statuts: IN_PROGRESS (required, enum[string])
+            + Members
+                + `PLANNED`
+                + `IN_PROGRESS`
+                + `CANCELED`
+                + `FINISHED`
 
 + Response 201 (application/json)
 
@@ -73,8 +79,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
                 "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-                "start_date": "2015-07-7",
-                "status":
+                "start_date": "2015-07-7"
             }
 
 + Response 500 (application/json)
@@ -115,12 +120,3 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "created_at": "2016-02-28T12:48:15+00:00",
                 "updated_at": null
             }
-
-
-# Data Structures
-
-## TripStatusEnum (enum)
-    + PLANNED (string)
-    + IN_PROGRESS (string)
-    + CANCELED (string)
-    + FINISHED (string)
