@@ -5,30 +5,30 @@ HOST: http://api-traveldiary.jakubdubec.me
 
 Simple RESTful API service for synchronization of traveling diaries between mobile application and database server.
 
-## Enums [/statuses]
+## Enums [/enums]
 
 ### List all enums [GET]
 
 + Response 200 (application/json)
 
-  {
-    "statuses":
-    [
-      {
-        "id": 0,
-        "code": "IN_PROGRESS",
-        "description": "Trip is in progress"
-      }
-    ],
-    "trip_types":
-    [
-      {
-        "id": 0,
-        "code": "CAMPING",
-        "description": "A new camping record"
-      }
-    ]
-  }
+		{
+			"statuses":
+			[
+				{
+					"id": 0,
+					"code": "IN_PROGRESS",
+					"description": "Trip is in progress"
+				}
+			],
+			"trip_types":
+			[
+				{
+					"id": 0,
+					"code": "CAMPING",
+					"description": "A new camping record"
+				}
+			]
+		}
 
 ## Trips Collection [/trips]
 
@@ -36,47 +36,47 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 + Response 200 (application/json)
 
-  [
-    {
-      "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-      "name": "Norway 2015",
-      "destination": "Trolltunga, Odda, Norway",
-      "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-      "start_date": "2015-07-7",
-      "estimated_arrival": "2015-08-01",
-      "created_at": "2016-02-28T12:48:15+00:00",
-      "updated_at": null
-    }
-  ]
+		[
+			{
+				"id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+				"name": "Norway 2015",
+				"destination": "Trolltunga, Odda, Norway",
+				"description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+				"start_date": "2015-07-7",
+				"estimated_arrival": "2015-08-01",
+				"created_at": "2016-02-28T12:48:15+00:00",
+				"updated_at": null
+			}
+		]
 
 ### Create a New Trip [POST]
 
 + Request (application/json)
 
-  {
-    "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-    "name": "Norway 2015",
-    "destination": "Trolltunga, Odda, Norway",
-    "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-    "start_date": "2015-07-7",
-    "estimated_arrival": "2015-08-01"
-  }
+		{
+			"id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+			"name": "Norway 2015",
+			"destination": "Trolltunga, Odda, Norway",
+			"description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+			"start_date": "2015-07-7",
+			"estimated_arrival": "2015-08-01"
+		}
 
 + Response 201 (application/json)
 
-  + Headers
+	+ Headers
 
-    Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+		Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
 
-  + Body
+	+ Body
 
-    {
-      "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-      "name": "Norway 2015",
-      "destination": "Trolltunga, Odda, Norway",
-      "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-      "start_date": "2015-07-7",
-      "estimated_arrival": "2015-08-01",
-      "created_at": "2016-02-28T12:48:15+00:00",
-      "updated_at": null
-    }
+		{
+			"id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+			"name": "Norway 2015",
+			"destination": "Trolltunga, Odda, Norway",
+			"description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+			"start_date": "2015-07-7",
+			"estimated_arrival": "2015-08-01",
+			"created_at": "2016-02-28T12:48:15+00:00",
+			"updated_at": null
+		}
