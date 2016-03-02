@@ -214,7 +214,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         + type: `CAMPING` (required, RecordTypeEnum) - Type of record
         + day: `2016-03-02` (required, string) - Day of the trip
         + description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla. ` (required, string) - Message
-        + coordinates: (optional, Coordinates) - Start date of trip in format Y-m-d
+        + coordinates: (optional, Coordinates) - Current location
         + photos: (optional, array[Photo]) - Array of photos
 
 + Response 201 (application/json)
@@ -316,7 +316,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         + type: `CAMPING` (optional, RecordTypeEnum) - Type of record
         + day: `2016-03-02` (optional, string) - Day of the trip
         + description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla. ` (optional, string) - Message
-        + coordinates: (optional, Coordinates) - Start date of trip in format Y-m-d
+        + coordinates: (optional, Coordinates) - Current location
         + photos: (optional, array[Photo]) - Array of photos
 
 + Response 201 (application/json)
