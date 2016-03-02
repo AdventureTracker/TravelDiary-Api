@@ -15,7 +15,6 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 			"statuses":
 			[
 				{
-					"id": 0,
 					"code": "IN_PROGRESS",
 					"description": "Trip is in progress"
 				}
@@ -23,7 +22,6 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 			"trip_types":
 			[
 				{
-					"id": 0,
 					"code": "CAMPING",
 					"description": "A new camping record"
 				}
@@ -53,20 +51,57 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 + Request (application/json)
 
-		{
-			"id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-			"name": "Norway 2015",
-			"destination": "Trolltunga, Odda, Norway",
-			"description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-			"start_date": "2015-07-7",
-			"estimated_arrival": "2015-08-01"
-		}
+	+ Attributes
+
+	 	+ id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (required, string) - Generated identificator for trip (SHA256)
+		+ name: Norway 2015 (required, string) - Name of the trip
+		+ destination: Trolltunga, Odda, Norway (required, string) - Destination of trip
+		+ description: An low-cost hitchhiking trip through the Scandinavia and the Baltic states. (required, string) - Description of trip
+		+ start_date: 2015-07-7 (required, string) - Start date of trip in format Y-m-d
+		+ estimated_arrival: 2015-08-01 (required, string) - Estimated arrival date in format Y-m-d
 
 + Response 201 (application/json)
 
 	+ Headers
 
 		Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+
+	+ Body
+
+		{
+			"id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+			"name": "Norway 2015",
+			"destination": "Trolltunga, Odda, Norway",
+			"description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+			"start_date": "2015-07-7",
+			"status":
+		}
+
++ Response 500 (application/json)
+
+	+ Body
+
+		{
+			"message": "User friendly message describing error",
+		}
+
++ Response 400 (application/json)
+
+	+ Body
+
+		{
+			"message": "Invalid input!",
+			"invalid_fields": [ 'updaated_at' ]
+		}
+
+## Trip [/trips/{trip_id}]
+
++ Parameters
+	+ trip_id (string) - ID of the trip in form of SHA256 hash
+
+### View a Trip detail [GET]
+
++ Response 200 (application/json)
 
 	+ Body
 
