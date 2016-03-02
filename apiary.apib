@@ -395,6 +395,23 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "message": "User friendly message describing error",
             }
 
+## Status [/status]
+
+Application is testing server by calling this endpoint.
+
+### Get stats [GET]
+
++ Response 200 (application/json)
+
+            {
+                "stats": {
+                    "trips": 10,
+                    "records": 145
+                },
+                "proccessed_in": "1.0245",
+                "timestamp": "1456960832"
+            }
+
 # Data Structures
 
 ## TripStatusEnum (enum[string])
