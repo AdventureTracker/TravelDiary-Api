@@ -3,6 +3,8 @@
 Simple RESTful API service for synchronization of traveling diaries between mobile application and database server.
 
 [![Apiary Documentation](https://img.shields.io/badge/Apiary-Documented-blue.svg)](http://docs.traveldiaryapi.apiary.io/)
+
+
 [![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Star)](https://github.com/MTAA-FIIT/TravelDiary-Api)
 
 ## Database diagram
