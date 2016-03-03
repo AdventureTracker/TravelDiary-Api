@@ -1,9 +1,8 @@
-FORMAT: 1A
-HOST: http://api-traveldiary.jakubdubec.me
-
 # Travel Diary API
 
 Simple RESTful API service for synchronization of traveling diaries between mobile application and database server.
+
+[![Apiary Documentation](https://img.shields.io/badge/Apiary-Documented-blue.svg)](http://docs.traveldiaryapi.apiary.io/)
 
 ## Database diagram
 
@@ -12,6 +11,11 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Mockups
 
 ![Image of Yaktocat](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/docs/Mockups_v1.jpg)
+
+## Credentials
+
+ - [Barbora Čelesová](xcelesova@stuba.sk)
+ - [Jakub Dubec](xdubec@stuba.sk)
 
 ## Enums [/enums]
 
@@ -61,9 +65,9 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Attributes
 
-        + id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (required, string) - Generated identificator for trip SHA256(<TIMESTAMP>:TRIP:<DEVICE_UUID>)
-        + name: Norway 2015 (required, string) - Name of the trip
-        + destination: Trolltunga, Odda, Norway (required, string) - Destination of trip
+        + id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (required, string) - Generated identificator for trip SHA256(<TIMESTAMP>:TRIP:<DEVICE_UUID>)
+        + name: `Norway 2015` (required, string) - Name of the trip
+        + destination: `Trolltunga, Odda, Norway` (required, string) - Destination of trip
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (required, string) - Description of trip
         + start_date: `2015-07-12` (required, string) - Start date of trip in format Y-m-d
         + estimated_arrival: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
@@ -106,7 +110,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip [/trips/{trip_id}]
 
 + Parameters
-    + trip_id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (string) - ID of the trip in form of SHA256 hash
+    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
 
 ### View a Trip detail [GET]
 
@@ -131,8 +135,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Attributes
 
-        + name: Norway 2015 (optional, string) - Name of the trip
-        + destination: Trolltunga, Odda, Norway (optional, string) - Destination of trip
+        + name: `Norway 2015` (optional, string) - Name of the trip
+        + destination: `Trolltunga, Odda, Norway` (optional, string) - Destination of trip
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (optional, string) - Description of trip
         + start_date: `2015-07-12` (optional, string) - Start date of trip in format Y-m-d
         + estimated_arrival: `2015-08-04` (optional, string) - Estimated arrival date in format Y-m-d
@@ -211,14 +215,14 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip Records Collection [/trips/{trip_id}/records]
 
 + Parameters
-    + trip_id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (string) - ID of the trip in form of SHA256 hash
+    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
 
 ### Create trip record [POST]
 + Request (application/json)
 
     + Attributes
 
-        + id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (required, string) - Generated identificator for trip record: SHA256(<TIMESTAMP>:RECORD:<DEVICE_UUID>)
+        + id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (required, string) - Generated identificator for trip record: SHA256(<TIMESTAMP>:RECORD:<DEVICE_UUID>)
         + type: `CAMPING` (required, RecordTypeEnum) - Type of record
         + day: `2016-03-02` (required, string) - Day of the trip
         + description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla. ` (required, string) - Message
@@ -275,8 +279,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip record detail [/trips/{trip_id}/records/{record_id}]
 
 + Parameters
-    + trip_id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (string) - ID of the trip in form of SHA256 hash
-    + record_id: 565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644 (string) - ID of the trip record in form of SHA256 hash
+    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
+    + record_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip record in form of SHA256 hash
 
 ### Get trip record details [GET]
 
