@@ -1,5 +1,5 @@
 FORMAT: 1A
-HOST: http://api-traveldiary.jakubdubec.me
+HOST: http://api-traveldiary.jakubdubec.me/v1
 
 # Travel Diary API
 
@@ -49,12 +49,12 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
         [
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
                 "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
                 "start_date": "2015-07-7",
-                "estimated_arrival": "2015-08-01",
+                "estimated_arrival_date": "2015-08-01",
                 "created_at": "2016-02-28T12:48:15+00:00",
                 "updated_at": null
             }
@@ -66,24 +66,24 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Attributes
 
-        + id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (required, string) - Generated identificator for trip SHA256(<TIMESTAMP>:TRIP:<DEVICE_UUID>)
+        + id: `b429b294-ac24-423f-bb5a-a90998dd7612` (required, string) - Generated identificator for trip UUID4
         + name: `Norway 2015` (required, string) - Name of the trip
         + destination: `Trolltunga, Odda, Norway` (required, string) - Destination of trip
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (required, string) - Description of trip
         + start_date: `2015-07-12` (required, string) - Start date of trip in format Y-m-d
-        + estimated_arrival: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
+        + estimated_arrival_date: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
         + status: `PLANNED` (required, TripStatusEnum) - Status of trip
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+            Location: /trips/b429b294-ac24-423f-bb5a-a90998dd7612
 
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
                 "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
@@ -91,7 +91,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "status": "PLANNED"
             }
 
-+ Response 400 (application/json)
++ Response 422 (application/json)
 
     + Body
 
@@ -111,7 +111,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip [/trips/{trip_id}]
 
 + Parameters
-    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
+    + trip_id: `b429b294-ac24-423f-bb5a-a90998dd7612` (string) - ID of the trip UUID4
 
 ### View a Trip detail [GET]
 
@@ -120,12 +120,12 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
                 "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
                 "start_date": "2015-07-7",
-                "estimated_arrival": "2015-08-01",
+                "estimated_arrival_date": "2015-08-01",
                 "created_at": "2016-02-28T12:48:15+00:00",
                 "updated_at": null
             }
@@ -140,19 +140,19 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         + destination: `Trolltunga, Odda, Norway` (optional, string) - Destination of trip
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (optional, string) - Description of trip
         + start_date: `2015-07-12` (optional, string) - Start date of trip in format Y-m-d
-        + estimated_arrival: `2015-08-04` (optional, string) - Estimated arrival date in format Y-m-d
+        + estimated_arrival_date: `2015-08-04` (optional, string) - Estimated arrival date in format Y-m-d
         + status: `PLANNED` (optional, TripStatusEnum) - Status of trip
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+            Location: /trips/b429b294-ac24-423f-bb5a-a90998dd7612
 
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
                 "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
@@ -161,14 +161,14 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "records":
                 [
                     {
-                        "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-                        "type": "CAMPING",
+                        "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
+                        "type": "camping",
                         "day": "2016-03-02"
                     }
                 ]
             }
 
-+ Response 400 (application/json)
++ Response 422 (application/json)
 
     + Body
 
@@ -181,7 +181,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
             {
                 "message": "Not found!",
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644"
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612"
             }
 
 + Response 500 (application/json)
@@ -202,7 +202,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
             {
                 "message": "Not found!",
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644"
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612"
             }
 
 + Response 500 (application/json)
@@ -216,14 +216,14 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip Records Collection [/trips/{trip_id}/records]
 
 + Parameters
-    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
+    + trip_id: `bf00ffa4-651b-4bb4-8090-76cac7088c95` (string) - ID of the trip in form of SHA256 hash
 
 ### Create trip record [POST]
 + Request (application/json)
 
     + Attributes
 
-        + id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (required, string) - Generated identificator for trip record: SHA256(<TIMESTAMP>:RECORD:<DEVICE_UUID>)
+        + id: `b429b294-ac24-423f-bb5a-a90998dd7612` (required, string) - Generated identificator for trip record UUID4
         + type: `CAMPING` (required, RecordTypeEnum) - Type of record
         + day: `2016-03-02` (required, string) - Day of the trip
         + description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla. ` (required, string) - Message
@@ -234,7 +234,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Headers
 
-            Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644/records/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+            Location: /trips/bf00ffa4-651b-4bb4-8090-76cac7088c95/records/b429b294-ac24-423f-bb5a-a90998dd7612
 
     + Body
 
@@ -260,7 +260,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 ]
             }
 
-+ Response 400 (application/json)
++ Response 422 (application/json)
 
     + Body
 
@@ -280,8 +280,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ## Trip record detail [/trips/{trip_id}/records/{record_id}]
 
 + Parameters
-    + trip_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip in form of SHA256 hash
-    + record_id: `565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644` (string) - ID of the trip record in form of SHA256 hash
+    + trip_id: `bf00ffa4-651b-4bb4-8090-76cac7088c95` (string) - ID of the trip UUID4
+    + record_id: `b429b294-ac24-423f-bb5a-a90998dd7612` (string) - ID of the trip record UUID4
 
 ### Get trip record details [GET]
 
@@ -290,7 +290,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "type": "CAMPING",
                 "day": "2016-03-02",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla.",
@@ -336,13 +336,13 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Headers
 
-            Location: /trips/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644/records/565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644
+            Location: /trips/bf00ffa4-651b-4bb4-8090-76cac7088c95/records/b429b294-ac24-423f-bb5a-a90998dd7612
 
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
-                "type": "CAMPING",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
+                "type": "camping",
                 "day": "2016-03-02",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla.",
                 "coordinates":
@@ -362,7 +362,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 ]
             }
 
-+ Response 400 (application/json)
++ Response 422 (application/json)
 
     + Body
 
@@ -397,7 +397,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
             {
                 "message": "Not found!",
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644"
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612"
             }
 
 + Response 500 (application/json)
