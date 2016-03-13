@@ -1,0 +1,4 @@
+services:
+#    travel_diary_interface.example:
+#        class: TravelDiary\InterfaceBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

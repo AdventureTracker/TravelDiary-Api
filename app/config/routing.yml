@@ -1,3 +1,13 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+travel_diary_interface:
+    resource:     "@TravelDiaryInterfaceBundle/Resources/config/routing.yml"
+    prefix:       /
+    host:         "www.{domain}"
+    requirements:
+        domain: '%domain%'
+
+travel_diary_api:
+    resource:     "@TravelDiaryApiBundle/Resources/config/routing.yml"
+    prefix:       /
+    host:         "api.{domain}"
+    requirements:
+        domain: '%domain%'
