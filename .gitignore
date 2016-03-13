@@ -16,4 +16,5 @@
 /web/bundles/
 
 /.idea/
-
+/.sass-cache
+/src/TravelDiary/InterfaceBundle/Resources/public/css
