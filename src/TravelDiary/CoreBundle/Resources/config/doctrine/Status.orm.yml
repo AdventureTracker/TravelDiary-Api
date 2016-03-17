@@ -1,0 +1,33 @@
+TravelDiary\CoreBundle\Entity\Status:
+    type: entity
+    table: status
+    uniqueConstraints:
+        UNIQUE_sta_name:
+            columns:
+                - sta_code
+    id:
+        idStatus:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_status
+            generator:
+                strategy: IDENTITY
+    fields:
+        staCode:
+            type: string
+            nullable: false
+            length: 40
+            options:
+                fixed: false
+            column: sta_code
+        staDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: sta_description
+    lifecycleCallbacks: {  }

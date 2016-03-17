@@ -1,0 +1,58 @@
+TravelDiary\CoreBundle\Entity\Photo:
+    type: entity
+    table: photo
+    indexes:
+        FK_photo_record:
+            columns:
+                - id_record
+    uniqueConstraints:
+        UNIQUE_pht_filename:
+            columns:
+                - pht_filename
+        UNIQUE_pht_uuid:
+            columns:
+                - pht_uuid
+    id:
+        idPhoto:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_photo
+            generator:
+                strategy: IDENTITY
+    fields:
+        phtUuid:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: pht_uuid
+        phtFilename:
+            type: string
+            nullable: false
+            length: 60
+            options:
+                fixed: false
+                default: '0'
+            column: pht_filename
+        phtCreatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: pht_createdAt
+    manyToOne:
+        idRecord:
+            targetEntity: Record
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_record:
+                    referencedColumnName: id_record
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

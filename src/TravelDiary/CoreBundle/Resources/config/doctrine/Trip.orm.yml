@@ -1,0 +1,95 @@
+TravelDiary\CoreBundle\Entity\Trip:
+    type: entity
+    table: trip
+    indexes:
+        FK_trip_status:
+            columns:
+                - id_status
+        FK_trip_privacy:
+            columns:
+                - id_privacy
+    uniqueConstraints:
+        UNIQUE_trp_uuid:
+            columns:
+                - trp_uuid
+    id:
+        idTrip:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_trip
+            generator:
+                strategy: IDENTITY
+    fields:
+        trpUuid:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: trp_uuid
+        trpName:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: trp_name
+        trpDestination:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: trp_destination
+        trpDescription:
+            type: text
+            nullable: false
+            length: null
+            options:
+                fixed: false
+            column: trp_description
+        trpStartdate:
+            type: date
+            nullable: false
+            column: trp_startDate
+        trpEstimatedarrival:
+            type: date
+            nullable: false
+            column: trp_estimatedArrival
+        trpCreatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: trp_createdAt
+        trpUpdatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: trp_updatedAt
+    manyToOne:
+        idPrivacy:
+            targetEntity: Privacy
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_privacy:
+                    referencedColumnName: id_privacy
+            orphanRemoval: false
+        idStatus:
+            targetEntity: Status
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_status:
+                    referencedColumnName: id_status
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

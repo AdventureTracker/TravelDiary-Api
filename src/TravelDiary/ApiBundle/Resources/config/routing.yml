@@ -1,3 +1,7 @@
 travel_diary_api_homepage:
     path:     /
     defaults: { _controller: TravelDiaryApiBundle:Default:index }
+
+status:
+    path:     /status
+    defaults: { _controller: TravelDiaryApiBundle:Status:status }

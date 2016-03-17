@@ -1,0 +1,33 @@
+TravelDiary\CoreBundle\Entity\Recordtype:
+    type: entity
+    table: recordType
+    uniqueConstraints:
+        UNIQUE_ret_name:
+            columns:
+                - ret_code
+    id:
+        idRecordtype:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_recordType
+            generator:
+                strategy: IDENTITY
+    fields:
+        retCode:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: ret_code
+        retDescription:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: ret_description
+    lifecycleCallbacks: {  }

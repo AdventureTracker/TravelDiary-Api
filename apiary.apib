@@ -324,6 +324,10 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 + Request (application/json)
 
+    + Headers
+
+            X-TravelDiary-Device: 87433278-cde3-4f55-9c31-2cc1ca37bf68
+
     + Attributes
 
         + type: `CAMPING` (optional, RecordTypeEnum) - Type of record
@@ -419,9 +423,9 @@ Application is testing server by calling this endpoint.
             {
                 "stats": {
                     "trips": 10,
-                    "records": 145
+                    "records": 145,
+                    "users": 2
                 },
-                "proccessed_in": 1.0245,
                 "timestamp": 1456960832
             }
 

@@ -1,0 +1,78 @@
+TravelDiary\CoreBundle\Entity\User:
+    type: entity
+    table: user
+    indexes:
+        FK_user_role:
+            columns:
+                - id_role
+    uniqueConstraints:
+        UNIQUE_usr_email:
+            columns:
+                - usr_email
+    id:
+        idUser:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_user
+            generator:
+                strategy: IDENTITY
+    fields:
+        usrFisrtname:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: usr_fisrtName
+        usrLastname:
+            type: string
+            nullable: false
+            length: 50
+            options:
+                fixed: false
+            column: usr_lastName
+        usrEmail:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: usr_email
+        usrPassword:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+            column: usr_password
+        usrLastseen:
+            type: datetime
+            nullable: true
+            column: usr_lastSeen
+        usrCreatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: usr_createdAt
+        usrUpdatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: usr_updatedAt
+    manyToOne:
+        idRole:
+            targetEntity: Role
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_role:
+                    referencedColumnName: id_role
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

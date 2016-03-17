@@ -1,0 +1,111 @@
+TravelDiary\CoreBundle\Entity\Record:
+    type: entity
+    table: record
+    indexes:
+        FK_record_recordType:
+            columns:
+                - id_recordType
+        FK_record_trip:
+            columns:
+                - id_trip
+        INDEX_rec_day:
+            columns:
+                - rec_day
+        FK_record_privacy:
+            columns:
+                - id_privacy
+    uniqueConstraints:
+        UNIQUE_rec_uuid:
+            columns:
+                - rec_uuid
+    id:
+        idRecord:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_record
+            generator:
+                strategy: IDENTITY
+    fields:
+        recUuid:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: rec_uuid
+        recDay:
+            type: date
+            nullable: false
+            column: rec_day
+        recDescription:
+            type: text
+            nullable: false
+            length: null
+            options:
+                fixed: false
+            column: rec_description
+        recLatitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: rec_latitude
+        recLongitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: rec_longitude
+        recAltitude:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            column: rec_altitude
+        recCreatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: rec_createdAt
+        recUpdatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: rec_updatedAt
+    manyToOne:
+        idPrivacy:
+            targetEntity: Privacy
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_privacy:
+                    referencedColumnName: id_privacy
+            orphanRemoval: false
+        idRecordtype:
+            targetEntity: Recordtype
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_recordType:
+                    referencedColumnName: id_recordType
+            orphanRemoval: false
+        idTrip:
+            targetEntity: Trip
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_trip:
+                    referencedColumnName: id_trip
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

@@ -1,0 +1,67 @@
+TravelDiary\CoreBundle\Entity\Device:
+    type: entity
+    table: device
+    indexes:
+        FK__user:
+            columns:
+                - id_user
+    uniqueConstraints:
+        UNIQUE_dev_uuid:
+            columns:
+                - dev_uuid
+    id:
+        idDevice:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_device
+            generator:
+                strategy: IDENTITY
+    fields:
+        devUuid:
+            type: string
+            nullable: false
+            length: 128
+            options:
+                fixed: false
+            column: dev_uuid
+        devVersion:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: dev_version
+        devOs:
+            type: text
+            nullable: true
+            length: 65535
+            options:
+                fixed: false
+            column: dev_os
+        devCreatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: dev_createdAt
+        devUpdatedat:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: dev_updatedAt
+    manyToOne:
+        idUser:
+            targetEntity: User
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_user:
+                    referencedColumnName: id_user
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
