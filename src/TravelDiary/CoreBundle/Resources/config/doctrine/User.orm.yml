@@ -75,4 +75,11 @@ TravelDiary\CoreBundle\Entity\User:
                 id_role:
                     referencedColumnName: id_role
             orphanRemoval: false
+    oneToMany:
+        trips:
+            targetEntity: Trip
+            mappedBy: idUser
+        devices:
+            targetEntity: Device:
+            mappedBy: idUser
     lifecycleCallbacks: {  }

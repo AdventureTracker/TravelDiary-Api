@@ -23,7 +23,7 @@ TravelDiary\CoreBundle\Entity\Photo:
             generator:
                 strategy: IDENTITY
     fields:
-        phtUuid:
+        phtUUID:
             type: string
             nullable: false
             length: 128
@@ -38,7 +38,7 @@ TravelDiary\CoreBundle\Entity\Photo:
                 fixed: false
                 default: '0'
             column: pht_filename
-        phtCreatedat:
+        phtCreatedAt:
             type: datetime
             nullable: false
             options:

@@ -29,7 +29,7 @@ TravelDiary\CoreBundle\Entity\Record:
             generator:
                 strategy: IDENTITY
     fields:
-        recUuid:
+        recUUID:
             type: string
             nullable: false
             length: 128
@@ -65,13 +65,13 @@ TravelDiary\CoreBundle\Entity\Record:
             precision: 10
             scale: 0
             column: rec_altitude
-        recCreatedat:
+        recCreatedAt:
             type: datetime
             nullable: false
             options:
                 default: CURRENT_TIMESTAMP
             column: rec_createdAt
-        recUpdatedat:
+        recUpdatedAt:
             type: datetime
             nullable: false
             options:
@@ -108,4 +108,8 @@ TravelDiary\CoreBundle\Entity\Record:
                 id_trip:
                     referencedColumnName: id_trip
             orphanRemoval: false
+    oneToMany:
+        photos:
+            targetEntity: Photo
+            mappedBy: idProduct
     lifecycleCallbacks: {  }

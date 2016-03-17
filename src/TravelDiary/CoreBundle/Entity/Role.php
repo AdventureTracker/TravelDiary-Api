@@ -7,49 +7,51 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Role
 {
-    /**
-     * @var integer
-     */
-    private $idRole;
+	/**
+	 * @var integer
+	 */
+	private $idRole;
 
-    /**
-     * @var string
-     */
-    private $rolName = '0';
+	/**
+	 * @var string
+	 */
+	private $rolName = '0';
 
 
-    /**
-     * Get idRole
-     *
-     * @return integer
-     */
-    public function getIdRole()
-    {
-        return $this->idRole;
-    }
+	/**
+	 * Get idRole
+	 *
+	 * @return integer
+	 */
+	public function getIdRole()
+	{
+		return $this->idRole;
+	}
 
-    /**
-     * Set rolName
-     *
-     * @param string $rolName
-     *
-     * @return Role
-     */
-    public function setRolName($rolName)
-    {
-        $this->rolName = $rolName;
+	/**
+	 * Set rolName
+	 *
+	 * @param string $rolName
+	 *
+	 * @return Role
+	 */
+	public function setRolName($rolName)
+	{
+		$this->rolName = $rolName;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get rolName
-     *
-     * @return string
-     */
-    public function getRolName()
-    {
-        return $this->rolName;
-    }
+	/**
+	 * Get rolName
+	 *
+	 * @return string
+	 */
+	public function getRolName()
+	{
+		return $this->rolName;
+	}
+	
+	
 }
 

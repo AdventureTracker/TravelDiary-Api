@@ -7,194 +7,198 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Device
 {
-    /**
-     * @var integer
-     */
-    private $idDevice;
+	/**
+	 * @var integer
+	 */
+	private $idDevice;
 
-    /**
-     * @var string
-     */
-    private $devUuid;
+	/**
+	 * @var string
+	 */
+	private $devUUID;
 
-    /**
-     * @var string
-     */
-    private $devVersion;
+	/**
+	 * @var string
+	 */
+	private $devVersion;
 
-    /**
-     * @var string
-     */
-    private $devOs;
+	/**
+	 * @var string
+	 */
+	private $devOs;
 
-    /**
-     * @var \DateTime
-     */
-    private $devCreatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $devCreatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \DateTime
-     */
-    private $devUpdatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $devUpdatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\User
-     */
-    private $idUser;
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\User
+	 */
+	private $idUser;
 
 
-    /**
-     * Get idDevice
-     *
-     * @return integer
-     */
-    public function getIdDevice()
-    {
-        return $this->idDevice;
-    }
+	/**
+	 * Get idDevice
+	 *
+	 * @return integer
+	 */
+	public function getIdDevice()
+	{
+		return $this->idDevice;
+	}
 
-    /**
-     * Set devUuid
-     *
-     * @param string $devUuid
-     *
-     * @return Device
-     */
-    public function setDevUuid($devUuid)
-    {
-        $this->devUuid = $devUuid;
+	/**
+	 * Set devUUID
+	 *
+	 * @param string $devUUID
+	 *
+	 * @return Device
+	 */
+	public function setDevUUID($devUUID)
+	{
+		$this->devUUID = $devUUID;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get devUuid
-     *
-     * @return string
-     */
-    public function getDevUuid()
-    {
-        return $this->devUuid;
-    }
+	/**
+	 * Get devUUID
+	 *
+	 * @return string
+	 */
+	public function getDevUUID()
+	{
+		return $this->devUUID;
+	}
 
-    /**
-     * Set devVersion
-     *
-     * @param string $devVersion
-     *
-     * @return Device
-     */
-    public function setDevVersion($devVersion)
-    {
-        $this->devVersion = $devVersion;
+	/**
+	 * Set devVersion
+	 *
+	 * @param string $devVersion
+	 *
+	 * @return Device
+	 */
+	public function setDevVersion($devVersion)
+	{
+		$this->devVersion = $devVersion;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get devVersion
-     *
-     * @return string
-     */
-    public function getDevVersion()
-    {
-        return $this->devVersion;
-    }
+	/**
+	 * Get devVersion
+	 *
+	 * @return string
+	 */
+	public function getDevVersion()
+	{
+		return $this->devVersion;
+	}
 
-    /**
-     * Set devOs
-     *
-     * @param string $devOs
-     *
-     * @return Device
-     */
-    public function setDevOs($devOs)
-    {
-        $this->devOs = $devOs;
+	/**
+	 * Set devOs
+	 *
+	 * @param string $devOs
+	 *
+	 * @return Device
+	 */
+	public function setDevOs($devOs)
+	{
+		$this->devOs = $devOs;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get devOs
-     *
-     * @return string
-     */
-    public function getDevOs()
-    {
-        return $this->devOs;
-    }
+	/**
+	 * Get devOs
+	 *
+	 * @return string
+	 */
+	public function getDevOs()
+	{
+		return $this->devOs;
+	}
 
-    /**
-     * Set devCreatedat
-     *
-     * @param \DateTime $devCreatedat
-     *
-     * @return Device
-     */
-    public function setDevCreatedat($devCreatedat)
-    {
-        $this->devCreatedat = $devCreatedat;
+	/**
+	 * Set devCreatedAt
+	 *
+	 * @param \DateTime $devCreatedAt
+	 *
+	 * @return Device
+	 */
+	public function setDevCreatedAt($devCreatedAt)
+	{
+		$this->devCreatedAt = $devCreatedAt;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get devCreatedat
-     *
-     * @return \DateTime
-     */
-    public function getDevCreatedat()
-    {
-        return $this->devCreatedat;
-    }
+	/**
+	 * Get devCreatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getDevCreatedAt()
+	{
+		return $this->devCreatedAt;
+	}
 
-    /**
-     * Set devUpdatedat
-     *
-     * @param \DateTime $devUpdatedat
-     *
-     * @return Device
-     */
-    public function setDevUpdatedat($devUpdatedat)
-    {
-        $this->devUpdatedat = $devUpdatedat;
+	/**
+	 * Set devUpdatedAt
+	 *
+	 * @param \DateTime $devUpdatedAt
+	 *
+	 * @return Device
+	 */
+	public function setDevUpdatedAt($devUpdatedAt)
+	{
+		$this->devUpdatedAt = $devUpdatedAt;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get devUpdatedat
-     *
-     * @return \DateTime
-     */
-    public function getDevUpdatedat()
-    {
-        return $this->devUpdatedat;
-    }
+	/**
+	 * Get devUpdatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getDevUpdatedAt()
+	{
+		return $this->devUpdatedAt;
+	}
 
-    /**
-     * Set idUser
-     *
-     * @param \TravelDiary\CoreBundle\Entity\User $idUser
-     *
-     * @return Device
-     */
-    public function setIdUser(\TravelDiary\CoreBundle\Entity\User $idUser = null)
-    {
-        $this->idUser = $idUser;
+	/**
+	 * Set idUser
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\User $idUser
+	 *
+	 * @return Device
+	 */
+	public function setIdUser(\TravelDiary\CoreBundle\Entity\User $idUser = null)
+	{
+		$this->idUser = $idUser;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get idUser
-     *
-     * @return \TravelDiary\CoreBundle\Entity\User
-     */
-    public function getIdUser()
-    {
-        return $this->idUser;
-    }
+	/**
+	 * Get idUser
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\User
+	 */
+	public function getIdUser()
+	{
+		return $this->idUser;
+	}
+
+	public function toArray() {
+		return [];
+	}
 }
 

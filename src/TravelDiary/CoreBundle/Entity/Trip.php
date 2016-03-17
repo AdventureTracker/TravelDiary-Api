@@ -7,310 +7,378 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Trip
 {
-    /**
-     * @var integer
-     */
-    private $idTrip;
+	/**
+	 * @var integer
+	 */
+	private $idTrip;
 
-    /**
-     * @var string
-     */
-    private $trpUuid;
+	/**
+	 * @var string
+	 */
+	private $trpUUID;
 
-    /**
-     * @var string
-     */
-    private $trpName;
+	/**
+	 * @var string
+	 */
+	private $trpName;
 
-    /**
-     * @var string
-     */
-    private $trpDestination;
+	/**
+	 * @var string
+	 */
+	private $trpDestination;
 
-    /**
-     * @var string
-     */
-    private $trpDescription;
+	/**
+	 * @var string
+	 */
+	private $trpDescription;
 
-    /**
-     * @var \DateTime
-     */
-    private $trpStartdate;
+	/**
+	 * @var \DateTime
+	 */
+	private $trpStartDate;
 
-    /**
-     * @var \DateTime
-     */
-    private $trpEstimatedarrival;
+	/**
+	 * @var \DateTime
+	 */
+	private $trpEstimatedarrival;
 
-    /**
-     * @var \DateTime
-     */
-    private $trpCreatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $trpCreatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \DateTime
-     */
-    private $trpUpdatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $trpUpdatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Privacy
-     */
-    private $idPrivacy;
+	/**
+	 * @var \Doctrine\Common\Collections\Collection
+	 */
+	private $tripRecords;
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Status
-     */
-    private $idStatus;
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Privacy
+	 */
+	private $idPrivacy;
 
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Status
+	 */
+	private $idStatus;
 
-    /**
-     * Get idTrip
-     *
-     * @return integer
-     */
-    public function getIdTrip()
-    {
-        return $this->idTrip;
-    }
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->tripRecords = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-    /**
-     * Set trpUuid
-     *
-     * @param string $trpUuid
-     *
-     * @return Trip
-     */
-    public function setTrpUuid($trpUuid)
-    {
-        $this->trpUuid = $trpUuid;
+	/**
+	 * Get idTrip
+	 *
+	 * @return integer
+	 */
+	public function getIdTrip()
+	{
+		return $this->idTrip;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpUUID
+	 *
+	 * @param string $trpUUID
+	 *
+	 * @return Trip
+	 */
+	public function setTrpUUID($trpUUID)
+	{
+		$this->trpUUID = $trpUUID;
 
-    /**
-     * Get trpUuid
-     *
-     * @return string
-     */
-    public function getTrpUuid()
-    {
-        return $this->trpUuid;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpName
-     *
-     * @param string $trpName
-     *
-     * @return Trip
-     */
-    public function setTrpName($trpName)
-    {
-        $this->trpName = $trpName;
+	/**
+	 * Get trpUUID
+	 *
+	 * @return string
+	 */
+	public function getTrpUUID()
+	{
+		return $this->trpUUID;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpName
+	 *
+	 * @param string $trpName
+	 *
+	 * @return Trip
+	 */
+	public function setTrpName($trpName)
+	{
+		$this->trpName = $trpName;
 
-    /**
-     * Get trpName
-     *
-     * @return string
-     */
-    public function getTrpName()
-    {
-        return $this->trpName;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpDestination
-     *
-     * @param string $trpDestination
-     *
-     * @return Trip
-     */
-    public function setTrpDestination($trpDestination)
-    {
-        $this->trpDestination = $trpDestination;
+	/**
+	 * Get trpName
+	 *
+	 * @return string
+	 */
+	public function getTrpName()
+	{
+		return $this->trpName;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpDestination
+	 *
+	 * @param string $trpDestination
+	 *
+	 * @return Trip
+	 */
+	public function setTrpDestination($trpDestination)
+	{
+		$this->trpDestination = $trpDestination;
 
-    /**
-     * Get trpDestination
-     *
-     * @return string
-     */
-    public function getTrpDestination()
-    {
-        return $this->trpDestination;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpDescription
-     *
-     * @param string $trpDescription
-     *
-     * @return Trip
-     */
-    public function setTrpDescription($trpDescription)
-    {
-        $this->trpDescription = $trpDescription;
+	/**
+	 * Get trpDestination
+	 *
+	 * @return string
+	 */
+	public function getTrpDestination()
+	{
+		return $this->trpDestination;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpDescription
+	 *
+	 * @param string $trpDescription
+	 *
+	 * @return Trip
+	 */
+	public function setTrpDescription($trpDescription)
+	{
+		$this->trpDescription = $trpDescription;
 
-    /**
-     * Get trpDescription
-     *
-     * @return string
-     */
-    public function getTrpDescription()
-    {
-        return $this->trpDescription;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpStartdate
-     *
-     * @param \DateTime $trpStartdate
-     *
-     * @return Trip
-     */
-    public function setTrpStartdate($trpStartdate)
-    {
-        $this->trpStartdate = $trpStartdate;
+	/**
+	 * Get trpDescription
+	 *
+	 * @return string
+	 */
+	public function getTrpDescription()
+	{
+		return $this->trpDescription;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpStartDate
+	 *
+	 * @param \DateTime $trpStartDate
+	 *
+	 * @return Trip
+	 */
+	public function setTrpStartDate($trpStartDate)
+	{
+		$this->trpStartDate = $trpStartDate;
 
-    /**
-     * Get trpStartdate
-     *
-     * @return \DateTime
-     */
-    public function getTrpStartdate()
-    {
-        return $this->trpStartdate;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpEstimatedarrival
-     *
-     * @param \DateTime $trpEstimatedarrival
-     *
-     * @return Trip
-     */
-    public function setTrpEstimatedarrival($trpEstimatedarrival)
-    {
-        $this->trpEstimatedarrival = $trpEstimatedarrival;
+	/**
+	 * Get trpStartDate
+	 *
+	 * @return \DateTime
+	 */
+	public function getTrpStartDate()
+	{
+		return $this->trpStartDate;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpEstimatedarrival
+	 *
+	 * @param \DateTime $trpEstimatedarrival
+	 *
+	 * @return Trip
+	 */
+	public function setTrpEstimatedarrival($trpEstimatedarrival)
+	{
+		$this->trpEstimatedarrival = $trpEstimatedarrival;
 
-    /**
-     * Get trpEstimatedarrival
-     *
-     * @return \DateTime
-     */
-    public function getTrpEstimatedarrival()
-    {
-        return $this->trpEstimatedarrival;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpCreatedat
-     *
-     * @param \DateTime $trpCreatedat
-     *
-     * @return Trip
-     */
-    public function setTrpCreatedat($trpCreatedat)
-    {
-        $this->trpCreatedat = $trpCreatedat;
+	/**
+	 * Get trpEstimatedarrival
+	 *
+	 * @return \DateTime
+	 */
+	public function getTrpEstimatedarrival()
+	{
+		return $this->trpEstimatedarrival;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpCreatedAt
+	 *
+	 * @param \DateTime $trpCreatedAt
+	 *
+	 * @return Trip
+	 */
+	public function setTrpCreatedAt($trpCreatedAt)
+	{
+		$this->trpCreatedAt = $trpCreatedAt;
 
-    /**
-     * Get trpCreatedat
-     *
-     * @return \DateTime
-     */
-    public function getTrpCreatedat()
-    {
-        return $this->trpCreatedat;
-    }
+		return $this;
+	}
 
-    /**
-     * Set trpUpdatedat
-     *
-     * @param \DateTime $trpUpdatedat
-     *
-     * @return Trip
-     */
-    public function setTrpUpdatedat($trpUpdatedat)
-    {
-        $this->trpUpdatedat = $trpUpdatedat;
+	/**
+	 * Get trpCreatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getTrpCreatedAt()
+	{
+		return $this->trpCreatedAt;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set trpUpdatedAt
+	 *
+	 * @param \DateTime $trpUpdatedAt
+	 *
+	 * @return Trip
+	 */
+	public function setTrpUpdatedAt($trpUpdatedAt)
+	{
+		$this->trpUpdatedAt = $trpUpdatedAt;
 
-    /**
-     * Get trpUpdatedat
-     *
-     * @return \DateTime
-     */
-    public function getTrpUpdatedat()
-    {
-        return $this->trpUpdatedat;
-    }
+		return $this;
+	}
 
-    /**
-     * Set idPrivacy
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Privacy $idPrivacy
-     *
-     * @return Trip
-     */
-    public function setIdPrivacy(\TravelDiary\CoreBundle\Entity\Privacy $idPrivacy = null)
-    {
-        $this->idPrivacy = $idPrivacy;
+	/**
+	 * Get trpUpdatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getTrpUpdatedAt()
+	{
+		return $this->trpUpdatedAt;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add tripRecord
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Record $tripRecord
+	 *
+	 * @return Trip
+	 */
+	public function addTripRecord(\TravelDiary\CoreBundle\Entity\Record $tripRecord)
+	{
+		$this->tripRecords[] = $tripRecord;
 
-    /**
-     * Get idPrivacy
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Privacy
-     */
-    public function getIdPrivacy()
-    {
-        return $this->idPrivacy;
-    }
+		return $this;
+	}
 
-    /**
-     * Set idStatus
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Status $idStatus
-     *
-     * @return Trip
-     */
-    public function setIdStatus(\TravelDiary\CoreBundle\Entity\Status $idStatus = null)
-    {
-        $this->idStatus = $idStatus;
+	/**
+	 * Remove tripRecord
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Record $tripRecord
+	 */
+	public function removeTripRecord(\TravelDiary\CoreBundle\Entity\Record $tripRecord)
+	{
+		$this->tripRecords->removeElement($tripRecord);
+	}
 
-        return $this;
-    }
+	/**
+	 * Get tripRecords
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getTripRecords()
+	{
+		return $this->tripRecords;
+	}
 
-    /**
-     * Get idStatus
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Status
-     */
-    public function getIdStatus()
-    {
-        return $this->idStatus;
-    }
+	/**
+	 * Set idPrivacy
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Privacy $idPrivacy
+	 *
+	 * @return Trip
+	 */
+	public function setIdPrivacy(\TravelDiary\CoreBundle\Entity\Privacy $idPrivacy = null)
+	{
+		$this->idPrivacy = $idPrivacy;
+
+		return $this;
+	}
+
+	/**
+	 * Get idPrivacy
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Privacy
+	 */
+	public function getIdPrivacy()
+	{
+		return $this->idPrivacy;
+	}
+
+	/**
+	 * Set idStatus
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Status $idStatus
+	 *
+	 * @return Trip
+	 */
+	public function setIdStatus(\TravelDiary\CoreBundle\Entity\Status $idStatus = null)
+	{
+		$this->idStatus = $idStatus;
+
+		return $this;
+	}
+
+	/**
+	 * Get idStatus
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Status
+	 */
+	public function getIdStatus()
+	{
+		return $this->idStatus;
+	}
+
+	public function toArray($detailed = false) {
+		$content = [
+			'id' 							=> $this->trpUUID,
+			'name' 							=> (string) $this->trpName,
+			'destination' 					=> (string) $this->trpDestination,
+			'description' 					=> (string) $this->trpDescription,
+			'start_date' 					=> (string) $this->trpStartDate->format("Y-m-d-"),
+			'estimated_arrival_date' 		=> (string) $this->trpEstimatedarrival->format("Y-m-d-"),
+			'created_at' 					=> (string) $this->trpCreatedAt->format(\DateTime::ISO8601)
+		];
+
+		if ($detailed) {
+			$content['records'] 			= [];
+			foreach ($this->getTripRecords() as $tripRecord)
+			{
+				$content['records'][] 		= $tripRecord->toArray();
+			}
+		}
+
+		return $content;
+	}
 }
 

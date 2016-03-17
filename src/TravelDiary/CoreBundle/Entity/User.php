@@ -48,10 +48,28 @@ class User
     private $usrUpdatedat = 'CURRENT_TIMESTAMP';
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $trips;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $devices;
+
+    /**
      * @var \TravelDiary\CoreBundle\Entity\Role
      */
     private $idRole;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->trips = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->devices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get idUser
@@ -229,6 +247,74 @@ class User
     public function getUsrUpdatedat()
     {
         return $this->usrUpdatedat;
+    }
+
+    /**
+     * Add trip
+     *
+     * @param \TravelDiary\CoreBundle\Entity\Trip $trip
+     *
+     * @return User
+     */
+    public function addTrip(\TravelDiary\CoreBundle\Entity\Trip $trip)
+    {
+        $this->trips[] = $trip;
+
+        return $this;
+    }
+
+    /**
+     * Remove trip
+     *
+     * @param \TravelDiary\CoreBundle\Entity\Trip $trip
+     */
+    public function removeTrip(\TravelDiary\CoreBundle\Entity\Trip $trip)
+    {
+        $this->trips->removeElement($trip);
+    }
+
+    /**
+     * Get trips
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTrips()
+    {
+        return $this->trips;
+    }
+
+    /**
+     * Add device
+     *
+     * @param \TravelDiary\CoreBundle\Entity\Device: $device
+     *
+     * @return User
+     */
+    public function addDevice(\TravelDiary\CoreBundle\Entity\Device: $device)
+    {
+        $this->devices[] = $device;
+
+        return $this;
+    }
+
+    /**
+     * Remove device
+     *
+     * @param \TravelDiary\CoreBundle\Entity\Device: $device
+     */
+    public function removeDevice(\TravelDiary\CoreBundle\Entity\Device: $device)
+    {
+        $this->devices->removeElement($device);
+    }
+
+    /**
+     * Get devices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDevices()
+    {
+        return $this->devices;
     }
 
     /**

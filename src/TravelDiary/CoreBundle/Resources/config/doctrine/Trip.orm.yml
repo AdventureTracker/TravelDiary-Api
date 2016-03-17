@@ -1,4 +1,5 @@
 TravelDiary\CoreBundle\Entity\Trip:
+    repositoryClass: TravelDiary\CoreBundle\Entity\TripRepository
     type: entity
     table: trip
     indexes:
@@ -23,7 +24,7 @@ TravelDiary\CoreBundle\Entity\Trip:
             generator:
                 strategy: IDENTITY
     fields:
-        trpUuid:
+        trpUUID:
             type: string
             nullable: false
             length: 128
@@ -51,7 +52,7 @@ TravelDiary\CoreBundle\Entity\Trip:
             options:
                 fixed: false
             column: trp_description
-        trpStartdate:
+        trpStartDate:
             type: date
             nullable: false
             column: trp_startDate
@@ -59,13 +60,13 @@ TravelDiary\CoreBundle\Entity\Trip:
             type: date
             nullable: false
             column: trp_estimatedArrival
-        trpCreatedat:
+        trpCreatedAt:
             type: datetime
             nullable: false
             options:
                 default: CURRENT_TIMESTAMP
             column: trp_createdAt
-        trpUpdatedat:
+        trpUpdatedAt:
             type: datetime
             nullable: false
             options:
@@ -92,4 +93,8 @@ TravelDiary\CoreBundle\Entity\Trip:
                 id_status:
                     referencedColumnName: id_status
             orphanRemoval: false
+    oneToMany:
+        tripRecords:
+            targetEntity: Record
+            mappedBy: idProduct
     lifecycleCallbacks: {  }

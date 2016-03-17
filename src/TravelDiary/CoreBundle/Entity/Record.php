@@ -7,339 +7,413 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Record
 {
-    /**
-     * @var integer
-     */
-    private $idRecord;
+	/**
+	 * @var integer
+	 */
+	private $idRecord;
 
-    /**
-     * @var string
-     */
-    private $recUuid;
+	/**
+	 * @var string
+	 */
+	private $recUUID;
 
-    /**
-     * @var \DateTime
-     */
-    private $recDay;
+	/**
+	 * @var \DateTime
+	 */
+	private $recDay;
 
-    /**
-     * @var string
-     */
-    private $recDescription;
+	/**
+	 * @var string
+	 */
+	private $recDescription;
 
-    /**
-     * @var float
-     */
-    private $recLatitude;
+	/**
+	 * @var float
+	 */
+	private $recLatitude;
 
-    /**
-     * @var float
-     */
-    private $recLongitude;
+	/**
+	 * @var float
+	 */
+	private $recLongitude;
 
-    /**
-     * @var float
-     */
-    private $recAltitude;
+	/**
+	 * @var float
+	 */
+	private $recAltitude;
 
-    /**
-     * @var \DateTime
-     */
-    private $recCreatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $recCreatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \DateTime
-     */
-    private $recUpdatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $recUpdatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Privacy
-     */
-    private $idPrivacy;
+	/**
+	 * @var \Doctrine\Common\Collections\Collection
+	 */
+	private $photos;
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Recordtype
-     */
-    private $idRecordtype;
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Privacy
+	 */
+	private $idPrivacy;
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Trip
-     */
-    private $idTrip;
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Recordtype
+	 */
+	private $idRecordtype;
 
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Trip
+	 */
+	private $idTrip;
 
-    /**
-     * Get idRecord
-     *
-     * @return integer
-     */
-    public function getIdRecord()
-    {
-        return $this->idRecord;
-    }
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+	}
 
-    /**
-     * Set recUuid
-     *
-     * @param string $recUuid
-     *
-     * @return Record
-     */
-    public function setRecUuid($recUuid)
-    {
-        $this->recUuid = $recUuid;
+	/**
+	 * Get idRecord
+	 *
+	 * @return integer
+	 */
+	public function getIdRecord()
+	{
+		return $this->idRecord;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recUUID
+	 *
+	 * @param string $recUUID
+	 *
+	 * @return Record
+	 */
+	public function setRecUUID($recUUID)
+	{
+		$this->recUUID = $recUUID;
 
-    /**
-     * Get recUuid
-     *
-     * @return string
-     */
-    public function getRecUuid()
-    {
-        return $this->recUuid;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recDay
-     *
-     * @param \DateTime $recDay
-     *
-     * @return Record
-     */
-    public function setRecDay($recDay)
-    {
-        $this->recDay = $recDay;
+	/**
+	 * Get recUUID
+	 *
+	 * @return string
+	 */
+	public function getRecUUID()
+	{
+		return $this->recUUID;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recDay
+	 *
+	 * @param \DateTime $recDay
+	 *
+	 * @return Record
+	 */
+	public function setRecDay($recDay)
+	{
+		$this->recDay = $recDay;
 
-    /**
-     * Get recDay
-     *
-     * @return \DateTime
-     */
-    public function getRecDay()
-    {
-        return $this->recDay;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recDescription
-     *
-     * @param string $recDescription
-     *
-     * @return Record
-     */
-    public function setRecDescription($recDescription)
-    {
-        $this->recDescription = $recDescription;
+	/**
+	 * Get recDay
+	 *
+	 * @return \DateTime
+	 */
+	public function getRecDay()
+	{
+		return $this->recDay;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recDescription
+	 *
+	 * @param string $recDescription
+	 *
+	 * @return Record
+	 */
+	public function setRecDescription($recDescription)
+	{
+		$this->recDescription = $recDescription;
 
-    /**
-     * Get recDescription
-     *
-     * @return string
-     */
-    public function getRecDescription()
-    {
-        return $this->recDescription;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recLatitude
-     *
-     * @param float $recLatitude
-     *
-     * @return Record
-     */
-    public function setRecLatitude($recLatitude)
-    {
-        $this->recLatitude = $recLatitude;
+	/**
+	 * Get recDescription
+	 *
+	 * @return string
+	 */
+	public function getRecDescription()
+	{
+		return $this->recDescription;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recLatitude
+	 *
+	 * @param float $recLatitude
+	 *
+	 * @return Record
+	 */
+	public function setRecLatitude($recLatitude)
+	{
+		$this->recLatitude = $recLatitude;
 
-    /**
-     * Get recLatitude
-     *
-     * @return float
-     */
-    public function getRecLatitude()
-    {
-        return $this->recLatitude;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recLongitude
-     *
-     * @param float $recLongitude
-     *
-     * @return Record
-     */
-    public function setRecLongitude($recLongitude)
-    {
-        $this->recLongitude = $recLongitude;
+	/**
+	 * Get recLatitude
+	 *
+	 * @return float
+	 */
+	public function getRecLatitude()
+	{
+		return $this->recLatitude;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recLongitude
+	 *
+	 * @param float $recLongitude
+	 *
+	 * @return Record
+	 */
+	public function setRecLongitude($recLongitude)
+	{
+		$this->recLongitude = $recLongitude;
 
-    /**
-     * Get recLongitude
-     *
-     * @return float
-     */
-    public function getRecLongitude()
-    {
-        return $this->recLongitude;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recAltitude
-     *
-     * @param float $recAltitude
-     *
-     * @return Record
-     */
-    public function setRecAltitude($recAltitude)
-    {
-        $this->recAltitude = $recAltitude;
+	/**
+	 * Get recLongitude
+	 *
+	 * @return float
+	 */
+	public function getRecLongitude()
+	{
+		return $this->recLongitude;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recAltitude
+	 *
+	 * @param float $recAltitude
+	 *
+	 * @return Record
+	 */
+	public function setRecAltitude($recAltitude)
+	{
+		$this->recAltitude = $recAltitude;
 
-    /**
-     * Get recAltitude
-     *
-     * @return float
-     */
-    public function getRecAltitude()
-    {
-        return $this->recAltitude;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recCreatedat
-     *
-     * @param \DateTime $recCreatedat
-     *
-     * @return Record
-     */
-    public function setRecCreatedat($recCreatedat)
-    {
-        $this->recCreatedat = $recCreatedat;
+	/**
+	 * Get recAltitude
+	 *
+	 * @return float
+	 */
+	public function getRecAltitude()
+	{
+		return $this->recAltitude;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recCreatedAt
+	 *
+	 * @param \DateTime $recCreatedAt
+	 *
+	 * @return Record
+	 */
+	public function setRecCreatedAt($recCreatedAt)
+	{
+		$this->recCreatedAt = $recCreatedAt;
 
-    /**
-     * Get recCreatedat
-     *
-     * @return \DateTime
-     */
-    public function getRecCreatedat()
-    {
-        return $this->recCreatedat;
-    }
+		return $this;
+	}
 
-    /**
-     * Set recUpdatedat
-     *
-     * @param \DateTime $recUpdatedat
-     *
-     * @return Record
-     */
-    public function setRecUpdatedat($recUpdatedat)
-    {
-        $this->recUpdatedat = $recUpdatedat;
+	/**
+	 * Get recCreatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getRecCreatedAt()
+	{
+		return $this->recCreatedAt;
+	}
 
-        return $this;
-    }
+	/**
+	 * Set recUpdatedAt
+	 *
+	 * @param \DateTime $recUpdatedAt
+	 *
+	 * @return Record
+	 */
+	public function setRecUpdatedAt($recUpdatedAt)
+	{
+		$this->recUpdatedAt = $recUpdatedAt;
 
-    /**
-     * Get recUpdatedat
-     *
-     * @return \DateTime
-     */
-    public function getRecUpdatedat()
-    {
-        return $this->recUpdatedat;
-    }
+		return $this;
+	}
 
-    /**
-     * Set idPrivacy
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Privacy $idPrivacy
-     *
-     * @return Record
-     */
-    public function setIdPrivacy(\TravelDiary\CoreBundle\Entity\Privacy $idPrivacy = null)
-    {
-        $this->idPrivacy = $idPrivacy;
+	/**
+	 * Get recUpdatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getRecUpdatedAt()
+	{
+		return $this->recUpdatedAt;
+	}
 
-        return $this;
-    }
+	/**
+	 * Add photo
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Photo $photo
+	 *
+	 * @return Record
+	 */
+	public function addPhoto(\TravelDiary\CoreBundle\Entity\Photo $photo)
+	{
+		$this->photos[] = $photo;
 
-    /**
-     * Get idPrivacy
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Privacy
-     */
-    public function getIdPrivacy()
-    {
-        return $this->idPrivacy;
-    }
+		return $this;
+	}
 
-    /**
-     * Set idRecordtype
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Recordtype $idRecordtype
-     *
-     * @return Record
-     */
-    public function setIdRecordtype(\TravelDiary\CoreBundle\Entity\Recordtype $idRecordtype = null)
-    {
-        $this->idRecordtype = $idRecordtype;
+	/**
+	 * Remove photo
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Photo $photo
+	 */
+	public function removePhoto(\TravelDiary\CoreBundle\Entity\Photo $photo)
+	{
+		$this->photos->removeElement($photo);
+	}
 
-        return $this;
-    }
+	/**
+	 * Get photos
+	 *
+	 * @return \Doctrine\Common\Collections\Collection
+	 */
+	public function getPhotos()
+	{
+		return $this->photos;
+	}
 
-    /**
-     * Get idRecordtype
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Recordtype
-     */
-    public function getIdRecordtype()
-    {
-        return $this->idRecordtype;
-    }
+	/**
+	 * Set idPrivacy
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Privacy $idPrivacy
+	 *
+	 * @return Record
+	 */
+	public function setIdPrivacy(\TravelDiary\CoreBundle\Entity\Privacy $idPrivacy = null)
+	{
+		$this->idPrivacy = $idPrivacy;
 
-    /**
-     * Set idTrip
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Trip $idTrip
-     *
-     * @return Record
-     */
-    public function setIdTrip(\TravelDiary\CoreBundle\Entity\Trip $idTrip = null)
-    {
-        $this->idTrip = $idTrip;
+		return $this;
+	}
 
-        return $this;
-    }
+	/**
+	 * Get idPrivacy
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Privacy
+	 */
+	public function getIdPrivacy()
+	{
+		return $this->idPrivacy;
+	}
 
-    /**
-     * Get idTrip
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Trip
-     */
-    public function getIdTrip()
-    {
-        return $this->idTrip;
-    }
+	/**
+	 * Set idRecordtype
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Recordtype $idRecordtype
+	 *
+	 * @return Record
+	 */
+	public function setIdRecordtype(\TravelDiary\CoreBundle\Entity\Recordtype $idRecordtype = null)
+	{
+		$this->idRecordtype = $idRecordtype;
+
+		return $this;
+	}
+
+	/**
+	 * Get idRecordtype
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Recordtype
+	 */
+	public function getIdRecordtype()
+	{
+		return $this->idRecordtype;
+	}
+
+	/**
+	 * Set idTrip
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Trip $idTrip
+	 *
+	 * @return Record
+	 */
+	public function setIdTrip(\TravelDiary\CoreBundle\Entity\Trip $idTrip = null)
+	{
+		$this->idTrip = $idTrip;
+
+		return $this;
+	}
+
+	/**
+	 * Get idTrip
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Trip
+	 */
+	public function getIdTrip()
+	{
+		return $this->idTrip;
+	}
+
+	public function toArray($detailed = false)
+	{
+		$content = [
+			'id' 			=> $this->getRecUUID(),
+			'type' 			=> $this->idRecordtype->getRetCode(),
+			'day' 			=> $this->recDay->format("Y-m-d")
+		];
+
+		if ($detailed) {
+			$content['description'] 		= $this->recDescription;
+			$content['coordinates'] 		= $this->getCoordinates();
+			$content['photos'] 				= [];
+			foreach ($this->getPhotos() as $photo) {
+				$content['photos'][] 		= $photo->toArray();
+			}
+		}
+
+		return $content;
+	}
+
+	public function getCoordinates() {
+		return [
+			'latitude' 		=> (float) $this->getRecLatitude(),
+			'longitude' 	=> (float) $this->getRecLongitude(),
+			'altitude' 		=> (int) $this->getRecAltitude()
+		];
+	}
 }
 

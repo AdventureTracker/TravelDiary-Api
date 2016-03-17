@@ -7,136 +7,142 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Photo
 {
-    /**
-     * @var integer
-     */
-    private $idPhoto;
+	/**
+	 * @var integer
+	 */
+	private $idPhoto;
 
-    /**
-     * @var string
-     */
-    private $phtUuid;
+	/**
+	 * @var string
+	 */
+	private $phtUUID;
 
-    /**
-     * @var string
-     */
-    private $phtFilename = '0';
+	/**
+	 * @var string
+	 */
+	private $phtFilename = '0';
 
-    /**
-     * @var \DateTime
-     */
-    private $phtCreatedat = 'CURRENT_TIMESTAMP';
+	/**
+	 * @var \DateTime
+	 */
+	private $phtCreatedAt = 'CURRENT_TIMESTAMP';
 
-    /**
-     * @var \TravelDiary\CoreBundle\Entity\Record
-     */
-    private $idRecord;
+	/**
+	 * @var \TravelDiary\CoreBundle\Entity\Record
+	 */
+	private $idRecord;
 
 
-    /**
-     * Get idPhoto
-     *
-     * @return integer
-     */
-    public function getIdPhoto()
-    {
-        return $this->idPhoto;
-    }
+	/**
+	 * Get idPhoto
+	 *
+	 * @return integer
+	 */
+	public function getIdPhoto()
+	{
+		return $this->idPhoto;
+	}
 
-    /**
-     * Set phtUuid
-     *
-     * @param string $phtUuid
-     *
-     * @return Photo
-     */
-    public function setPhtUuid($phtUuid)
-    {
-        $this->phtUuid = $phtUuid;
+	/**
+	 * Set phtUUID
+	 *
+	 * @param string $phtUUID
+	 *
+	 * @return Photo
+	 */
+	public function setPhtUUID($phtUUID)
+	{
+		$this->phtUUID = $phtUUID;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get phtUuid
-     *
-     * @return string
-     */
-    public function getPhtUuid()
-    {
-        return $this->phtUuid;
-    }
+	/**
+	 * Get phtUUID
+	 *
+	 * @return string
+	 */
+	public function getPhtUUID()
+	{
+		return $this->phtUUID;
+	}
 
-    /**
-     * Set phtFilename
-     *
-     * @param string $phtFilename
-     *
-     * @return Photo
-     */
-    public function setPhtFilename($phtFilename)
-    {
-        $this->phtFilename = $phtFilename;
+	/**
+	 * Set phtFilename
+	 *
+	 * @param string $phtFilename
+	 *
+	 * @return Photo
+	 */
+	public function setPhtFilename($phtFilename)
+	{
+		$this->phtFilename = $phtFilename;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get phtFilename
-     *
-     * @return string
-     */
-    public function getPhtFilename()
-    {
-        return $this->phtFilename;
-    }
+	/**
+	 * Get phtFilename
+	 *
+	 * @return string
+	 */
+	public function getPhtFilename()
+	{
+		return $this->phtFilename;
+	}
 
-    /**
-     * Set phtCreatedat
-     *
-     * @param \DateTime $phtCreatedat
-     *
-     * @return Photo
-     */
-    public function setPhtCreatedat($phtCreatedat)
-    {
-        $this->phtCreatedat = $phtCreatedat;
+	/**
+	 * Set phtCreatedAt
+	 *
+	 * @param \DateTime $phtCreatedAt
+	 *
+	 * @return Photo
+	 */
+	public function setPhtCreatedAt($phtCreatedAt)
+	{
+		$this->phtCreatedAt = $phtCreatedAt;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get phtCreatedat
-     *
-     * @return \DateTime
-     */
-    public function getPhtCreatedat()
-    {
-        return $this->phtCreatedat;
-    }
+	/**
+	 * Get phtCreatedAt
+	 *
+	 * @return \DateTime
+	 */
+	public function getPhtCreatedAt()
+	{
+		return $this->phtCreatedAt;
+	}
 
-    /**
-     * Set idRecord
-     *
-     * @param \TravelDiary\CoreBundle\Entity\Record $idRecord
-     *
-     * @return Photo
-     */
-    public function setIdRecord(\TravelDiary\CoreBundle\Entity\Record $idRecord = null)
-    {
-        $this->idRecord = $idRecord;
+	/**
+	 * Set idRecord
+	 *
+	 * @param \TravelDiary\CoreBundle\Entity\Record $idRecord
+	 *
+	 * @return Photo
+	 */
+	public function setIdRecord(\TravelDiary\CoreBundle\Entity\Record $idRecord = null)
+	{
+		$this->idRecord = $idRecord;
 
-        return $this;
-    }
+		return $this;
+	}
 
-    /**
-     * Get idRecord
-     *
-     * @return \TravelDiary\CoreBundle\Entity\Record
-     */
-    public function getIdRecord()
-    {
-        return $this->idRecord;
-    }
+	/**
+	 * Get idRecord
+	 *
+	 * @return \TravelDiary\CoreBundle\Entity\Record
+	 */
+	public function getIdRecord()
+	{
+		return $this->idRecord;
+	}
+
+	public function toArray() {
+		return [
+			'data' 		=> ""
+		];
+	}
 }
 

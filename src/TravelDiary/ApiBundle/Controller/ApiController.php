@@ -24,6 +24,13 @@ class ApiController extends Controller {
 		if (!$device_uuid)
 			throw new UnauthorizedAccessException("Can't find X-TravelDiary-Device");
 
+		$this->device = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Device")->findOneBy([
+			'dev_uuid' 			=> $device_uuid
+		]);
+
+		if (!$this->device)
+			throw new UnauthorizedAccessException("Invalid device!");
+
 	}
 
 }

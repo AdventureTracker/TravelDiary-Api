@@ -4,6 +4,7 @@ namespace TravelDiary\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class StatusController extends Controller {
 
@@ -18,7 +19,7 @@ class StatusController extends Controller {
 			'timestamp' 			=> (new \DateTime())->getTimestamp()
 		];
 
-		return new JsonResponse($response, 200);
+		return new JsonResponse($response, Response::HTTP_UNAUTHORIZED);
 
 	}
 

@@ -1,7 +1,35 @@
-travel_diary_api_homepage:
-    path:     /
-    defaults: { _controller: TravelDiaryApiBundle:Default:index }
-
 status:
-    path:     /status
-    defaults: { _controller: TravelDiaryApiBundle:Status:status }
+    path:               /status
+    defaults:           { _controller: TravelDiaryApiBundle:Status:status }
+    methods:            [GET]
+
+createTrip:
+    path:               /trip
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:create }
+    methods:            [POST]
+
+updateTrip:
+    path:               /trip/{trip_id}
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:update }
+    methods:            [PUT]
+    requirements:
+        trip_id:        \d+
+
+listTrips:
+    path:               /trips
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:list }
+    methods:            [GET]
+
+getTrip:
+    path:               /trip/{trip_id}
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:get }
+    methods:            [GET]
+    requirements:
+        trip_id:        \d+
+
+removeTrip:
+    path:               /trip/{trip_id}
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:remove }
+    methods:            [DELETE]
+    requirements:
+        trip_id:        \d+
