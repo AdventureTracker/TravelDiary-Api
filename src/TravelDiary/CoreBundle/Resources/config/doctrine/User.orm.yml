@@ -76,10 +76,19 @@ TravelDiary\CoreBundle\Entity\User:
                     referencedColumnName: id_role
             orphanRemoval: false
     oneToMany:
+        devices:
+            targetEntity: Device
+            mappedBy: idUser
+    manyToMany:
         trips:
             targetEntity: Trip
-            mappedBy: idUser
-        devices:
-            targetEntity: Device:
-            mappedBy: idUser
+            inversedBy: users
+            joinTable:
+                name: user_have_trip
+                joinColumns:
+                    id_user:
+                        referencedColumnName: id_user
+                inverseJoinColumns:
+                    id_trip:
+                        referencedColumnName: id_trip
     lifecycleCallbacks: {  }

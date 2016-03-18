@@ -3,7 +3,10 @@
 namespace TravelDiary\ApiBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\ApiBundle\Exception\UnauthorizedAccessException;
 use TravelDiary\CoreBundle\Entity\Device;
 
@@ -14,22 +17,24 @@ class ApiController extends Controller {
 	 */
 	protected $device;
 
-	public function __construct()
-	{
+	/**
+	 * TODO: Takto to nemoze nidky fungovat. Spravit normalne security listener, teraz sa mi uz chce ale spat
+	 */
+	protected function load_device() {
 
 		$request = Request::createFromGlobals();
 
 		$device_uuid = $request->headers->get('X-TravelDiary-Device', null);
 
 		if (!$device_uuid)
-			throw new UnauthorizedAccessException("Can't find X-TravelDiary-Device");
+			throw new ApiException("Can't find X-TravelDiary-Device", Response::HTTP_UNAUTHORIZED);
 
 		$this->device = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Device")->findOneBy([
-			'dev_uuid' 			=> $device_uuid
+			'devUUID' 			=> $device_uuid
 		]);
 
 		if (!$this->device)
-			throw new UnauthorizedAccessException("Invalid device!");
+			throw new ApiException("Invalid device!", Response::HTTP_UNAUTHORIZED);
 
 	}
 

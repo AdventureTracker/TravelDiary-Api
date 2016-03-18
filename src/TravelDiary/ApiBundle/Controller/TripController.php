@@ -23,6 +23,8 @@ class TripController extends ApiController {
 
 	public function listAction() {
 
+		$this->load_device();
+
 		$response = [];
 
 		foreach ($this->device->getIdUser()->getTrips() as $trip) {
@@ -34,6 +36,8 @@ class TripController extends ApiController {
 	}
 
 	public function getAction($trip_id) {
+
+		$this->load_device();
 
 		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->findOneBy([
 			'trp_uuid' 			=> $trip_id
@@ -47,6 +51,8 @@ class TripController extends ApiController {
 	}
 
 	public function removeAction($trip_id) {
+
+		$this->load_device();
 
 		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->findOneBy([
 			'trp_uuid' 			=> $trip_id

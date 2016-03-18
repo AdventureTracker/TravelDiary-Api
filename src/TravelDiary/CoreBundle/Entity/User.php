@@ -290,7 +290,7 @@ class User
      *
      * @return User
      */
-    public function addDevice(\TravelDiary\CoreBundle\Entity\Device: $device)
+    public function addDevice(\TravelDiary\CoreBundle\Entity\Device $device)
     {
         $this->devices[] = $device;
 
@@ -302,7 +302,7 @@ class User
      *
      * @param \TravelDiary\CoreBundle\Entity\Device: $device
      */
-    public function removeDevice(\TravelDiary\CoreBundle\Entity\Device: $device)
+    public function removeDevice(\TravelDiary\CoreBundle\Entity\Device $device)
     {
         $this->devices->removeElement($device);
     }

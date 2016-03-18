@@ -97,4 +97,8 @@ TravelDiary\CoreBundle\Entity\Trip:
         tripRecords:
             targetEntity: Record
             mappedBy: idProduct
+    manyToMany:
+        users:
+            targetEntity: User
+            mappedBy: trips
     lifecycleCallbacks: {  }

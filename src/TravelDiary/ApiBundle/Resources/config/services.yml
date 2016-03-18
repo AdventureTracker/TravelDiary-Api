@@ -2,3 +2,8 @@ services:
 #    travel_diary_api.example:
 #        class: TravelDiary\ApiBundle\Example
 #        arguments: ["@service_id", "plain_value", %parameter%]
+
+    app.exception_listener:
+        class: TravelDiary\ApiBundle\Listener\ErrorListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

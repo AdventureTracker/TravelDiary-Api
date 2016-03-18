@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelDiary\CoreBundle\Entity;
+use Doctrine\Common\Collections\Collection;
 
 /**
  * Trip
@@ -68,11 +69,18 @@ class Trip
 	private $idStatus;
 
 	/**
+	 * @var \Doctrine\Common\Collections\Collection
+	 */
+	private $users;
+
+	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
 		$this->tripRecords = new \Doctrine\Common\Collections\ArrayCollection();
+		$this->users = new \Doctrine\Common\Collections\ArrayCollection();
+
 	}
 
 	/**
@@ -357,6 +365,14 @@ class Trip
 	public function getIdStatus()
 	{
 		return $this->idStatus;
+	}
+
+	/**
+	 * @return Collection
+	 */
+	public function getUsers()
+	{
+		return $this->users;
 	}
 
 	public function toArray($detailed = false) {
