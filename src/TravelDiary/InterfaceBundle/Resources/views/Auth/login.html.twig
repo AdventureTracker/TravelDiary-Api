@@ -1,0 +1,55 @@
+{% extends '@TravelDiaryInterface/_layout/base.html.twig' %}
+
+{% block title %}Login{% endblock %}
+
+{% block background_color %}light-green{% endblock %}
+
+{% block content %}
+
+	{% if error %}
+		<div class="row">
+			<div class="col s4 m4 offset-l4 offset-m4">
+				<div class="card-panel red">
+					<span class="white-text">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+	<div class="row">
+		<div class="col s4 m4 offset-l4 offset-m4 card-panel">
+			<form action="{{ path('check') }}" method="post">
+
+				{#Logo#}
+				<div class="row">
+					<div class="input-field col s12 center">
+						<img src="http://demo.geekslabs.com/materialize/v2.3/layout03/images/login-logo.png" class="circle responsive-img valign profile-image-login">
+						<p class="center">Material Design Admin Template</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" name="_username">
+						<label for="email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" name="_password">
+						<label for="password">Password</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn waves-effect waves-light col s12" type="submit">Login</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+{% endblock %}
+

@@ -1,0 +1,64 @@
+tripsOverview:
+    path:                   /trips/{page}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:overview, page: 1}
+    methods:                [GET]
+    requirements:
+        page:               \d+
+
+createTrip:
+    path:                   /trip/create
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form }
+    methods:                [GET]
+
+processTrip:
+    path:                   /trip/process/{id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:process, id: 0 }
+    methods:                [POST]
+    requirements:
+        id:                 \d+
+
+viewTrip:
+    path:                   /trip/{id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:view }
+    methods:                [GET]
+    requirements:
+        id:                 \d+
+
+removeTrip:
+    path:                   /trip/remove/{id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:remove }
+    methods:                [GET]
+    requirements:
+        id:                 \d+
+
+viewTripRecord:
+    path:                   /trip/{trip_id}/record/{record_id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:view }
+    methods:                [GET]
+    requirements:
+        trip_id:            \d+
+        record_id:          \d+
+
+removeTripRecord:
+    path:                   /trip/{trip_id}/record/remove/{record_id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:remove }
+    methods:                [GET]
+    requirements:
+        trip_id:            \d+
+        record_id:          \d+
+
+editTripRecord:
+    path:                   /trip/{trip_id}/record/edit/{record_id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:form }
+    methods:                [GET]
+    requirements:
+        trip_id:            \d+
+        record_id:          \d+
+
+processTripRecord:
+    path:                   /trip/{trip_id}/record/{record_id}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:process, record_id: 0 }
+    methods:                [POST]
+    requirements:
+        trip_id:            \d+
+        records_id:         \d+

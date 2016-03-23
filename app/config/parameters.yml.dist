@@ -16,4 +16,7 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            5eb9ba39f6f6543fd0e28bfffa229a3ecec56a5a3f1
+
+    # Domain
+    domain:				traveldiary.dev

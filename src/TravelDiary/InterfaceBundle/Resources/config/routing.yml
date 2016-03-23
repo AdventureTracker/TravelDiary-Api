@@ -1,3 +1,28 @@
 travel_diary_interface_homepage:
     path:     /
     defaults: { _controller: TravelDiaryInterfaceBundle:Default:index }
+
+register:
+    path:               /auth/registration
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:register }
+
+lost_password:
+    path:               /auth/lost-password
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:lostPassword }
+
+login:
+    path:               /auth/login
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:login }
+
+check:
+    path:               /auth/check
+
+logout:
+    path:               /auth/logout
+
+subcategoryRouting:
+    resource:           "@TravelDiaryInterfaceBundle/Resources/config/routing/trip.yml"
+
+dashboard:
+    path:               /dashboard
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Dashboard:dashboard }
