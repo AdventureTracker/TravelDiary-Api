@@ -34,7 +34,7 @@ security:
                 default_target_path: dashboard
             logout:
                 path:   logout
-                target: /
+                target: landing_page
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }

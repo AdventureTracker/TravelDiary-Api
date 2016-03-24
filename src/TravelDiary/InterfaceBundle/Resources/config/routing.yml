@@ -1,6 +1,6 @@
-travel_diary_interface_homepage:
-    path:     /
-    defaults: { _controller: TravelDiaryInterfaceBundle:Default:index }
+landing_page:
+    path:               /
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Default:index }
 
 subcategoryRouting:
     resource:           "@TravelDiaryInterfaceBundle/Resources/config/routing/trip.yml"
