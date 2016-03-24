@@ -1,4 +1,5 @@
 TravelDiary\CoreBundle\Entity\Record:
+    repositoryClass: TravelDiary\CoreBundle\Entity\RecordRepository
     type: entity
     table: record
     indexes:

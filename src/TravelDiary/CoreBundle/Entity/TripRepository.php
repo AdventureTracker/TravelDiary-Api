@@ -21,5 +21,12 @@ class TripRepository extends EntityRepository {
 		$query->setParameter(":idUser", $user->getIdUser());
 		return $query->getQuery()->getResult();
 	}
+	
+	public function countTrips() {
+		$query = $this->getEntityManager()->createQueryBuilder();
+		$query->select("COUNT(t)");
+		$query->from("TravelDiaryCoreBundle:Trip", 't');
+		return $query->getQuery()->getScalarResult();
+	}
 
 }

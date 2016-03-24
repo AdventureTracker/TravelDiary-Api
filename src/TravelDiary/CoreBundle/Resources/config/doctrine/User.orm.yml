@@ -1,4 +1,5 @@
 TravelDiary\CoreBundle\Entity\User:
+    repositoryClass: TravelDiary\CoreBundle\Entity\UserRepository
     type: entity
     table: user
     indexes:

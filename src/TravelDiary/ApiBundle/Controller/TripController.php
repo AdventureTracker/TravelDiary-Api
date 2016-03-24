@@ -17,6 +17,14 @@ class TripController extends ApiController {
 
 	public function updateAction(Request $request, $trip_id) {
 
+		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($trip_id);
+
+		if (!$trip)
+			return new JsonResponse(['message' => "Trip not found!"], Response::HTTP_NOT_FOUND);
+
+		if (!$this->device->getIdUser()->getTrips()->contains($trip))
+			return new JsonResponse(['message' => "You don't have permissions to update this record!", Response::HTTP_FORBIDDEN]);
+
 		return new JsonResponse(null, Response::HTTP_NOT_IMPLEMENTED);
 
 	}

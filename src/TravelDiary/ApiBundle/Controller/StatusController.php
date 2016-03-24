@@ -10,11 +10,13 @@ class StatusController extends Controller {
 
 	public function statusAction() {
 
+
+
 		$response = [
 			'status' 		=> [
-				'records' 			=> '',
-				'users' 			=> '',
-				'trips' 			=> ''
+				'records' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->countRecords(),
+				'users' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->countUsers(),
+				'trips' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->countTrips()
 			],
 			'timestamp' 			=> (new \DateTime())->getTimestamp()
 		];
