@@ -1,0 +1,17 @@
+register:
+    path:               /auth/registration
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:register }
+
+lost_password:
+    path:               /auth/lost-password
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:lostPassword }
+
+login:
+    path:               /auth/login
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Auth:login }
+
+check:
+    path:               /auth/check
+
+logout:
+    path:               /auth/logout

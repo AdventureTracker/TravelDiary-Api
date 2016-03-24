@@ -96,7 +96,7 @@ TravelDiary\CoreBundle\Entity\Trip:
     oneToMany:
         tripRecords:
             targetEntity: Record
-            mappedBy: idProduct
+            mappedBy: idTrip
     manyToMany:
         users:
             targetEntity: User

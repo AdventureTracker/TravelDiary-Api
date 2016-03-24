@@ -59,7 +59,7 @@ TravelDiary\CoreBundle\Entity\Device:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: devices
             joinColumns:
                 id_user:
                     referencedColumnName: id_user

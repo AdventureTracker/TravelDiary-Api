@@ -103,7 +103,7 @@ TravelDiary\CoreBundle\Entity\Record:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: null
+            inversedBy: tripRecords
             joinColumns:
                 id_trip:
                     referencedColumnName: id_trip
@@ -111,5 +111,5 @@ TravelDiary\CoreBundle\Entity\Record:
     oneToMany:
         photos:
             targetEntity: Photo
-            mappedBy: idProduct
+            mappedBy: idPhoto
     lifecycleCallbacks: {  }
