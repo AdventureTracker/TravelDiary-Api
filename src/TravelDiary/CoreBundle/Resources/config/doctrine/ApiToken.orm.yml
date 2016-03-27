@@ -1,0 +1,57 @@
+TravelDiary\CoreBundle\Entity\ApiToken:
+    type: entity
+    table: api_token
+    indexes:
+        FK__device:
+            columns:
+                - id_device
+    uniqueConstraints:
+        UNIQUE_tok_value:
+            columns:
+                - tok_value
+    id:
+        idToken:
+            type: integer
+            nullable: false
+            options:
+                unsigned: true
+            id: true
+            column: id_token
+            generator:
+                strategy: IDENTITY
+    fields:
+        tokValue:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+            column: tok_value
+        tokLastUsed:
+            type: datetime
+            nullable: true
+            column: tok_lastUsed
+        tokCreatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: tok_createdAt
+        tokUpdatedAt:
+            type: datetime
+            nullable: false
+            options:
+                default: CURRENT_TIMESTAMP
+            column: tok_updatedAt
+    manyToOne:
+        idDevice:
+            targetEntity: Device
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: tokens
+            joinColumns:
+                id_device:
+                    referencedColumnName: id_device
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

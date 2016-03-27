@@ -33,3 +33,13 @@ removeTrip:
     methods:            [DELETE]
     requirements:
         trip_id:        \d+
+
+createToken:
+    path:               /token
+    defaults:           { _controller: TravelDiaryApiBundle:Token:create }
+    methods:            [POST]
+
+deleteToken:
+    path:               /token
+    defaults:           { _controller: TravelDiaryApiBundle:Token:delete }
+    methods:            [DELETE]
