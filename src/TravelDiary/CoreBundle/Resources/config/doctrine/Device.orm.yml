@@ -53,6 +53,10 @@ TravelDiary\CoreBundle\Entity\Device:
             options:
                 default: CURRENT_TIMESTAMP
             column: dev_updatedAt
+    oneToMany:
+        tokens:
+            targetEntity: ApiToken
+            mappedBy: idDevice
     manyToOne:
         idUser:
             targetEntity: User

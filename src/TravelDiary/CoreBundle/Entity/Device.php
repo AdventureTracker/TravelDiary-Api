@@ -42,6 +42,19 @@ class Device
 	 */
 	private $idUser;
 
+	/**
+	 * @var \Doctrine\Common\Collections\Collection
+	 */
+	private $tokens;
+
+	/**
+	 * Device constructor.
+	 */
+	public function __construct()
+	{
+		$this->tokens = new \Doctrine\Common\Collections\ArrayCollection();
+	}
+
 
 	/**
 	 * Get idDevice
@@ -123,6 +136,33 @@ class Device
 	public function getDevOs()
 	{
 		return $this->devOs;
+	}
+
+	/**
+	 * @param ApiToken $token
+	 * @return $this
+	 */
+	public function addToken(ApiToken $token) {
+
+		$this->tokens[] = $token;
+
+		return $this;
+	}
+
+	/**
+	 * @param ApiToken $token
+	 */
+	public function removeToken(ApiToken $token) {
+
+		$this->tokens->removeElement($token);
+
+	}
+
+	/**
+	 * @return \Doctrine\Common\Collections\ArrayCollection|\Doctrine\Common\Collections\Collection
+	 */
+	public function getTokens() {
+		return $this->tokens;
 	}
 
 	/**

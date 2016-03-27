@@ -15,39 +15,39 @@ class ApiToken
 	/**
 	 * @var int
 	 */
-	public $id_token;
+	public $idToken;
 
 	/**
 	 * @var Device
 	 */
-	public $id_device;
+	public $idDevice;
 
 	/**
 	 * @var string
 	 */
-	public $tok_value;
+	public $tokValue;
 
 	/**
 	 * @var \DateTime
 	 */
-	public $tok_lastUser;
+	public $tokLastUsed;
 
 	/**
 	 * @var \DateTime
 	 */
-	public $tok_createdAt = 'CURRENT_TIMESTAMP';
+	public $tokCreatedAt = 'CURRENT_TIMESTAMP';
 
 	/**
 	 * @var \DateTime
 	 */
-	public $tok_updatedAt = 'CURRENT_TIMESTAMP';
+	public $tokUpdatedAt = 'CURRENT_TIMESTAMP';
 
 	/**
 	 * @return int
 	 */
 	public function getIdToken()
 	{
-		return $this->id_token;
+		return $this->idToken;
 	}
 
 	/**
@@ -55,15 +55,15 @@ class ApiToken
 	 */
 	public function getIdDevice()
 	{
-		return $this->id_device;
+		return $this->idDevice;
 	}
 
 	/**
-	 * @param Device $id_device
+	 * @param Device $idDevice
 	 */
-	public function setIdDevice($id_device)
+	public function setIdDevice($idDevice)
 	{
-		$this->id_device = $id_device;
+		$this->idDevice = $idDevice;
 	}
 
 	/**
@@ -71,31 +71,31 @@ class ApiToken
 	 */
 	public function getTokValue()
 	{
-		return $this->tok_value;
+		return $this->tokValue;
 	}
 
 	/**
-	 * @param string $tok_value
+	 * @param string $tokValue
 	 */
-	public function setTokValue($tok_value)
+	public function setTokValue($tokValue)
 	{
-		$this->tok_value = $tok_value;
+		$this->tokValue = $tokValue;
 	}
 
 	/**
 	 * @return \DateTime
 	 */
-	public function getTokLastUser()
+	public function getTokLastUsed()
 	{
-		return $this->tok_lastUser;
+		return $this->tokLastUsed;
 	}
 
 	/**
-	 * @param \DateTime $tok_lastUser
+	 * @param \DateTime $tokLastUsed
 	 */
-	public function setTokLastUser($tok_lastUser)
+	public function setTokLastUsed($tokLastUsed)
 	{
-		$this->tok_lastUser = $tok_lastUser;
+		$this->tokLastUsed = $tokLastUsed;
 	}
 
 	/**
@@ -103,15 +103,15 @@ class ApiToken
 	 */
 	public function getTokCreatedAt()
 	{
-		return $this->tok_createdAt;
+		return $this->tokCreatedAt;
 	}
 
 	/**
-	 * @param \DateTime $tok_createdAt
+	 * @param \DateTime $tokCreatedAt
 	 */
-	public function setTokCreatedAt($tok_createdAt)
+	public function setTokCreatedAt($tokCreatedAt)
 	{
-		$this->tok_createdAt = $tok_createdAt;
+		$this->tokCreatedAt = $tokCreatedAt;
 	}
 
 	/**
@@ -119,15 +119,15 @@ class ApiToken
 	 */
 	public function getTokUpdatedAt()
 	{
-		return $this->tok_updatedAt;
+		return $this->tokUpdatedAt;
 	}
 
 	/**
-	 * @param \DateTime $tok_updatedAt
+	 * @param \DateTime $tokUpdatedAt
 	 */
-	public function setTokUpdatedAt($tok_updatedAt)
+	public function setTokUpdatedAt($tokUpdatedAt)
 	{
-		$this->tok_updatedAt = $tok_updatedAt;
+		$this->tokUpdatedAt = $tokUpdatedAt;
 	}
 
 
