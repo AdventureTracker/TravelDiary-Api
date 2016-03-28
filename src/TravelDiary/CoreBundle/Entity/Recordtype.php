@@ -5,8 +5,7 @@ namespace TravelDiary\CoreBundle\Entity;
 /**
  * Recordtype
  */
-class Recordtype
-{
+class Recordtype extends ApiEntity{
 	/**
 	 * @var integer
 	 */
@@ -80,6 +79,12 @@ class Recordtype
 	{
 		return $this->retDescription;
 	}
-	
+
+	function toArray() {
+		return [
+			'code' 					=> $this->getRetCode(),
+			'description' 			=> $this->getRetDescription()
+		];
+	}
 }
 

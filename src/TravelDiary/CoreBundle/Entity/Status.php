@@ -5,8 +5,7 @@ namespace TravelDiary\CoreBundle\Entity;
 /**
  * Status
  */
-class Status
-{
+class Status extends ApiEntity {
 	/**
 	 * @var integer
 	 */
@@ -79,6 +78,13 @@ class Status
 	public function getStaDescription()
 	{
 		return $this->staDescription;
+	}
+
+	function toArray() {
+		return [
+			'code' 				=> $this->getStaCode(),
+			'description' 		=> $this->getStaDescription()
+		];
 	}
 }
 

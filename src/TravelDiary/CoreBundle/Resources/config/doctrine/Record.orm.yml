@@ -12,9 +12,6 @@ TravelDiary\CoreBundle\Entity\Record:
         INDEX_rec_day:
             columns:
                 - rec_day
-        FK_record_privacy:
-            columns:
-                - id_privacy
     uniqueConstraints:
         UNIQUE_rec_uuid:
             columns:
@@ -79,16 +76,6 @@ TravelDiary\CoreBundle\Entity\Record:
                 default: CURRENT_TIMESTAMP
             column: rec_updatedAt
     manyToOne:
-        idPrivacy:
-            targetEntity: Privacy
-            cascade: {  }
-            fetch: LAZY
-            mappedBy: null
-            inversedBy: null
-            joinColumns:
-                id_privacy:
-                    referencedColumnName: id_privacy
-            orphanRemoval: false
         idRecordtype:
             targetEntity: Recordtype
             cascade: {  }

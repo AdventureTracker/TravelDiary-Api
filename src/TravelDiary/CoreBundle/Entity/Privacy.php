@@ -5,8 +5,7 @@ namespace TravelDiary\CoreBundle\Entity;
 /**
  * Privacy
  */
-class Privacy
-{
+class Privacy extends ApiEntity {
 	/**
 	 * @var integer
 	 */
@@ -79,6 +78,13 @@ class Privacy
 	public function getPrvDescription()
 	{
 		return $this->prvDescription;
+	}
+
+	function toArray() {
+		return [
+			'code' 			=> $this->getPrvCode(),
+			'description' 	=> $this->getPrvDescription()
+		];
 	}
 }
 

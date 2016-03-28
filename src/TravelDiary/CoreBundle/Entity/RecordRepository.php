@@ -17,7 +17,7 @@ class RecordRepository extends EntityRepository {
 		$query = $this->getEntityManager()->createQueryBuilder();
 		$query->select("COUNT(r)");
 		$query->from("TravelDiaryCoreBundle:Record", 'r');
-		return $query->getQuery()->getScalarResult();
+		return $query->getQuery()->getSingleScalarResult();
 	}
 
 }

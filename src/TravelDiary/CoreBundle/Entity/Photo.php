@@ -5,8 +5,7 @@ namespace TravelDiary\CoreBundle\Entity;
 /**
  * Photo
  */
-class Photo
-{
+class Photo extends ApiEntity{
 	/**
 	 * @var integer
 	 */

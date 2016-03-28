@@ -5,8 +5,7 @@ namespace TravelDiary\CoreBundle\Entity;
 /**
  * Record
  */
-class Record
-{
+class Record extends ApiEntity{
 	/**
 	 * @var integer
 	 */

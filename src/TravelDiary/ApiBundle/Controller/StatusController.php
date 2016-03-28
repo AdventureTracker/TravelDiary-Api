@@ -13,10 +13,11 @@ class StatusController extends Controller {
 
 
 		$response = [
-			'status' 		=> [
-				'records' 			=> end($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->countRecords()),
-				'users' 			=> end($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->countUsers()),
-				'trips' 			=> end($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->countTrips())
+			'status' 				=> 'good',
+			'stats' 				=> [
+				'records' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->countRecords(),
+				'users' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->countUsers(),
+				'trips' 			=> $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->countTrips()
 			],
 			'timestamp' 			=> (new \DateTime())->getTimestamp()
 		];

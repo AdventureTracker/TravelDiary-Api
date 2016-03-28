@@ -17,7 +17,7 @@ class UserRepository extends EntityRepository {
 		$query = $this->getEntityManager()->createQueryBuilder();
 		$query->select("COUNT(u)");
 		$query->from("TravelDiaryCoreBundle:User", 'u');
-		return $query->getQuery()->getScalarResult();
+		return $query->getQuery()->getSingleScalarResult();
 	}
 
 }

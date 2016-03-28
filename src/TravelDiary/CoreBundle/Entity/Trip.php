@@ -6,8 +6,7 @@ use Doctrine\Common\Collections\Collection;
 /**
  * Trip
  */
-class Trip
-{
+class Trip extends ApiEntity {
 	/**
 	 * @var integer
 	 */
