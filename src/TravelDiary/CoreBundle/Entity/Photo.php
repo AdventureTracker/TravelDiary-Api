@@ -20,12 +20,12 @@ class Photo
 	/**
 	 * @var string
 	 */
-	private $phtFilename = '0';
+	private $phtFilename;
 
 	/**
 	 * @var \DateTime
 	 */
-	private $phtCreatedAt = 'CURRENT_TIMESTAMP';
+	private $phtCreatedAt;
 
 	/**
 	 * @var \TravelDiary\CoreBundle\Entity\Record

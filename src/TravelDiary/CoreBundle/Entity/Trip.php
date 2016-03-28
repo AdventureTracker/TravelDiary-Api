@@ -46,12 +46,12 @@ class Trip
 	/**
 	 * @var \DateTime
 	 */
-	private $trpCreatedAt = 'CURRENT_TIMESTAMP';
+	private $trpCreatedAt;
 
 	/**
 	 * @var \DateTime
 	 */
-	private $trpUpdatedAt = 'CURRENT_TIMESTAMP';
+	private $trpUpdatedAt;
 
 	/**
 	 * @var \Doctrine\Common\Collections\Collection

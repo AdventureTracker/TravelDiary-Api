@@ -35,12 +35,12 @@ class ApiToken
 	/**
 	 * @var \DateTime
 	 */
-	public $tokCreatedAt = 'CURRENT_TIMESTAMP';
+	public $tokCreatedAt;
 
 	/**
 	 * @var \DateTime
 	 */
-	public $tokUpdatedAt = 'CURRENT_TIMESTAMP';
+	public $tokUpdatedAt;
 
 	/**
 	 * @return int

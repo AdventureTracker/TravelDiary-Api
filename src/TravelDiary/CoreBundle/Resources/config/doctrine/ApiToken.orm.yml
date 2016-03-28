@@ -21,7 +21,7 @@ TravelDiary\CoreBundle\Entity\ApiToken:
                 strategy: IDENTITY
     fields:
         tokValue:
-            type: string
+            type: guid
             nullable: false
             length: 100
             options:

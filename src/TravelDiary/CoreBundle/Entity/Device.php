@@ -30,12 +30,12 @@ class Device
 	/**
 	 * @var \DateTime
 	 */
-	private $devCreatedAt = 'CURRENT_TIMESTAMP';
+	private $devCreatedAt;
 
 	/**
 	 * @var \DateTime
 	 */
-	private $devUpdatedAt = 'CURRENT_TIMESTAMP';
+	private $devUpdatedAt;
 
 	/**
 	 * @var \TravelDiary\CoreBundle\Entity\User

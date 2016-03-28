@@ -45,12 +45,12 @@ class Record
 	/**
 	 * @var \DateTime
 	 */
-	private $recCreatedAt = 'CURRENT_TIMESTAMP';
+	private $recCreatedAt;
 
 	/**
 	 * @var \DateTime
 	 */
-	private $recUpdatedAt = 'CURRENT_TIMESTAMP';
+	private $recUpdatedAt;
 
 	/**
 	 * @var \Doctrine\Common\Collections\Collection

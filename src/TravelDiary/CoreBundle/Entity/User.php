@@ -41,12 +41,12 @@ class User implements UserInterface, \Serializable
 	/**
 	 * @var \DateTime
 	 */
-	private $usrCreatedat = 'CURRENT_TIMESTAMP';
+	private $usrCreatedat;
 
 	/**
 	 * @var \DateTime
 	 */
-	private $usrUpdatedat = 'CURRENT_TIMESTAMP';
+	private $usrUpdatedat;
 
 	/**
 	 * @var \Doctrine\Common\Collections\Collection
