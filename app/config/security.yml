@@ -17,6 +17,8 @@ security:
             entity:
                 class: TravelDiaryCoreBundle:User
                 property: usrEmail
+        api_user_provider:
+            id: travel_diary_api.security.api_user_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -24,8 +26,16 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        api_firewall:
+            pattern: ^/api
+            anonymous: ~
+            stateless: true
+            simple_preauth:
+                authenticator: travel_diary_api.security.api_authenticator
+            provider: api_user_provider
+
         frontend_firewall:
-            pattern: ^/
+            pattern: ^/frontend
             anonymous: ~
             provider: database_provider
             form_login:
@@ -38,5 +48,7 @@ security:
 
     access_control:
         - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+        - { path: ^/api/v1/status$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/v1/token$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/frontend/auth/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
         - { path: ^/frontend/auth/logout$, roles: USER_ROLE, requires_channel: https }

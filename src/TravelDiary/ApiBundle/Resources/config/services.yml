@@ -1,9 +1,17 @@
 services:
-#    travel_diary_api.example:
-#        class: TravelDiary\ApiBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
 
     app.exception_listener:
         class: TravelDiary\ApiBundle\Listener\ErrorListener
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
+
+    travel_diary_api.security.api_user_provider:
+        class: TravelDiary\ApiBundle\Security\ApiUserProvider
+        arguments: [ "@doctrine.orm.entity_manager" ]
+
+    travel_diary_api.security.api_authenticator:
+        class: TravelDiary\ApiBundle\Security\ApiAuthenticator
+        public: false
+        arguments: ["@security.http_utils"]
+        tags:
+            - { name: monolog.logger }
