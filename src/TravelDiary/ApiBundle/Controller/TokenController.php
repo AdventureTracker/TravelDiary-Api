@@ -26,7 +26,7 @@ class TokenController extends Controller {
 		$em->remove($token);
 		$em->flush();
 
-		return new JsonResponse(null, Response::HTTP_NOT_IMPLEMENTED);
+		return new JsonResponse(null, Response::HTTP_NO_CONTENT);
 	}
 
 	public function createAction(Request $request) {
