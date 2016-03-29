@@ -4,7 +4,6 @@ namespace TravelDiary\ApiBundle\Controller;
 
 use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -29,7 +28,7 @@ class TripController extends Controller {
 		}
 		else {
 			$trip 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->findOneBy([
-				'prdUUID' 			=> strtolower($tripUUID)
+				'trpUUID' 			=> strtolower($tripUUID)
 			]);
 
 			if (!$trip)
@@ -67,12 +66,13 @@ class TripController extends Controller {
 		$trip->setIdStatus($tripStatus);
 		$trip->setTrpUpdatedAt(new \DateTime());
 
-		foreach ($data['users'] as $idUser) {
-			$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->find($idUser);
+		foreach ($data['users'] as $userArray) {
+			$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->find($userArray['id']);
 			if (!$user)
-				throw new ApiException(sprintf("User ID %d not found!", $idUser), Response::HTTP_UNPROCESSABLE_ENTITY);
+				throw new ApiException(sprintf("User ID %d not found!", $userArray['id']), Response::HTTP_UNPROCESSABLE_ENTITY);
 
-			$trip->addUser($user);
+			if (!$trip->getUsers()->contains($user))
+				$trip->addUser($user);
 		}
 
 		try {
@@ -80,7 +80,7 @@ class TripController extends Controller {
 			$em->persist($trip);
 			$em->flush();
 		}
-		catch (Exception $e) {
+		catch (\Exception $e) {
 			throw new ApiException("Shit happens!", Response::HTTP_INTERNAL_SERVER_ERROR, $e);
 		}
 

@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
  * User
  */
-class User implements UserInterface, \Serializable
+class User extends ApiEntity implements UserInterface, \Serializable
 {
 	/**
 	 * @var integer
@@ -440,6 +440,14 @@ class User implements UserInterface, \Serializable
 	public function eraseCredentials()
 	{
 		return null;
+	}
+
+	function toArray() {
+		return [
+			'id' 			=> $this->getIdUser(),
+			'name' 			=> sprintf("%s %s", $this->getUsrFisrtname(), $this->getUsrLastname()),
+			'email' 		=> $this->getUsrEmail()
+		];
 	}
 }
 

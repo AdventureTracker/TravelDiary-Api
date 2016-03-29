@@ -421,7 +421,8 @@ class Trip extends ApiEntity {
 			'description' 					=> (string) $this->trpDescription,
 			'start_date' 					=> (string) $this->trpStartDate->format("Y-m-d"),
 			'estimated_arrival_date' 		=> (string) $this->trpEstimatedArrival->format("Y-m-d"),
-			'created_at' 					=> (string) $this->trpCreatedAt->format(\DateTime::ISO8601)
+			'created_at' 					=> (string) $this->trpCreatedAt->format(\DateTime::ISO8601),
+			'users' 						=> ApiEntity::prepare($this->getUsers()->toArray())
 		];
 
 		if ($detailed) {
