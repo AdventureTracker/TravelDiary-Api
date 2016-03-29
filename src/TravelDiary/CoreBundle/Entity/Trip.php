@@ -415,22 +415,21 @@ class Trip extends ApiEntity {
 
 	public function toArray($detailed = false) {
 		$content = [
-			'id' 							=> $this->trpUUID,
-			'name' 							=> (string) $this->trpName,
-			'destination' 					=> (string) $this->trpDestination,
-			'description' 					=> (string) $this->trpDescription,
-			'start_date' 					=> (string) $this->trpStartDate->format("Y-m-d"),
-			'estimated_arrival_date' 		=> (string) $this->trpEstimatedArrival->format("Y-m-d"),
-			'created_at' 					=> (string) $this->trpCreatedAt->format(\DateTime::ISO8601),
-			'users' 						=> ApiEntity::prepare($this->getUsers()->toArray())
+			'id' 								=> (string) $this->trpUUID,
+			'name' 								=> (string) $this->trpName,
+			'destination' 						=> (string) $this->trpDestination,
+			'status' 							=> (string) $this->getIdStatus()->getStaCode(),
+			'privacy' 							=> (string) $this->getIdPrivacy()->getPrvCode()
 		];
 
 		if ($detailed) {
-			$content['records'] 			= [];
-			foreach ($this->getTripRecords() as $tripRecord)
-			{
-				$content['records'][] 		= $tripRecord->toArray();
-			}
+			$content['description'] 			= (string) $this->trpDescription;
+			$content['start_date'] 				= (string) $this->trpStartDate->format("Y-m-d");
+			$content['estimated_arrival_date'] 	= (string) $this->trpEstimatedArrival->format("Y-m-d");
+			$content['records'] 				= ApiEntity::prepare($this->getTripRecords()->toArray());
+			$content['users'] 					= ApiEntity::prepare($this->getUsers()->toArray());
+			$content['created_at'] 				= (string) $this->trpCreatedAt->format(\DateTime::ISO8601);
+			$content['updated_at'] 				= (string) $this->trpUpdatedAt->format(\DateTime::ISO8601);
 		}
 
 		return $content;

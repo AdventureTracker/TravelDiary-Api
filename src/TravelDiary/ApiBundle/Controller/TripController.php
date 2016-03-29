@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\ApiBundle\Helper\ApiRequestProcessor;
+use TravelDiary\CoreBundle\Entity\ApiEntity;
 use TravelDiary\CoreBundle\Entity\Trip;
 use TravelDiary\CoreBundle\Entity\User;
 
@@ -84,23 +85,12 @@ class TripController extends Controller {
 			throw new ApiException("Shit happens!", Response::HTTP_INTERNAL_SERVER_ERROR, $e);
 		}
 
-		return new JsonResponse($trip->toArray(), empty($trip_id) ? Response::HTTP_CREATED : Response::HTTP_OK);
+		return new JsonResponse($trip->toArray(true), empty($trip_id) ? Response::HTTP_CREATED : Response::HTTP_OK);
 	}
 
 	public function listAction() {
 
-		$response = [];
-
-		/**
-		 * @var $user User
-		 */
-		$user = $this->get("security.token_storage")->getToken()->getUser();
-
-		foreach ($user->getTrips() as $trip) {
-			$response[] = $trip->toArray();
-		}
-
-		return new JsonResponse($response, Response::HTTP_OK);
+		return new JsonResponse(ApiEntity::prepare($this->getUser()->getTrips()->toArray()), Response::HTTP_OK);
 
 	}
 

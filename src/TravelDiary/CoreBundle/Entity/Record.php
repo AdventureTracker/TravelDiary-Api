@@ -57,11 +57,6 @@ class Record extends ApiEntity{
 	private $photos;
 
 	/**
-	 * @var \TravelDiary\CoreBundle\Entity\Privacy
-	 */
-	private $idPrivacy;
-
-	/**
 	 * @var \TravelDiary\CoreBundle\Entity\Recordtype
 	 */
 	private $idRecordtype;
@@ -70,6 +65,11 @@ class Record extends ApiEntity{
 	 * @var \TravelDiary\CoreBundle\Entity\Trip
 	 */
 	private $idTrip;
+
+	protected $required_fields = [
+		'day',
+		'status'
+	];
 
 	/**
 	 * Constructor
@@ -116,12 +116,16 @@ class Record extends ApiEntity{
 	/**
 	 * Set recDay
 	 *
-	 * @param \DateTime $recDay
+	 * @param \DateTime|string $recDay
 	 *
 	 * @return Record
 	 */
 	public function setRecDay($recDay)
 	{
+
+		if (!($recDay instanceof \DateTime))
+			$recDay = new \DateTime($recDay);
+
 		$this->recDay = $recDay;
 
 		return $this;
@@ -316,30 +320,6 @@ class Record extends ApiEntity{
 	}
 
 	/**
-	 * Set idPrivacy
-	 *
-	 * @param \TravelDiary\CoreBundle\Entity\Privacy $idPrivacy
-	 *
-	 * @return Record
-	 */
-	public function setIdPrivacy(\TravelDiary\CoreBundle\Entity\Privacy $idPrivacy = null)
-	{
-		$this->idPrivacy = $idPrivacy;
-
-		return $this;
-	}
-
-	/**
-	 * Get idPrivacy
-	 *
-	 * @return \TravelDiary\CoreBundle\Entity\Privacy
-	 */
-	public function getIdPrivacy()
-	{
-		return $this->idPrivacy;
-	}
-
-	/**
 	 * Set idRecordtype
 	 *
 	 * @param \TravelDiary\CoreBundle\Entity\Recordtype $idRecordtype
@@ -390,18 +370,15 @@ class Record extends ApiEntity{
 	public function toArray($detailed = false)
 	{
 		$content = [
-			'id' 			=> $this->getRecUUID(),
-			'type' 			=> $this->idRecordtype->getRetCode(),
-			'day' 			=> $this->recDay->format("Y-m-d")
+			'id' 			=> (string) $this->getRecUUID(),
+			'type' 			=> (string) $this->idRecordtype->getRetCode(),
+			'day' 			=> (string) $this->recDay->format("Y-m-d")
 		];
 
 		if ($detailed) {
-			$content['description'] 		= $this->recDescription;
+			$content['description'] 		= (string) $this->recDescription;
 			$content['coordinates'] 		= $this->getCoordinates();
-			$content['photos'] 				= [];
-			foreach ($this->getPhotos() as $photo) {
-				$content['photos'][] 		= $photo->toArray();
-			}
+			$content['photos'] 				= ApiEntity::prepare($this->photos->toArray());
 		}
 
 		return $content;

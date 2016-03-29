@@ -48,3 +48,34 @@ listEnums:
     path:               /enums
     defaults:           { _controller: TravelDiaryApiBundle:Enum:list }
     methods:            [GET]
+
+createTripRecord:
+    path:               /trip/{idTrip}/records
+    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:process, idTripRecord: '' }
+    methods:            [POST]
+    requirements:
+        idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+
+updateTripRecord:
+    path:               /trip/{idTrip}/record/{idTripRecord}
+    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:process, idTripRecord: '' }
+    methods:            [PUT]
+    requirements:
+        idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+        idTripRecord:   "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+
+removeTripRecord:
+    path:               /trip/{idTrip}/record/{idTripRecord}
+    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:remove }
+    methods:            [DELETE]
+    requirements:
+        idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+        idTripRecord:   "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+
+getTripRecord:
+    path:               /trip/{idTrip}/record/{idTripRecord}
+    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:detail }
+    methods:            [GET]
+    requirements:
+        idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+        idTripRecord:   "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
