@@ -10,8 +10,6 @@ class StatusController extends Controller {
 
 	public function statusAction() {
 
-
-
 		$response = [
 			'status' 				=> 'good',
 			'stats' 				=> [
@@ -22,7 +20,7 @@ class StatusController extends Controller {
 			'timestamp' 			=> (new \DateTime())->getTimestamp()
 		];
 
-		return new JsonResponse($response, Response::HTTP_UNAUTHORIZED);
+		return new JsonResponse($response, Response::HTTP_OK);
 
 	}
 

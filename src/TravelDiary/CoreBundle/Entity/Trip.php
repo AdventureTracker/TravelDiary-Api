@@ -40,7 +40,7 @@ class Trip extends ApiEntity {
 	/**
 	 * @var \DateTime
 	 */
-	private $trpEstimatedarrival;
+	private $trpEstimatedArrival;
 
 	/**
 	 * @var \DateTime
@@ -71,6 +71,18 @@ class Trip extends ApiEntity {
 	 * @var \Doctrine\Common\Collections\Collection
 	 */
 	private $users;
+
+	protected $required_fields = [
+		'name',
+		'destination',
+		'description',
+		'estimated_arrival_date',
+		'start_date',
+		'id',
+		'privacy',
+		'status',
+		'users'
+	];
 
 	/**
 	 * Constructor
@@ -191,12 +203,16 @@ class Trip extends ApiEntity {
 	/**
 	 * Set trpStartDate
 	 *
-	 * @param \DateTime $trpStartDate
+	 * @param \DateTime|string $trpStartDate
 	 *
 	 * @return Trip
 	 */
 	public function setTrpStartDate($trpStartDate)
 	{
+
+		if (!($trpStartDate instanceof \DateTime))
+			$trpStartDate = new \DateTime($trpStartDate);
+
 		$this->trpStartDate = $trpStartDate;
 
 		return $this;
@@ -213,27 +229,31 @@ class Trip extends ApiEntity {
 	}
 
 	/**
-	 * Set trpEstimatedarrival
+	 * Set trpEstimatedArrival
 	 *
-	 * @param \DateTime $trpEstimatedarrival
+	 * @param \DateTime|string $trpEstimatedArrival
 	 *
 	 * @return Trip
 	 */
-	public function setTrpEstimatedarrival($trpEstimatedarrival)
+	public function setTrpEstimatedArrival($trpEstimatedArrival)
 	{
-		$this->trpEstimatedarrival = $trpEstimatedarrival;
+		
+		if (!($trpEstimatedArrival instanceof \DateTime))
+			$trpEstimatedArrival = new \DateTime($trpEstimatedArrival);
+		
+		$this->trpEstimatedArrival = $trpEstimatedArrival;
 
 		return $this;
 	}
 
 	/**
-	 * Get trpEstimatedarrival
+	 * Get trpEstimatedArrival
 	 *
 	 * @return \DateTime
 	 */
-	public function getTrpEstimatedarrival()
+	public function getTrpEstimatedArrival()
 	{
-		return $this->trpEstimatedarrival;
+		return $this->trpEstimatedArrival;
 	}
 
 	/**
@@ -367,6 +387,25 @@ class Trip extends ApiEntity {
 	}
 
 	/**
+	 * @param User $user
+	 * @return $this
+	 */
+	public function addUser(User $user) {
+		$this->users[] = $user;
+
+		$user->addTrip($this);
+
+		return $this;
+	}
+
+	/**
+	 * @param User $user
+	 */
+	public function removeUser(User $user) {
+		$this->users->removeElement($user);
+	}
+
+	/**
 	 * @return Collection
 	 */
 	public function getUsers()
@@ -380,8 +419,8 @@ class Trip extends ApiEntity {
 			'name' 							=> (string) $this->trpName,
 			'destination' 					=> (string) $this->trpDestination,
 			'description' 					=> (string) $this->trpDescription,
-			'start_date' 					=> (string) $this->trpStartDate->format("Y-m-d-"),
-			'estimated_arrival_date' 		=> (string) $this->trpEstimatedarrival->format("Y-m-d-"),
+			'start_date' 					=> (string) $this->trpStartDate->format("Y-m-d"),
+			'estimated_arrival_date' 		=> (string) $this->trpEstimatedArrival->format("Y-m-d"),
 			'created_at' 					=> (string) $this->trpCreatedAt->format(\DateTime::ISO8601)
 		];
 

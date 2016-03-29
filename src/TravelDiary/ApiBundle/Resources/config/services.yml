@@ -2,6 +2,7 @@ services:
 
     app.exception_listener:
         class: TravelDiary\ApiBundle\Listener\ErrorListener
+        arguments: [ "@logger" ]
         tags:
             - { name: kernel.event_listener, event: kernel.exception }
 

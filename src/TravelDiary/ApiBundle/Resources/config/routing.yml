@@ -4,13 +4,13 @@ status:
     methods:            [GET]
 
 createTrip:
-    path:               /trip
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:create }
+    path:               /trips
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:process, trip_id: '' }
     methods:            [POST]
 
 updateTrip:
     path:               /trip/{trip_id}
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:update }
+    defaults:           { _controller: TravelDiaryApiBundle:Trip:process }
     methods:            [PUT]
     requirements:
         trip_id:        "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"

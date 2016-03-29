@@ -11,6 +11,8 @@ namespace TravelDiary\CoreBundle\Entity;
 
 abstract class ApiEntity {
 
+	protected $required_fields = [];
+
 	abstract function toArray();
 
 	/**
@@ -26,7 +28,14 @@ abstract class ApiEntity {
 		}
 
 		return $result;
+	}
 
+	/**
+	 * Return array of required fields in API request
+	 * @return array
+	 */
+	public function getRequiredFields() {
+		return $this->required_fields;
 	}
 
 }

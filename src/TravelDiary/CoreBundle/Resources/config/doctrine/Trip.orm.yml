@@ -56,7 +56,7 @@ TravelDiary\CoreBundle\Entity\Trip:
             type: date
             nullable: false
             column: trp_startDate
-        trpEstimatedarrival:
+        trpEstimatedArrival:
             type: date
             nullable: false
             column: trp_estimatedArrival
