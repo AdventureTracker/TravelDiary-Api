@@ -1,11 +1,8 @@
 travel_diary_interface:
     resource:       "@TravelDiaryInterfaceBundle/Resources/config/routing.yml"
-    prefix:         /frontend
-#    host:           "www.{domain}"
-#    requirements:   "%domain%"
+    host:           www.%domain%
 
 travel_diary_api:
     resource:       "@TravelDiaryApiBundle/Resources/config/routing.yml"
-    prefix:         /api/v1
-#    host:           "api.{domain}"
-#    requirements:   "%domain%"
+    prefix:         /v1
+    host:           api.%domain%
