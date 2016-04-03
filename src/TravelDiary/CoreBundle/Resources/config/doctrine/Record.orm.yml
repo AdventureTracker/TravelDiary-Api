@@ -9,6 +9,9 @@ TravelDiary\CoreBundle\Entity\Record:
         FK_record_trip:
             columns:
                 - id_trip
+        FK_record_user:
+            columns:
+                - id_user
         INDEX_rec_day:
             columns:
                 - rec_day
@@ -88,6 +91,16 @@ TravelDiary\CoreBundle\Entity\Record:
                 id_trip:
                     referencedColumnName: id_trip
             orphanRemoval: false
+        idUser:
+            targetEntity: TravelDiary\CoreBundle\Entity\User
+            cascade: {}
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_user:
+                    referencedColumnName: id_user
+            orpganRemoval: false
     oneToMany:
         photos:
             targetEntity: Photo

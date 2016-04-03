@@ -34,6 +34,7 @@ class TripRecordController extends Controller {
 			$tripRecord 			= new Record();
 			$tripRecord->setRecUUID($data['id']);
 			$tripRecord->setRecCreatedAt(new \DateTime());
+			$tripRecord->setIdUser($this->getUser());
 		}
 		else {
 			$tripRecord 			= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->findOneBy([

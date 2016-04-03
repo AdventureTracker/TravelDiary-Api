@@ -62,6 +62,11 @@ class Record extends ApiEntity{
 	 */
 	private $idTrip;
 
+	/**
+	 * @var User
+	 */
+	private $idUser;
+
 	protected $required_fields = [
 		'day',
 		'status'
@@ -331,6 +336,24 @@ class Record extends ApiEntity{
 		return $this->idTrip;
 	}
 
+	/**
+	 * @return User
+	 */
+	public function getIdUser()
+	{
+		return $this->idUser;
+	}
+
+	/**
+	 * @param User $idUser
+	 */
+	public function setIdUser(User $idUser)
+	{
+		$this->idUser = $idUser;
+	}
+
+
+
 	public function toArray($detailed = false)
 	{
 		$content = [
@@ -343,6 +366,7 @@ class Record extends ApiEntity{
 			$content['description'] 		= (string) $this->recDescription;
 			$content['coordinates'] 		= $this->getCoordinates();
 			$content['photos'] 				= ApiEntity::prepare($this->photos->toArray());
+			$content['author'] 				= $this->idUser->toArray();
 		}
 
 		return $content;
