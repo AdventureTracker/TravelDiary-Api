@@ -38,7 +38,7 @@ TravelDiary\CoreBundle\Entity\Record:
                 fixed: false
             column: rec_uuid
         recDay:
-            type: date
+            type: datetime
             nullable: false
             column: rec_day
         recDescription:

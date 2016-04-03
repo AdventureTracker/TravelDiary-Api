@@ -69,7 +69,8 @@ class Record extends ApiEntity{
 
 	protected $required_fields = [
 		'day',
-		'status'
+		'type',
+		'id'
 	];
 
 	/**
@@ -359,7 +360,7 @@ class Record extends ApiEntity{
 		$content = [
 			'id' 			=> (string) $this->getRecUUID(),
 			'type' 			=> (string) $this->idRecordtype->getRetCode(),
-			'day' 			=> (string) $this->recDay->format("Y-m-d")
+			'day' 			=> (string) $this->recDay->format(\DateTime::ISO8601)
 		];
 
 		if ($detailed) {
