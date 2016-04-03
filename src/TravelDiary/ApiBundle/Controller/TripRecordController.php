@@ -2,6 +2,7 @@
 
 namespace TravelDiary\ApiBundle\Controller;
 
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -66,8 +67,7 @@ class TripRecordController extends Controller {
 			$tripRecord->setRecDescription($data['description']);
 
 		if (isset($data['coordinates'])) {
-			$tripRecord->setRecLatitude($data['coordinates']['latitude']);
-			$tripRecord->setRecLongitude($data['coordinates']['longitude']);
+			$tripRecord->setRecLocation(new Point($data['coordinates']['latitude'], $data['coordinates']['longitude']));
 			$tripRecord->setRecAltitude($data['coordinates']['altitude']);
 		}
 

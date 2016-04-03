@@ -20,7 +20,7 @@ class TripRepository extends EntityRepository {
 		$query->where("t.trpUUID = :uuid");
 		$query->setParameter("uuid", $uuid);
 		$query->andWhere(":idUser MEMBER OF t.users");
-		$query->setParameter(":idUser", $user->getIdUser());
+		$query->setParameter(":idUser", $user);
 		return $query->getQuery()->getSingleResult();
 	}
 	
@@ -29,6 +29,18 @@ class TripRepository extends EntityRepository {
 		$query->select("COUNT(t)");
 		$query->from("TravelDiaryCoreBundle:Trip", 't');
 		return $query->getQuery()->getSingleScalarResult();
+	}
+
+	public function getTripsByUserPaginated(User $user, $page, $limit) {
+		$query = $this->getEntityManager()->createQueryBuilder();
+		$query->select("trip");
+		$query->from("TravelDiaryCoreBundle:Trip", "trip");
+		$query->where(":idUser MEMBER OF trip.users");
+		$query->setParameter("idUser", $user);
+		$query->orderBy("trip.trpCreatedAt", "DESC");
+		$query->setFirstResult($page - 1);
+		$query->setMaxResults($limit);
+		return $query->getQuery()->getResult();
 	}
 
 }

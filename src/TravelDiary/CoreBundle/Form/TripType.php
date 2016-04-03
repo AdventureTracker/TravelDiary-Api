@@ -4,12 +4,12 @@ namespace TravelDiary\CoreBundle\Form;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use TravelDiary\CoreBundle\Entity\User;
 
 class TripType extends AbstractType
 {
@@ -27,8 +27,9 @@ class TripType extends AbstractType
 			->add('trpEstimatedArrival', DateType::class)
 			->add('idPrivacy', EntityType::class)
 			->add('idStatus', EntityType::class)
-			->add('users', CollectionType::class, [
-
+			->add('users', EntityType::class, [
+				'class' 		=> User::class,
+				'multiple' 		=> true
 			])
 		;
 	}

@@ -1,0 +1,48 @@
+<thead>
+<tr>
+	<th>Name</th>
+	<th>Destination</th>
+	<th>Number of records</th>
+	<th>Status</th>
+	<th>Privacy</th>
+	<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+{% for trip in trips.items %}
+	<tr>
+		<td>{{ trip.trpName }}</td>
+		<td>{{ trip.trpDestination }}</td>
+		<td>{{ trip.tripRecords.count() }}</td>
+		<td>{{ trip.idStatus.staDescription }}</td>
+		<td>{{ trip.idPrivacy.prvDescription }}</td>
+		<td>
+			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
+			<a class="waves-effect waves-light btn-floating green" href="{{ path('editTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">mode_edit</i></a>
+			<a class="waves-effect waves-light btn-floating" href="{{ path('viewTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">visibility</i></a>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="6" class="center">
+			No trips found!
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+
+<tfoot>
+<tr>
+	<td colspan="6" class="center">
+		<ul class="pagination">
+			<li class="{{ (trips.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (trips.page != 1) ? path('tripsOverview', {'page': trips.page - 1}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
+			{% for i in 1..trips.pages %}
+				<li class="{{ (trips.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('tripsOverview', {'page': i}) }}"> {{ i }} </a> </li>
+			{% endfor %}
+			<li class="{{ (trips.page == trips.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (trips.page != trips.pages) ? path('tripsOverview', {'page': trips.page + 1}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+
+		</ul>
+	</td>
+</tr>
+</tfoot>

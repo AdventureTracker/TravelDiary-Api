@@ -1,4 +1,4 @@
-{% extends '@TravelDiaryInterface/_layout/base.html.twig' %}
+{% extends '@TravelDiaryInterface/_layout/login.html.twig' %}
 
 {% block title %}Login{% endblock %}
 
@@ -23,8 +23,8 @@
 				{#Logo#}
 				<div class="row">
 					<div class="input-field col s12 center">
-						<img src="http://demo.geekslabs.com/materialize/v2.3/layout03/images/login-logo.png" class="circle responsive-img valign profile-image-login">
-						<p class="center">Material Design Admin Template</p>
+						<img src="{{ asset('bundles/traveldiaryinterface/img/logo.png') }}" class="responsive-img valign profile-image-login" style="max-height: 150px;">
+						<p class="center">TravelDiary</p>
 					</div>
 				</div>
 

@@ -449,5 +449,14 @@ class User extends ApiEntity implements UserInterface, \Serializable
 			'email' 		=> $this->getUsrEmail()
 		];
 	}
+
+	public function getFullName() {
+		return (string) sprintf("%s %s", $this->getUsrFisrtname(), $this->getUsrLastname());
+	}
+
+	public function __toString() {
+		return (string) sprintf("%s (%s)", $this->getFullName(), $this->getUsrEmail());
+	}
+
 }
 

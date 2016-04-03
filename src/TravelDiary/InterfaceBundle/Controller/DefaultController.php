@@ -4,10 +4,12 @@ namespace TravelDiary\InterfaceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends Controller
-{
-    public function indexAction()
-    {
-        return $this->render('TravelDiaryInterfaceBundle:Default:index.html.twig');
+class DefaultController extends Controller {
+
+    public function indexAction() {
+
+		if ($this->isGranted('IS_AUTHENTICATED_FULLY'))
+			return $this->redirectToRoute('dashboard');
+		return $this->redirectToRoute('login');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelDiary\CoreBundle\Entity;
+use CrEOF\Spatial\PHP\Types\Geometry\Point;
 
 /**
  * Record
@@ -27,14 +28,9 @@ class Record extends ApiEntity{
 	private $recDescription;
 
 	/**
-	 * @var float
+	 * @var Point
 	 */
-	private $recLatitude;
-
-	/**
-	 * @var float
-	 */
-	private $recLongitude;
+	private $recLocation;
 
 	/**
 	 * @var float
@@ -166,51 +162,19 @@ class Record extends ApiEntity{
 	}
 
 	/**
-	 * Set recLatitude
-	 *
-	 * @param float $recLatitude
-	 *
-	 * @return Record
+	 * @return Point
 	 */
-	public function setRecLatitude($recLatitude)
+	public function getRecLocation()
 	{
-		$this->recLatitude = $recLatitude;
-
-		return $this;
+		return $this->recLocation;
 	}
 
 	/**
-	 * Get recLatitude
-	 *
-	 * @return float
+	 * @param Point $recLocation
 	 */
-	public function getRecLatitude()
+	public function setRecLocation($recLocation)
 	{
-		return $this->recLatitude;
-	}
-
-	/**
-	 * Set recLongitude
-	 *
-	 * @param float $recLongitude
-	 *
-	 * @return Record
-	 */
-	public function setRecLongitude($recLongitude)
-	{
-		$this->recLongitude = $recLongitude;
-
-		return $this;
-	}
-
-	/**
-	 * Get recLongitude
-	 *
-	 * @return float
-	 */
-	public function getRecLongitude()
-	{
-		return $this->recLongitude;
+		$this->recLocation = $recLocation;
 	}
 
 	/**
@@ -386,8 +350,8 @@ class Record extends ApiEntity{
 
 	public function getCoordinates() {
 		return [
-			'latitude' 		=> (float) $this->getRecLatitude(),
-			'longitude' 	=> (float) $this->getRecLongitude(),
+			'latitude' 		=> (float) $this->getRecLocation()->getLatitude(),
+			'longitude' 	=> (float) $this->getRecLocation()->getLongitude(),
 			'altitude' 		=> (int) $this->getRecAltitude()
 		];
 	}

@@ -7,8 +7,15 @@ tripsOverview:
 
 createTrip:
     path:                   /trip/create
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, id: 0 }
+    methods:                [GET]
+
+editTrip:
+    path:                   /trip/edit/{id}
     defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form }
     methods:                [GET]
+    requirements:
+      id:                   \d+
 
 processTrip:
     path:                   /trip/process/{id}

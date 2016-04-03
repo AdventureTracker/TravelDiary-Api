@@ -78,7 +78,7 @@ TravelDiary\CoreBundle\Entity\Trip:
             cascade: {  }
             fetch: LAZY
             mappedBy: null
-            inversedBy: trips
+            inversedBy: null
             joinColumns:
                 id_privacy:
                     referencedColumnName: id_privacy

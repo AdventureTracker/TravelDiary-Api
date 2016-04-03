@@ -1,7 +1,28 @@
-{% extends "::base.html.twig" %}
+{% extends '@TravelDiaryInterface/_layout/base.html.twig' %}
 
-{% block title %}TravelDiaryInterfaceBundle:Trip:overview{% endblock %}
+{% block title %}My Trips{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Trip:overview page</h1>
+{% block content %}
+
+	<div class="row">
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="{{ path('tripsOverview') }}" class="breadcrumb">My Trips</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="row">
+		<div class="col s12">
+			<table class="responsive-table" data-source="{{ path('tripsOverview', {'page': page}) }}">
+			</table>
+		</div>
+	</div>
+
+	<div class="fixed-action-btn">
+		<a class="btn-floating btn-large waves-effect waves-light red" href="{{ path('createTrip') }}"><i class="material-icons">add</i></a>
+	</div>
+
 {% endblock %}

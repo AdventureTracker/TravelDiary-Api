@@ -45,18 +45,10 @@ TravelDiary\CoreBundle\Entity\Record:
             options:
                 fixed: false
             column: rec_description
-        recLatitude:
-            type: float
-            nullable: true
-            precision: 10
-            scale: 0
-            column: rec_latitude
-        recLongitude:
-            type: float
-            nullable: true
-            precision: 10
-            scale: 0
-            column: rec_longitude
+        recLocation:
+          type: point
+          nullable: true
+          column: rec_location
         recAltitude:
             type: float
             nullable: true

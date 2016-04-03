@@ -1,7 +1,35 @@
-{% extends "::base.html.twig" %}
+{% extends "@TravelDiaryInterface/_layout/base.html.twig" %}
 
-{% block title %}TravelDiaryInterfaceBundle:Dashboard:dashboard{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Dashboard:dashboard page</h1>
+{% block content %}
+
+	<div class="row">
+		<!-- Profile -->
+		<div class="col l4">
+			<div class="card">
+
+				<div class="card-image">
+					<img src="{{ app.user.usrEmail|gravatar('500') }}">
+					<span class="card-title">{{ app.user.getFullName() }}</span>
+				</div>
+
+				<div class="card-content">
+					<table style="width: 100%">
+						<tr>
+							<td title="Devices"><i class="material-icons left">stay_current_portrait</i> 0</td>
+							<td title="Trips"><i class="material-icons left">language</i> 0</td>
+							<td title="Trip records"><i class="material-icons left">location_on</i> 0</td>
+						</tr>
+					</table>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="col l8">
+
+		</div>
+	</div>
+
 {% endblock %}
