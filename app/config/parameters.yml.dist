@@ -20,3 +20,6 @@ parameters:
 
     # Domain
     domain:				traveldiary.dev
+
+    # Google API
+    google_browser_api_key: 	AIzaSyCthLCIkdxIdAewOfchWjZFls7p52lrBPo

@@ -36,6 +36,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
+    globals:
+        google_browser_api_key: "%google_browser_api_key%"
 
 # Doctrine Configuration
 doctrine:

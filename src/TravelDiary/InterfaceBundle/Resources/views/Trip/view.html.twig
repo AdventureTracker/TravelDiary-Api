@@ -1,7 +1,54 @@
-{% extends "::base.html.twig" %}
+{% extends '@TravelDiaryInterface/_layout/base.html.twig' %}
 
-{% block title %}TravelDiaryInterfaceBundle:Trip:view{% endblock %}
+{% block title %}{{ trip.trpName }}{% endblock %}
 
-{% block body %}
-<h1>Welcome to the Trip:view page</h1>
+{% block content %}
+	<div class="row">
+		<div class="col l12">
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col l12">
+			<div id="map" style="width: 100%; height: 500px;"></div>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascript %}
+	{{ parent() }}
+	<script>
+		function initMap() {
+			var pointList = [
+				{% for record in trip.tripRecords %}
+					{% spaceless %}
+						{
+							title: "{{ record.recDay|date('d.m.Y') }}",
+							location: new google.maps.LatLng({{ record.recLocation.longitude }}, {{ record.recLocation.latitude }})
+						}
+					{% endspaceless %}
+					{{ not loop.last ? ',' }}
+				{% endfor %}
+			];
+
+			var pointBounds = new google.maps.LatLngBounds();
+			var marks = [];
+			var map = new google.maps.Map(document.getElementById('map'));
+
+			pointList.forEach(function (point) {
+				pointBounds.extend(point.location);
+				marks.push(new google.maps.Marker({
+					position: point.location,
+					map: map,
+					title: point.title
+				}))
+			});
+
+			map.setCenter(pointBounds.getCenter());
+			map.fitBounds(pointBounds);
+
+		}
+	</script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ google_browser_api_key }}&callback=initMap"></script>
 {% endblock %}
