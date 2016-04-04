@@ -104,5 +104,5 @@ TravelDiary\CoreBundle\Entity\Record:
     oneToMany:
         photos:
             targetEntity: Photo
-            mappedBy: idPhoto
+            mappedBy: idRecord
     lifecycleCallbacks: {  }

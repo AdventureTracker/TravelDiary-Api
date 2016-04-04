@@ -375,8 +375,8 @@ class Record extends ApiEntity{
 
 	public function getCoordinates() {
 		return [
-			'latitude' 		=> (float) $this->getRecLocation()->getLatitude(),
-			'longitude' 	=> (float) $this->getRecLocation()->getLongitude(),
+			'latitude' 		=> (string) $this->getRecLocation()->getLatitude(),
+			'longitude' 	=> (string) $this->getRecLocation()->getLongitude(),
 			'altitude' 		=> (int) $this->getRecAltitude()
 		];
 	}
