@@ -16,7 +16,7 @@ class TripController extends Controller
 
 			$trips = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->getTripsByUserPaginated($this->getUser(), $page, 20);
 
-			return $this->render('@TravelDiaryInterface/Trip/_partials/list.html.twig', [
+			return $this->render('@TravelDiaryInterface/Trip/_tables/trips.html.twig', [
 				'trips' 		=> [
 					'items' 	=> $trips,
 					'count' 	=> $this->getUser()->getTrips()->count(),
@@ -43,7 +43,7 @@ class TripController extends Controller
 
 	}
 
-	public function viewAction($id) {
+	public function viewAction(Request $request, $id) {
 
 		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($id);
 
@@ -52,6 +52,19 @@ class TripController extends Controller
 
 		if (!$trip->getUsers()->contains($this->getUser()))
 			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
+
+		if ($request->isXmlHttpRequest()) {
+			$records = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginated($trip, $request->query->get('page', 1), 20, $request->query->get('query', ''));
+			return $this->render("@TravelDiaryInterface/Trip/_tables/records.html.twig", [
+				'records' 			=> [
+					'items' 		=> $records,
+					'count' 		=> $trip->getTripRecords()->count(),
+					'page' 			=> $request->query->get('page', 1),
+					'pages' 		=> ceil($trip->getTripRecords()->count() / 20)
+				],
+				'trip' 				=> $trip
+			]);
+		}
 
 		return $this->render('TravelDiaryInterfaceBundle:Trip:view.html.twig', array(
 			'trip' 				=> $trip

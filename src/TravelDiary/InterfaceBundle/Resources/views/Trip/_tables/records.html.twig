@@ -1,0 +1,47 @@
+<thead>
+<tr>
+	<th>Traveler</th>
+	<th>Date</th>
+	<th>Type</th>
+	<th>Location</th>
+	<th>Description</th>
+	<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+{% for record in records.items %}
+	<tr>
+		<td class="valign-wrapper"><img src="{{ record.idUser.usrEmail|gravatar(50) }}" class="responsive-img circle valign"></td>
+		<td>{{ record.recDay|date("d.m.y H:i") }}</td>
+		<td>{{ record.idRecordType.retDescription }}</td>
+		<td>{{ pointToAddress(record.recLocation) }}</td>
+		<td>{{ record.recDescription }}</td>
+		<td>
+			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
+			<a class="waves-effect waves-light btn-floating blue" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">share</i></a>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="6" class="center">
+			No records found!
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+
+<tfoot>
+<tr>
+	<td colspan="6" class="center">
+		<ul class="pagination">
+			<li class="{{ (records.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != 1) ? path('viewTrip', {'page': records.page - 1, 'id': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
+			{% for i in 1..records.pages %}
+				<li class="{{ (records.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('viewTrip', {'page': i, 'id': trip.idTrip}) }}"> {{ i }} </a> </li>
+			{% endfor %}
+			<li class="{{ (records.page == records.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != records.pages) ? path('viewTrip', {'page': records.page + 1, 'id': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+
+		</ul>
+	</td>
+</tr>
+</tfoot>

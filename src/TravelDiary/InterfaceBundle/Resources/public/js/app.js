@@ -2,9 +2,13 @@
  * Created by jakub on 22.03.2016.
  */
 
-function reloadTable(table) {
+var spinner = '<tfoot><tr><th class="center"><div class="preloader-wrapper big active"><div class="spinner-layer spinner-blue-only"><div class="circle-clipper left"><div class="circle"></div></div><div class="gap-patch"><div class="circle"></div></div><div class="circle-clipper right"><div class="circle"></div></div></div></div></th></tr></tfoot>';
+var error_table = '<tfoot><tr><th class="center"><i class="material-icons large">sentiment_dissatisfied</i> <br> Unable to load data </th></tr></tfoot>';
+
+function reloadTable(table, q) {
+	table.html(spinner);
 	$.ajax({
-		url: table.data('source'),
+		url: table.data('source') + '&query=' + q,
 		method: 'GET',
 		dataType: 'html',
 		success: function(data) {
@@ -12,6 +16,7 @@ function reloadTable(table) {
 		},
 		error: function() {
 			Materialize.toast("Error while loading trips!", 5000);
+			table.html(error_table);
 		}
 	});
 }
@@ -19,7 +24,12 @@ function reloadTable(table) {
 $(document).ready(function() {
 	
 	$("table[data-source]").each(function () {
-		reloadTable($(this));
-	})
+		reloadTable($(this), '');
+	});
+
+	$("input[type='search'][data-table]").on('keyup', function (e) {
+		var table = $(this).data('table');
+		reloadTable($(table), $(this).val());
+	});
 	
 });

@@ -21,13 +21,13 @@ TravelDiary\CoreBundle\Entity\User:
             generator:
                 strategy: IDENTITY
     fields:
-        usrFisrtname:
+        usrFirstname:
             type: string
             nullable: false
             length: 50
             options:
                 fixed: false
-            column: usr_fisrtName
+            column: usr_firstName
         usrLastname:
             type: string
             nullable: false

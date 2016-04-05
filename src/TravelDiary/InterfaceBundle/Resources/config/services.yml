@@ -1,9 +1,12 @@
 services:
-#    travel_diary_interface.example:
-#        class: TravelDiary\InterfaceBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
 
-  travel_diary_interface.twig.gravatar_extension:
-    class: TravelDiary\InterfaceBundle\Twig\GravatarExtension
-    tags:
-      - { name: twig.extension }
+    travel_diary_interface.twig.gravatar_extension:
+        class: TravelDiary\InterfaceBundle\Twig\GravatarExtension
+        tags:
+            - { name: twig.extension }
+
+    travel_diary_interface.twig.google_maps_extension:
+        class: TravelDiary\InterfaceBundle\Twig\GoogleMapsExtension
+        tags:
+            - { name: twig.extension }
+        arguments: [ "%google_browser_api_key%" ]

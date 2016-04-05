@@ -16,7 +16,7 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	/**
 	 * @var string
 	 */
-	private $usrFisrtname;
+	private $usrFirstname;
 
 	/**
 	 * @var string
@@ -83,27 +83,27 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	}
 
 	/**
-	 * Set usrFisrtname
+	 * Set usrFirstname
 	 *
-	 * @param string $usrFisrtname
+	 * @param string $usrFirstname
 	 *
 	 * @return User
 	 */
-	public function setUsrFisrtname($usrFisrtname)
+	public function setUsrFirstname($usrFirstname)
 	{
-		$this->usrFisrtname = $usrFisrtname;
+		$this->usrFirstname = $usrFirstname;
 
 		return $this;
 	}
 
 	/**
-	 * Get usrFisrtname
+	 * Get usrFirstname
 	 *
 	 * @return string
 	 */
-	public function getUsrFisrtname()
+	public function getUsrFirstname()
 	{
-		return $this->usrFisrtname;
+		return $this->usrFirstname;
 	}
 
 	/**
@@ -445,13 +445,13 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	function toArray() {
 		return [
 			'id' 			=> $this->getIdUser(),
-			'name' 			=> sprintf("%s %s", $this->getUsrFisrtname(), $this->getUsrLastname()),
+			'name' 			=> sprintf("%s %s", $this->getUsrFirstname(), $this->getUsrLastname()),
 			'email' 		=> $this->getUsrEmail()
 		];
 	}
 
 	public function getFullName() {
-		return (string) sprintf("%s %s", $this->getUsrFisrtname(), $this->getUsrLastname());
+		return (string) sprintf("%s %s", $this->getUsrFirstname(), $this->getUsrLastname());
 	}
 
 	public function __toString() {

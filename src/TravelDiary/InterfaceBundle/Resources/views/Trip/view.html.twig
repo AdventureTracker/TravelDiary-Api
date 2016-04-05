@@ -3,15 +3,68 @@
 {% block title %}{{ trip.trpName }}{% endblock %}
 
 {% block content %}
-	<div class="row">
-		<div class="col l12">
 
+ 	<div class="row">
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="{{ path('tripsOverview') }}" class="breadcrumb">My Trips</a>
+					<a href="{{ path('viewTrip', {id: trip.idTrip}) }}" class="breadcrumb">{{ trip.trpName }}</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="row">
+		<div class="col l4">
+			<ul>
+				{% for member in trip.users %}
+					<li><img src="{{ member.usrEmail|gravatar('50') }}" class="responsive-img circle" title="{{ member.getFullName() }}"></li>
+				{% endfor %}
+			</ul>
+			<ul class="collection with-header">
+				<li class="collection-header"><h4>{{ trip.trpName }}</h4></li>
+				<li class="collection-item">
+					<strong>Status: </strong> {{ trip.idStatus.staDescription }}
+				</li>
+				<li class="collection-item">
+					<strong>Privacy: </strong> {{ trip.idPrivacy.prvDescription }}
+				</li>
+				<li class="collection-item">
+					<strong>Destination: </strong> {{ trip.trpDestination }}
+				</li>
+				<li class="collection-item">
+					<strong>Start date: </strong> {{ trip.trpStartDate|date("d.m.Y") }}
+				</li>
+				<li class="collection-item">
+					<strong>Estimated arrival: </strong> {{ trip.trpEstimatedArrival|date("d.m.Y") }}
+				</li>
+				<li class="collection-item">
+					<strong>Description: </strong> {{ trip.trpDescription }}
+				</li>
+			</ul>
+		</div>
+		<div class="col l8">
+			<div id="map" style="width: 100%; height: 500px;"></div>
 		</div>
 	</div>
 
 	<div class="row">
 		<div class="col l12">
-			<div id="map" style="width: 100%; height: 500px;"></div>
+			<nav>
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field">
+							<input id="tripRecordsTableSearch" type="search" required data-table="#tripRecordsTable">
+							<label for="tripRecordsTableSearch"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
+				</div>
+			</nav>
+			<table class="responsive-table striped" data-source="{{ path('viewTrip', {'page': 1, 'id': trip.idTrip}) }}" id="tripRecordsTable">
+
+			</table>
 		</div>
 	</div>
 {% endblock %}
@@ -25,7 +78,7 @@
 					{% spaceless %}
 						{
 							title: "{{ record.recDay|date('d.m.Y') }}",
-							location: new google.maps.LatLng({{ record.recLocation.longitude }}, {{ record.recLocation.latitude }})
+							location: new google.maps.LatLng({{ record.recLocation.latitude }}, {{ record.recLocation.longitude }})
 						}
 					{% endspaceless %}
 					{{ not loop.last ? ',' }}
@@ -34,6 +87,7 @@
 
 			var pointBounds = new google.maps.LatLngBounds();
 			var marks = [];
+			var pathCoordinates = [];
 			var map = new google.maps.Map(document.getElementById('map'));
 
 			pointList.forEach(function (point) {
@@ -42,11 +96,21 @@
 					position: point.location,
 					map: map,
 					title: point.title
-				}))
+				}));
+				pathCoordinates.push(point.location);
+			});
+
+			var travelPath = new google.maps.Polyline({
+				path: pathCoordinates,
+				geodesic: true,
+				strokeColor: '#29B6F6',
+				strokeOpacity: 1.0,
+				strokeWeight: 2
 			});
 
 			map.setCenter(pointBounds.getCenter());
 			map.fitBounds(pointBounds);
+			travelPath.setMap(map);
 
 		}
 	</script>
