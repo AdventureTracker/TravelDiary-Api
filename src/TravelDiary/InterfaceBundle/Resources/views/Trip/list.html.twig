@@ -19,8 +19,8 @@
 		<td>{{ trip.idPrivacy.prvDescription }}</td>
 		<td>
 			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
-			<a class="waves-effect waves-light btn-floating green" href="{{ path('editTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">mode_edit</i></a>
-			<a class="waves-effect waves-light btn-floating" href="{{ path('viewTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">visibility</i></a>
+			<a class="waves-effect waves-light btn-floating green" href="{{ path('formTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">mode_edit</i></a>
+			<a class="waves-effect waves-light btn-floating" href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">visibility</i></a>
 		</td>
 	</tr>
 {% else %}

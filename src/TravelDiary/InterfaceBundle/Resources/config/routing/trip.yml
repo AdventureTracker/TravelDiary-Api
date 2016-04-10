@@ -7,29 +7,29 @@ tripsOverview:
 
 createTrip:
     path:                   /trip/create
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, id: 0 }
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, idTrip: 0 }
     methods:                [GET]
 
-editTrip:
-    path:                   /trip/edit/{id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form }
+formTrip:
+    path:                   /trip/edit/{idTrip}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, idTrip: 0 }
     methods:                [GET]
     requirements:
-      id:                   \d+
+      idTrip:               \d+
 
 processTrip:
-    path:                   /trip/process/{id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:process, id: 0 }
+    path:                   /trip/process/{idTrip}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:process, idTrip: 0 }
     methods:                [POST]
     requirements:
-        id:                 \d+
+        idTrip:             \d+
 
 viewTrip:
-    path:                   /trip/{id}
+    path:                   /trip/{idTrip}
     defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:view }
     methods:                [GET]
     requirements:
-        id:                 \d+
+        idTrip:                 \d+
 
 removeTrip:
     path:                   /trip/remove/{id}
@@ -37,6 +37,14 @@ removeTrip:
     methods:                [GET]
     requirements:
         id:                 \d+
+
+listTripRecords:
+    path:                   /trip/{idTrip}/records/{page}
+    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:list, page: 1 }
+    methods:                [GET]
+    requirements:
+        idTrip:             \d+
+        page:               \d+
 
 viewTripRecord:
     path:                   /trip/{trip_id}/record/{record_id}

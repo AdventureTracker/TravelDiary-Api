@@ -58,8 +58,8 @@ class RecordRepository extends EntityRepository {
 			$query->setParameter("query", sprintf("%%%s%%", $q));
 		}
 
-		$query->orderBy("record.recDay", "ASC");
-		$query->setFirstResult($page - 1);
+		$query->orderBy("record.recDay", "DESC");
+		$query->setFirstResult(($page - 1) * $limit);
 		$query->setMaxResults($limit);
 
 		return $query->getQuery()->getResult();

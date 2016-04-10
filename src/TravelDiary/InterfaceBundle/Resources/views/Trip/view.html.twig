@@ -9,7 +9,7 @@
 			<div class="nav-wrapper">
 				<div class="col s12">
 					<a href="{{ path('tripsOverview') }}" class="breadcrumb">My Trips</a>
-					<a href="{{ path('viewTrip', {id: trip.idTrip}) }}" class="breadcrumb">{{ trip.trpName }}</a>
+					<a href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}" class="breadcrumb">{{ trip.trpName }}</a>
 				</div>
 			</div>
 		</nav>
@@ -62,7 +62,7 @@
 					</form>
 				</div>
 			</nav>
-			<table class="responsive-table striped" data-source="{{ path('viewTrip', {'page': 1, 'id': trip.idTrip}) }}" id="tripRecordsTable">
+			<table class="responsive-table striped" data-source="{{ path('listTripRecords', {'page': 1, 'idTrip': trip.idTrip}) }}" data-filter="#tripRecordsTableSearch" id="tripRecordsTable">
 
 			</table>
 		</div>

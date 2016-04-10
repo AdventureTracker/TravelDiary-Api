@@ -38,7 +38,7 @@ class TripRepository extends EntityRepository {
 		$query->where(":idUser MEMBER OF trip.users");
 		$query->setParameter("idUser", $user);
 		$query->orderBy("trip.trpCreatedAt", "DESC");
-		$query->setFirstResult($page - 1);
+		$query->setFirstResult(($page - 1) * $limit);
 		$query->setMaxResults($limit);
 		return $query->getQuery()->getResult();
 	}

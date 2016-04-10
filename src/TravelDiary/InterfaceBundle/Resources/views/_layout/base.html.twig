@@ -59,6 +59,11 @@
 		$(document).ready(function(){
 			$(".button-collapse").sideNav();
 			$(".dropdown-button").dropdown();
+			$('.datepicker').pickadate({
+				selectMonths: true,
+				selectYears: 15
+			});
+			$('select').material_select();
 		});
 	</script>
 {% endblock %}

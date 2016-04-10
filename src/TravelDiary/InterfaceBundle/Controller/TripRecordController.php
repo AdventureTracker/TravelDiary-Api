@@ -3,35 +3,65 @@
 namespace TravelDiary\InterfaceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use TravelDiary\ApiBundle\Exception\ApiException;
 
 class TripRecordController extends Controller
 {
-    public function viewAction($trip_id, $record_id)
-    {
-        return $this->render('TravelDiaryInterfaceBundle:TripRecord:view.html.twig', array(
-            // ...
-        ));
-    }
 
-    public function removeAction($trip_id, $record_id)
-    {
-        return $this->render('TravelDiaryInterfaceBundle:TripRecord:remove.html.twig', array(
-            // ...
-        ));
-    }
+	public function listAction(Request $request, $idTrip, $page) {
 
-    public function formAction($trip_id, $record_id)
-    {
-        return $this->render('TravelDiaryInterfaceBundle:TripRecord:form.html.twig', array(
-            // ...
-        ));
-    }
+		if (!$request->isXmlHttpRequest())
+			throw $this->createNotFoundException();
 
-    public function processAction($trip_id, $record_id)
-    {
-        return $this->render('TravelDiaryInterfaceBundle:TripRecord:process.html.twig', array(
-            // ...
-        ));
-    }
+		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
+
+		if (!$trip)
+			$this->createNotFoundException("Trip not found!");
+
+		if (!$trip->getUsers()->contains($this->getUser()))
+			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
+
+		$records = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginated($trip, $page, $this->getParameter("pagination.limit"), $request->query->get('query', ''));
+		return $this->render("@TravelDiaryInterface/TripRecord/list.html.twig", [
+			'records' 			=> [
+				'items' 		=> $records,
+				'count' 		=> $trip->getTripRecords()->count(),
+				'page' 			=> $page,
+				'pages' 		=> ceil($trip->getTripRecords()->count() / $this->getParameter("pagination.limit"))
+			],
+			'trip' 				=> $trip
+		]);
+
+	}
+
+	public function viewAction($trip_id, $record_id)
+	{
+		return $this->render('TravelDiaryInterfaceBundle:TripRecord:view.html.twig', array(
+			// ...
+		));
+	}
+
+	public function removeAction($trip_id, $record_id)
+	{
+		return $this->render('TravelDiaryInterfaceBundle:TripRecord:remove.html.twig', array(
+			// ...
+		));
+	}
+
+	public function formAction($trip_id, $record_id)
+	{
+		return $this->render('TravelDiaryInterfaceBundle:TripRecord:form.html.twig', array(
+			// ...
+		));
+	}
+
+	public function processAction($trip_id, $record_id)
+	{
+		return $this->render('TravelDiaryInterfaceBundle:TripRecord:process.html.twig', array(
+			// ...
+		));
+	}
 
 }

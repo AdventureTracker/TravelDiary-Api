@@ -19,7 +19,9 @@ parameters:
     secret:            5eb9ba39f6f6543fd0e28bfffa229a3ecec56a5a3f1
 
     # Domain
-    domain:				traveldiary.dev
+    domain:                     traveldiary.dev
 
     # Google API
-    google_browser_api_key: 	AIzaSyCthLCIkdxIdAewOfchWjZFls7p52lrBPo
+    google_browser_api_key:     AIzaSyCthLCIkdxIdAewOfchWjZFls7p52lrBPo
+
+    pagination.page_size:       10

@@ -8,7 +8,7 @@ var error_table = '<tfoot><tr><th class="center"><i class="material-icons large"
 function reloadTable(table, q) {
 	table.html(spinner);
 	$.ajax({
-		url: table.data('source') + '&query=' + q,
+		url: table.data('source') + '?query=' + q,
 		method: 'GET',
 		dataType: 'html',
 		success: function(data) {
@@ -31,5 +31,56 @@ $(document).ready(function() {
 		var table = $(this).data('table');
 		reloadTable($(table), $(this).val());
 	});
+
+	$("table[data-source]").delegate('ul.pagination a', 'click', function (e) {
+
+		e.preventDefault();
+
+		var table = $(this).parents("table[data-source]");
+
+		var q = '';
+		table.html(spinner);
+
+		var filter = $(table.data('filter'));
+		if (filter != 'undefined')
+			q = filter.val();
+
+		$.ajax({
+			url: $(this).attr('href') + '?query=' + q,
+			method: 'GET',
+			dataType: 'html',
+			success: function(data) {
+				table.html(data);
+			},
+			error: function() {
+				Materialize.toast("Error while loading trips!", 5000);
+				table.html(error_table);
+			}
+		});
+
+	});
+
+
+	$("body").delegate('a[data-modal]', 'click', function (e) {
+		e.preventDefault();
+
+		var modal = $($(this).data('modal'));
+
+		$.ajax({
+			url: $(this).attr('href'),
+			method: 'GET',
+			dataType: 'html',
+			success: function(data) {
+				modal.html(data);
+				modal.openModal();
+			},
+			error: function() {
+				Materialize.toast("Error while loading trips!", 5000);
+				modal.html("Shit happens!");
+			}
+		});
+
+	})
+
 	
 });

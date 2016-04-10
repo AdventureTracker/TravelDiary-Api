@@ -10,3 +10,6 @@ services:
         tags:
             - { name: twig.extension }
         arguments: [ "%google_browser_api_key%" ]
+
+    travel_diary_interface.dependency_injection.form_errors_serializer:
+        class: TravelDiary\InterfaceBundle\DependencyInjection\FormErrorsSerializer

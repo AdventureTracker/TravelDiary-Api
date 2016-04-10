@@ -7,64 +7,100 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
+use TravelDiary\CoreBundle\Entity\Trip;
+use TravelDiary\CoreBundle\Form\TripType;
 
-class TripController extends Controller
-{
+class TripController extends Controller {
+
 	public function overviewAction(Request $request, $page) {
 
 		if ($request->isXmlHttpRequest()) {
 
-			$trips = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->getTripsByUserPaginated($this->getUser(), $page, 20);
+			$trips = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->getTripsByUserPaginated($this->getUser(), $page, $this->getParameter("pagination.limit"));
 
-			return $this->render('@TravelDiaryInterface/Trip/_tables/trips.html.twig', [
+			return $this->render('@TravelDiaryInterface/Trip/list.html.twig', [
 				'trips' 		=> [
 					'items' 	=> $trips,
 					'count' 	=> $this->getUser()->getTrips()->count(),
 					'page' 		=> $page,
-					'pages' 	=> ceil($this->getUser()->getTrips()->count() / 20)
+					'pages' 	=> ceil($this->getUser()->getTrips()->count() / $this->getParameter("pagination.limit"))
 				]
 			]);
+
 		}
-		else {
-			return $this->render('TravelDiaryInterfaceBundle:Trip:overview.html.twig', [
-				'page' 			=> $page
-			]);
-		}
+
+		return $this->render('TravelDiaryInterfaceBundle:Trip:overview.html.twig', [
+			'page' 			=> $page
+		]);
 	}
 
-	public function formAction() {
+	public function formAction($idTrip) {
+
+		if ($idTrip > 0) {
+			$trip 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
+			if (!$trip)
+				throw $this->createNotFoundException("Trip not found!");
+		}
+		else {
+			$trip 					= new Trip();
+		}
+
+		$form = $this->createForm(TripType::class, $trip, [
+			'action' 	=> $this->generateUrl('processTrip', [
+				'idTrip' => $idTrip
+			])
+		]);
+
 		return $this->render('TravelDiaryInterfaceBundle:Trip:form.html.twig', array(
-			// ...
+			'form' 					=> $form->createView(),
+			'idTrip' 				=> $idTrip
 		));
 	}
 
-	public function processAction($id)
-	{
+	public function processAction(Request $request, $idTrip) {
 
+		if ($idTrip > 0) {
+			$trip 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
+			if (!$trip)
+				throw $this->createNotFoundException("Trip not found!");
+		}
+		else {
+			$trip 					= new Trip();
+		}
+
+		$form = $this->createForm(TripType::class, $trip, [
+			'action' 	=> $this->generateUrl('processTrip', [
+				'idTrip' => $idTrip
+			])
+		]);
+
+		$form->handleRequest($request);
+
+		if ($form->isValid()) {
+			$em = $this->getDoctrine()->getManager();
+			$em->persist($trip);
+			$em->flush();
+			$this->addFlash('success', "Trip created!");
+			return $this->redirectToRoute('viewTrip', [
+				'idTrip' 	=> $trip->getIdTrip()
+			]);
+		}
+
+		return $this->render('TravelDiaryInterfaceBundle:Trip:form.html.twig', array(
+			'form' 					=> $form->createView(),
+			'idTrip' 				=> $idTrip
+		));
 	}
 
-	public function viewAction(Request $request, $id) {
+	public function viewAction(Request $request, $idTrip) {
 
-		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($id);
+		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
 
 		if (!$trip)
 			$this->createNotFoundException("Trip not found!");
 
 		if (!$trip->getUsers()->contains($this->getUser()))
 			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
-
-		if ($request->isXmlHttpRequest()) {
-			$records = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginated($trip, $request->query->get('page', 1), 20, $request->query->get('query', ''));
-			return $this->render("@TravelDiaryInterface/Trip/_tables/records.html.twig", [
-				'records' 			=> [
-					'items' 		=> $records,
-					'count' 		=> $trip->getTripRecords()->count(),
-					'page' 			=> $request->query->get('page', 1),
-					'pages' 		=> ceil($trip->getTripRecords()->count() / 20)
-				],
-				'trip' 				=> $trip
-			]);
-		}
 
 		return $this->render('TravelDiaryInterfaceBundle:Trip:view.html.twig', array(
 			'trip' 				=> $trip
