@@ -15,7 +15,6 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ## Credentials
 
- - [Barbora Čelesová](mailto:xcelesova@stuba.sk)
  - [Jakub Dubec](mailto:xdubec@stuba.sk)
 
 ## Token [/token]
@@ -37,6 +36,12 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
         {
             "token":"0ddd79db-6ad2-4bf3-b0b9-a3ebb45f5dad"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "message": "Empty body request!"
         }
 
 + Response 401 (application/json)
@@ -61,10 +66,10 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 + Response 204 (application/json)
 
-+ Response 401 (application/json)
++ Response 403 (application/json)
 
         {
-            "message":"Invalid credentials!"
+            "message":"Forbidden!"
         }
 
 + Response 500 (application/json)
@@ -105,10 +110,10 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         }
 
 
-+ Response 401 (application/json)
++ Response 403 (application/json)
 
         {
-            "message":"Invalid credentials!"
+            "message":"Forbidden!"
         }
 
 ## Trips Collection [/trips]
@@ -134,6 +139,12 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
             }
         ]
 
++ Response 403 (application/json)
+
+        {
+            "message":"Forbidden!"
+        }
+
 ### Create a New Trip [POST]
 
 + Request (application/json)
@@ -151,13 +162,18 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
         + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (required, string) - Description of trip
         + start_date: `2015-07-12` (required, string) - Start date of trip in format Y-m-d
         + estimated_arrival_date: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
-        + status: `PLANNED` (required, TripStatusEnum) - Status of trip
+        + status: `PLANNED` (required, enum) - Status of trip
+            - `PLANNED` (string)
+            - `IN_PROGRESS` (string)
+            - `CANCELED` (string)
+            - `FINISHED` (string)
+        + privacy: `PUBLIC` (required, enum) - Privacy setting for trip
+            - `PUBLIC` (string)
+            - `MEMBER` (string)
+            - `PRIVATE` (string)
+        + users: (required, array) - List of trip owners
 
 + Response 201 (application/json)
-
-    + Headers
-
-            Location: /trips/b429b294-ac24-423f-bb5a-a90998dd7612
 
     + Body
 
@@ -165,9 +181,41 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
-                "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-                "start_date": "2015-07-7",
-                "status": "PLANNED"
+                "status": "PLANNED",
+                "privacy": "PUBLIC",
+                "description": "A low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+                "start_date": "2015-07-12",
+                "estimated_arrival_date": "2015-08-04",
+                "records":
+                [
+                    {
+                        "id": "5b973fb3-5267-4e30-9d01-f96e3fde439a",
+                        "type": "CAMPING",
+                        "day": "2015-07-11T00:00:00+0200"
+                    }
+                ],
+                "users":
+                [
+                    {
+                        "id": 1,
+                        "name": "Jakub Dubec",
+                        "email": "jakub.dubec@gmail.com"
+                    }
+                ],
+                "created_at": "2016-03-29T21:54:03+0200",
+                "updated_at": "2016-03-29T22:06:40+0200"
+            }
+
++ Response 400 (application/json)
+
+            {
+                "message": "Empty body request!"
+            }
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
             }
 
 + Response 422 (application/json)
@@ -194,6 +242,14 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ### View a Trip detail [GET]
 
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
+
 + Response 200 (application/json)
 
     + Body
@@ -202,31 +258,60 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
-                "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-                "start_date": "2015-07-7",
-                "estimated_arrival_date": "2015-08-01",
-                "created_at": "2016-02-28T12:48:15+00:00",
-                "updated_at": null
+                "status": "PLANNED",
+                "privacy": "PUBLIC",
+                "description": "A low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+                "start_date": "2015-07-12",
+                "estimated_arrival_date": "2015-08-04",
+                "records":
+                [
+                    {
+                        "id": "5b973fb3-5267-4e30-9d01-f96e3fde439a",
+                        "type": "CAMPING",
+                        "day": "2015-07-11T00:00:00+0200"
+                    }
+                ],
+                "users":
+                [
+                    {
+                        "id": 1,
+                        "name": "Jakub Dubec",
+                        "email": "jakub.dubec@gmail.com"
+                    }
+                ],
+                "created_at": "2016-03-29T21:54:03+0200",
+                "updated_at": "2016-03-29T22:06:40+0200"
             }
 
 ### Update a Trip detail [PUT]
 
 + Request (application/json)
 
-    + Attributes
-
-        + name: `Norway 2015` (optional, string) - Name of the trip
-        + destination: `Trolltunga, Odda, Norway` (optional, string) - Destination of trip
-        + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (optional, string) - Description of trip
-        + start_date: `2015-07-12` (optional, string) - Start date of trip in format Y-m-d
-        + estimated_arrival_date: `2015-08-04` (optional, string) - Estimated arrival date in format Y-m-d
-        + status: `PLANNED` (optional, TripStatusEnum) - Status of trip
-
-+ Response 201 (application/json)
-
     + Headers
 
-            Location: /trips/b429b294-ac24-423f-bb5a-a90998dd7612
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
+    + Attributes
+
+        + id: `b429b294-ac24-423f-bb5a-a90998dd7612` (required, string) - Generated identificator for trip UUID4
+        + name: `Norway 2015` (required, string) - Name of the trip
+        + destination: `Trolltunga, Odda, Norway` (required, string) - Destination of trip
+        + description: `A low-cost hitchhiking trip through the Scandinavia and the Baltic states.` (required, string) - Description of trip
+        + start_date: `2015-07-12` (required, string) - Start date of trip in format Y-m-d
+        + estimated_arrival_date: `2015-08-04` (required, string) - Estimated arrival date in format Y-m-d
+        + status: `PLANNED` (required, enum) - Status of trip
+            - `PLANNED` (string)
+            - `IN_PROGRESS` (string)
+            - `CANCELED` (string)
+            - `FINISHED` (string)
+        + privacy: `PUBLIC` (required, enum) - Privacy setting for trip
+            - `PUBLIC` (string)
+            - `MEMBER` (string)
+            - `PRIVATE` (string)
+        + users: (required, array) - List of trip owners
+
++ Response 200 (application/json)
 
     + Body
 
@@ -234,17 +319,48 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
-                "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-                "start_date": "2015-07-7",
                 "status": "PLANNED",
+                "privacy": "PUBLIC",
+                "description": "A low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
+                "start_date": "2015-07-12",
+                "estimated_arrival_date": "2015-08-04",
                 "records":
                 [
                     {
-                        "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
-                        "type": "camping",
-                        "day": "2016-03-02"
+                        "id": "5b973fb3-5267-4e30-9d01-f96e3fde439a",
+                        "type": "CAMPING",
+                        "day": "2015-07-11T00:00:00+0200"
                     }
-                ]
+                ],
+                "users":
+                [
+                    {
+                        "id": 1,
+                        "name": "Jakub Dubec",
+                        "email": "jakub.dubec@gmail.com"
+                    }
+                ],
+                "created_at": "2016-03-29T21:54:03+0200",
+                "updated_at": "2016-03-29T22:06:40+0200"
+            }
+
++ Response 400 (application/json)
+
+            {
+                "message": "Empty body request!"
+            }
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
+            }
+
++ Response 404 (application/json)
+
+            {
+                "message": "Not found!",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612"
             }
 
 + Response 422 (application/json)
@@ -254,13 +370,6 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
             {
                 "message": "Invalid input!",
                 "invalid_fields": [ 'updaated_at' ]
-            }
-
-+ Response 404 (application/json)
-
-            {
-                "message": "Not found!",
-                "id": "b429b294-ac24-423f-bb5a-a90998dd7612"
             }
 
 + Response 500 (application/json)
@@ -273,7 +382,20 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ### Delete trip [DELETE]
 
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
 + Response 204
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
+            }
 
 + Response 404 (application/json)
 
@@ -300,6 +422,11 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 ### Create trip record [POST]
 + Request (application/json)
 
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
     + Attributes
 
         + id: `b429b294-ac24-423f-bb5a-a90998dd7612` (required, string) - Generated identificator for trip record UUID4
@@ -318,7 +445,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
     + Body
 
             {
-                "id": "565d93b922bfeb48dde3252605548e5e91a6ad0c1ee479e178a465425e673644",
+                "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "type": "CAMPING",
                 "day": "2016-03-02",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla.",
@@ -333,10 +460,24 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                     {
                         "data": "..."
                     },
-                    {
-                        "data": "..."
-                    }
-                ]
+                ],
+                "author": {
+                	"id": 1,
+                	"name": "Jakub Dubec",
+                	"email": "jakub.dubec@gmail.com"
+                }
+            }
+
++ Response 400 (application/json)
+
+            {
+                "message": "Empty body request!"
+            }
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
             }
 
 + Response 422 (application/json)
@@ -364,6 +505,13 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ### Get trip record details [GET]
 
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
 + Response 200 (application/json)
 
     + Body
@@ -384,10 +532,24 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                     {
                         "data": "..."
                     },
-                    {
-                        "data": "..."
-                    }
-                ]
+                ],
+                "author": {
+                	"id": 1,
+                	"name": "Jakub Dubec",
+                	"email": "jakub.dubec@gmail.com"
+                }
+            }
+
++ Response 400 (application/json)
+
+            {
+                "message": "Empty body request!"
+            }
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
             }
 
 + Response 404 (application/json)
@@ -405,7 +567,9 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
     + Headers
 
-            X-TravelDiary-Device: 87433278-cde3-4f55-9c31-2cc1ca37bf68
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
 
     + Attributes
 
@@ -417,15 +581,11 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 + Response 201 (application/json)
 
-    + Headers
-
-            Location: /trips/bf00ffa4-651b-4bb4-8090-76cac7088c95/records/b429b294-ac24-423f-bb5a-a90998dd7612
-
     + Body
 
             {
                 "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
-                "type": "camping",
+                "type": "CAMPING",
                 "day": "2016-03-02",
                 "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec facilisis arcu egestas neque porttitor fringilla.",
                 "coordinates":
@@ -439,10 +599,32 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                     {
                         "data": "..."
                     },
-                    {
-                        "data": "..."
-                    }
-                ]
+                ],
+                "author": {
+                	"id": 1,
+                	"name": "Jakub Dubec",
+                	"email": "jakub.dubec@gmail.com"
+                }
+            }
+
++ Response 400 (application/json)
+
+            {
+                "message": "Empty body request!"
+            }
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
+            }
+
++ Response 404 (application/json)
+
+    + Body
+
+            {
+                "message": "Trip record not found!"
             }
 
 + Response 422 (application/json)
@@ -454,13 +636,6 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "invalid_fields": [ 'cordinates', 'status' ]
             }
 
-+ Response 404 (application/json)
-
-    + Body
-
-            {
-                "message": "Trip record not found!"
-            }
 
 + Response 500 (application/json)
 
@@ -472,7 +647,20 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ### Delete trip [DELETE]
 
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
 + Response 204
+
++ Response 403 (application/json)
+
+            {
+                "message": "Forbidden!"
+            }
 
 + Response 404 (application/json)
 
