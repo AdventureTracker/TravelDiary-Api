@@ -7,22 +7,85 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
 
 ## Database diagram
 
-![Image of Yaktocat](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/EER_v4.png)
+<!-- ![Entity relation diagram](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/EER_v4.png) -->
 
 ## Mockups
 
-![Image of Yaktocat](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/Mockups_v1.jpg)
+![Mockups](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/Mockups_v1.jpg)
 
 ## Credentials
 
- - [Barbora Čelesová](xcelesova@stuba.sk)
- - [Jakub Dubec](xdubec@stuba.sk)
+ - [Barbora Čelesová](mailto:xcelesova@stuba.sk)
+ - [Jakub Dubec](mailto:xdubec@stuba.sk)
+
+## Token [/token]
+
+### Create token [POST]
+
++ Request (application/json)
+
+    + Headers
+
+        X-TravelDiary-Device: UUID4-OF-DEVICE
+
+    + Attributes
+
+        + email: `jakub.dubec@gmail.com` (required, string) - Email of user
+        + password: `$2y$13$jugbchb1Jxk3/tk92ui.2OioNoicE4XxH4KO.LxcVDXl3kJ55DUUC` (required, string) - mbcrypt (13 iterations) hash of user password
+
++ Response 201 (application/json)
+
+        {
+            "token":"0ddd79db-6ad2-4bf3-b0b9-a3ebb45f5dad"
+        }
+
++ Response 401 (application/json)
+
+        {
+            "message":"Invalid credentials!"
+        }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Error description"
+        }
+
+### Remove token [DELETE]
+
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: UUID4-OF-DEVICE
+
++ Response 204 (application/json)
+
++ Response 401 (application/json)
+
+        {
+            "message":"Invalid credentials!"
+        }
+
++ Response 500 (application/json)
+
+        {
+            "message": "Error description"
+        }
 
 ## Enums [/enums]
 
 ### List all enums [GET]
 
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
+
 + Response 200 (application/json)
+
 
         {
             "statuses":
@@ -41,9 +104,23 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
             ]
         }
 
+
++ Response 401 (application/json)
+
+        {
+            "message":"Invalid credentials!"
+        }
+
 ## Trips Collection [/trips]
 
 ### List all trips [GET]
+
++ Request
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
 
 + Response 200 (application/json)
 
@@ -52,17 +129,19 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "id": "b429b294-ac24-423f-bb5a-a90998dd7612",
                 "name": "Norway 2015",
                 "destination": "Trolltunga, Odda, Norway",
-                "description": "An low-cost hitchhiking trip through the Scandinavia and the Baltic states.",
-                "start_date": "2015-07-7",
-                "estimated_arrival_date": "2015-08-01",
-                "created_at": "2016-02-28T12:48:15+00:00",
-                "updated_at": null
+                "status": "PLANNED",
+                "privacy": "PUBLIC"
             }
         ]
 
 ### Create a New Trip [POST]
 
 + Request (application/json)
+
+    + Headers
+
+        X-TravelDiary-Device: 6c4af814-04e2-4ddb-b625-b64b77dcd228
+        X-TravelDiary-Token: 42653452-447b-4292-b5e6-acd127746bb4
 
     + Attributes
 

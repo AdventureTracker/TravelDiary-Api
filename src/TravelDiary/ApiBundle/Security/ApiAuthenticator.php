@@ -66,11 +66,11 @@ class ApiAuthenticator implements SimplePreAuthenticatorInterface, Authenticatio
 		$apiToken = $request->headers->get('X-TravelDiary-Token');
 
 		// preskakujem auth ak sa jedna o status
-		if ($this->httpUtils->checkRequestPath($request, '/api/v1/status'))
+		if ($this->httpUtils->checkRequestPath($request, '/v1/status'))
 			return null;
 
 		// preskakujem auth ak sa jedna o ziadost o novy token
-		if ($this->httpUtils->checkRequestPath($request, '/api/v1/token') && ($request->getMethod() == Request::METHOD_POST))
+		if ($this->httpUtils->checkRequestPath($request, '/v1/token') && ($request->getMethod() == Request::METHOD_POST))
 			return null;
 
 		if(!$apiToken)

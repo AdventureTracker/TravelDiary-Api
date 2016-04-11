@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\CoreBundle\Entity\ApiToken;
+use TravelDiary\CoreBundle\Entity\Device;
 use TravelDiary\CoreBundle\Helper\UUID;
 
 class TokenController extends Controller {
@@ -41,18 +43,27 @@ class TokenController extends Controller {
 		]);
 
 		if (!$user)
-			return new JsonResponse(['message' => "Invalid credentials!"], Response::HTTP_UNAUTHORIZED);
+			throw new ApiException("Invalid credentials!", Response::HTTP_UNAUTHORIZED);
 
-		$device 				= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Device")->findByUser($user, $deviceUUID);
+		$em 					= $this->getDoctrine()->getManager();
 
-		if (!$device)
-			return new JsonResponse(['message' => "Invalid credentials!"], Response::HTTP_UNAUTHORIZED);
+		$device 				= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Device")->findOneBy([
+			'idUser' 			=> $user,
+			'devUUID' 			=> $deviceUUID
+		]);
+
+		if (!$device) {
+			$device 			= new Device();
+			$device->setIdUser($user);
+			$device->setDevUUID($deviceUUID);
+			$em->persist($device);
+		}
+
 
 		$apiToken 				= new ApiToken();
 		$apiToken->setIdDevice($device);
 		$apiToken->setTokValue(UUID::generateUUID());
 
-		$em 					= $this->getDoctrine()->getManager();
 		$em->persist($apiToken);
 		$em->flush();
 
