@@ -18,3 +18,4 @@
 /.idea/
 /.sass-cache
 /src/TravelDiary/InterfaceBundle/Resources/public/css
+*.zip
