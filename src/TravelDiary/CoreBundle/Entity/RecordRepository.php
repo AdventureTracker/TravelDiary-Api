@@ -19,7 +19,7 @@ class RecordRepository extends EntityRepository {
 		$query->from("TravelDiaryCoreBundle:Record", 'r');
 		return $query->getQuery()->getSingleScalarResult();
 	}
-
+	
 	public function getRecordsByTripPaginated(Trip $trip, $page, $limit, $q = '') {
 		$query = $this->getEntityManager()->createQueryBuilder();
 		$query->select("record");

@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\CoreBundle\Entity\Trip;
 use TravelDiary\CoreBundle\Form\TripType;
+use TravelDiary\CoreBundle\Helper\UUID;
 
 class TripController extends Controller {
 
@@ -66,6 +67,7 @@ class TripController extends Controller {
 		}
 		else {
 			$trip 					= new Trip();
+			$trip->setTrpUUID(UUID::generateUUID());
 		}
 
 		$form = $this->createForm(TripType::class, $trip, [
@@ -103,7 +105,8 @@ class TripController extends Controller {
 			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
 
 		return $this->render('TravelDiaryInterfaceBundle:Trip:view.html.twig', array(
-			'trip' 				=> $trip
+			'trip' 				=> $trip,
+			'favouriteType' 	=> null
 		));
 	}
 

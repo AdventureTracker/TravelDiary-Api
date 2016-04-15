@@ -35,13 +35,12 @@ class TripType extends AbstractType
 			->add('trpStartDate', DateType::class, [
 				'label' 		=> 'Start date',
 				'widget' 		=> 'single_text',
-				'attr' 			=> [
-					'class' 	=> 'datepicker'
-				]
+				'format' 		=> 'd MMMM, yyyy'
 			])
 			->add('trpEstimatedArrival', DateType::class, [
 				'label' 		=> 'Estimated arrival',
-				'widget' 		=> 'single_text'
+				'widget' 		=> 'single_text',
+				'format' 		=> 'd MMMM, yyyy'
 			])
 			->add('idPrivacy', EntityType::class, [
 				'class' 		=> Privacy::class,
@@ -55,6 +54,7 @@ class TripType extends AbstractType
 			])
 			->add('users', EntityType::class, [
 				'class' 		=> User::class,
+				'choice_label' 	=> 'usrEmail',
 				'multiple' 		=> true,
 				'label' 		=> 'Trip members'
 			])
