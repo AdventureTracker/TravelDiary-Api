@@ -30,7 +30,7 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
     + Attributes
 
         + email: `jakub.dubec@gmail.com` (required, string) - Email of user
-        + password: `$2y$13$jugbchb1Jxk3/tk92ui.2OioNoicE4XxH4KO.LxcVDXl3kJ55DUUC` (required, string) - bcrypt (13 iterations) hash of user password
+        + password: `Andromeda246` (required, string) - raw password (using HTTPS no encryption needed)
 
 + Response 201 (application/json)
 
@@ -458,7 +458,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "photos":
                 [
                     {
-                        "data": "..."
+                        "id": "33d11a45-affa-44b5-ba90-ca24bd811dfa",
+                        "data": "data:image/jpeg;base64,base64hash..."
                     },
                 ],
                 "author": {
@@ -530,7 +531,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "photos":
                 [
                     {
-                        "data": "..."
+                        "id": "33d11a45-affa-44b5-ba90-ca24bd811dfa",
+                        "data": "data:image/jpeg;base64,base64hash..."
                     },
                 ],
                 "author": {
@@ -597,7 +599,8 @@ Simple RESTful API service for synchronization of traveling diaries between mobi
                 "photos":
                 [
                     {
-                        "data": "..."
+                        "id": "33d11a45-affa-44b5-ba90-ca24bd811dfa",
+                        "data": "data:image/jpeg;base64,base64hash..."
                     },
                 ],
                 "author": {
