@@ -1,6 +1,7 @@
 <?php
 
 namespace TravelDiary\CoreBundle\Entity;
+use TravelDiary\CoreBundle\Helper\BASE64;
 
 /**
  * Photo
@@ -20,6 +21,11 @@ class Photo extends ApiEntity{
 	 * @var string
 	 */
 	private $phtFilename;
+
+	/**
+	 * @var string
+	 */
+	private $phtMIME;
 
 	/**
 	 * @var \DateTime
@@ -91,6 +97,23 @@ class Photo extends ApiEntity{
 	}
 
 	/**
+	 * @return string
+	 */
+	public function getPhtMIME()
+	{
+		return $this->phtMIME;
+	}
+
+	/**
+	 * @param string $phtMIME
+	 */
+	public function setPhtMIME($phtMIME)
+	{
+		$this->phtMIME = $phtMIME;
+	}
+
+
+	/**
 	 * Set phtCreatedAt
 	 *
 	 * @param \DateTime $phtCreatedAt
@@ -138,9 +161,24 @@ class Photo extends ApiEntity{
 		return $this->idRecord;
 	}
 
+	/**
+	 * @return string
+	 */
+	public function getPhotosDir() {
+		$roodDir =  __DIR__ . "/../../../../web/upload/" . $this->getIdRecord()->getIdTrip()->getTrpUUID() . "/";
+		if (is_dir($roodDir)) {
+			return $roodDir;
+		}
+		else {
+			mkdir($roodDir);
+			return $roodDir;
+		}
+	}
+
 	public function toArray() {
 		return [
-			'data' 		=> ""
+			'uuid' 		=> $this->getPhtUUID(),
+			'data' 		=> BASE64::encodeFile($this->getPhotosDir() . $this->getPhtFilename(), $this->getPhtMIME())
 		];
 	}
 }

@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
+use TravelDiary\ApiBundle\File\ApiUploadedFile;
 use TravelDiary\ApiBundle\Helper\ApiRequestProcessor;
+use TravelDiary\CoreBundle\Entity\Photo;
 use TravelDiary\CoreBundle\Entity\Record;
 
 class TripRecordController extends Controller {
@@ -72,13 +74,53 @@ class TripRecordController extends Controller {
 			$tripRecord->setRecAltitude($data['coordinates']['altitude']);
 		}
 
-		if (isset($data['images'])) {
-			// TODO: images shit
+
+		// Removing all existing photos from entity, setting later
+		$tripRecord->getPhotos()->clear();
+
+		$em = $this->getDoctrine()->getManager();
+		$em->persist($tripRecord);
+
+		if (isset($data['photos'])) {
+
+			// Creating upload dir if not exists
+			$uploadDir = sprintf("%s/../web/upload", $this->get("kernel")->getRootDir());
+			if (!is_dir($uploadDir))
+				mkdir($uploadDir, 0775);
+
+			// Preparing upload dir for trip based on trip UUID
+			$tripUploadDir = sprintf("%s/%s", $uploadDir, $trip->getTrpUUID());
+			if (!is_dir($tripUploadDir))
+				mkdir($tripUploadDir, 0775);
+
+			foreach ($data['photos'] as $image) {
+
+				$photo = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Photo")->findOneBy([
+					'phtUUID' => $image['id']
+				]);
+
+				// If photo doesn't exist, creating new
+				if (!$photo) {
+
+					$imageFile = new ApiUploadedFile($image['data'], sprintf("%s/%s", $tripUploadDir, $image['id']));
+
+					$photo = new Photo();
+					$photo->setPhtUUID($image['id']);
+					$photo->setPhtCreatedAt(new \DateTime());
+					$photo->setPhtFilename(sprintf("%s.%s", $image['id'], $imageFile->getExtension()));
+					$photo->setPhtMIME($imageFile->getMime());
+
+				}
+
+				$photo->setIdRecord($tripRecord);
+				$em->persist($photo);
+				$tripRecord->addPhoto($photo);
+
+			}
+
 		}
 
 		try {
-			$em 					= $this->getDoctrine()->getManager();
-			$em->persist($tripRecord);
 			$em->flush();
 		}
 		catch (\Exception $e) {

@@ -38,6 +38,11 @@ TravelDiary\CoreBundle\Entity\Photo:
                 fixed: false
                 default: '0'
             column: pht_filename
+        phtMIME:
+            type: string
+            nullable: true
+            length: 10
+            column: pht_mime
         phtCreatedAt:
             type: datetime
             nullable: false
