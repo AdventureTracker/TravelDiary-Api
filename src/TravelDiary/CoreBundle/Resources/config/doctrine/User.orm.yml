@@ -21,7 +21,7 @@ TravelDiary\CoreBundle\Entity\User:
             generator:
                 strategy: IDENTITY
     fields:
-        usrUUOD:
+        usrUUID:
             type: string
             nullabe: false
             length: 128
