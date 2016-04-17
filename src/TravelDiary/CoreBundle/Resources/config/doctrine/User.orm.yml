@@ -21,6 +21,13 @@ TravelDiary\CoreBundle\Entity\User:
             generator:
                 strategy: IDENTITY
     fields:
+        usrUUOD:
+            type: string
+            nullabe: false
+            length: 128
+            options:
+                fixed: false
+            column: usr_uuid
         usrFirstname:
             type: string
             nullable: false

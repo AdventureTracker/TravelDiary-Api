@@ -16,6 +16,11 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	/**
 	 * @var string
 	 */
+	private $usrUUID;
+
+	/**
+	 * @var string
+	 */
 	private $usrFirstname;
 
 	/**
@@ -80,6 +85,22 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	public function getIdUser()
 	{
 		return $this->idUser;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getUsrUUID()
+	{
+		return $this->usrUUID;
+	}
+
+	/**
+	 * @param string $usrUUID
+	 */
+	public function setUsrUUID($usrUUID)
+	{
+		$this->usrUUID = $usrUUID;
 	}
 
 	/**
@@ -444,7 +465,7 @@ class User extends ApiEntity implements UserInterface, \Serializable
 
 	function toArray() {
 		return [
-			'id' 			=> $this->getIdUser(),
+			'id' 			=> $this->getUsrUUID(),
 			'name' 			=> sprintf("%s %s", $this->getUsrFirstname(), $this->getUsrLastname()),
 			'email' 		=> $this->getUsrEmail()
 		];
