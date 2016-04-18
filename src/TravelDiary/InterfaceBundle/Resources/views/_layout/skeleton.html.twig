@@ -14,7 +14,9 @@
 
 	<!-- CSS -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link href="{{ asset('bundles/traveldiaryinterface/css/materialize.css') }}" rel="stylesheet">
+	<link href="{{ asset("bundles/traveldiaryinterface/css/bootstrap.css") }}" rel="stylesheet">
+	<link href="{{ asset("bundles/traveldiaryinterface/css/bootstrap-material-design.css") }}" rel="stylesheet">
+	<link href="{{ asset("bundles/traveldiaryinterface/css/ripples.css") }}" rel="stylesheet">
 
 	<!-- Open Graph Tags -->
 	{#<meta property="og:title" content="RB Plast - {{ block('title') }}" />#}
@@ -36,7 +38,10 @@
 
 <!-- JS -->
 <script src="{{ asset('bundles/traveldiaryinterface/js/jquery/jquery-2.2.2.min.js') }}"></script>
-<script src="{{ asset('bundles/traveldiaryinterface/js/materialize/bin/materialize.min.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap-sprockets.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/material.min.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/ripples.min.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/app.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/analytics.js') }}"></script>
 {% block javascript %}
