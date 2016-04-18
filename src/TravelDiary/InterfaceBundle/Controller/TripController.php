@@ -68,6 +68,7 @@ class TripController extends Controller {
 		else {
 			$trip 					= new Trip();
 			$trip->setTrpUUID(UUID::generateUUID());
+			$trip->addUser($this->getUser());
 		}
 
 		$form = $this->createForm(TripType::class, $trip, [

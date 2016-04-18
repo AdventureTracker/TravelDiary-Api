@@ -17,10 +17,10 @@
 		<td>{{ trip.tripRecords.count() }}</td>
 		<td>{{ trip.idStatus.staDescription }}</td>
 		<td>{{ trip.idPrivacy.prvDescription }}</td>
-		<td>
-			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
-			<a class="waves-effect waves-light btn-floating green" href="{{ path('formTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">mode_edit</i></a>
-			<a class="waves-effect waves-light btn-floating" href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">visibility</i></a>
+		<td class="btn-group-sm">
+			<a class="btn btn-danger btn-fab" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
+			<a class="btn btn-primary btn-fab" href="{{ path('formTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">mode_edit</i></a>
+			<a class="btn btn-default btn-fab" href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}"><i class="material-icons tiny">visibility</i></a>
 		</td>
 	</tr>
 {% else %}
@@ -34,15 +34,17 @@
 
 <tfoot>
 <tr>
-	<td colspan="6" class="center">
-		<ul class="pagination">
-			<li class="{{ (trips.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (trips.page != 1) ? path('tripsOverview', {'page': trips.page - 1}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
-			{% for i in 1..trips.pages %}
-				<li class="{{ (trips.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('tripsOverview', {'page': i}) }}"> {{ i }} </a> </li>
-			{% endfor %}
-			<li class="{{ (trips.page == trips.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (trips.page != trips.pages) ? path('tripsOverview', {'page': trips.page + 1}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+	<td colspan="6" class="text-center">
+		<nav>
+			<ul class="pagination">
+				<li class="{{ (trips.page == 1) ? 'disabled' }}"><a href="{{ (trips.page != 1) ? path('tripsOverview', {'page': trips.page - 1}) : '#' }}"> &laquo;</a></li>
+				{% for i in 1..trips.pages %}
+					<li class="{{ (trips.page == i) ? 'active' }}"><a href="{{ path('tripsOverview', {'page': i}) }}"> {{ i }} </a> </li>
+				{% endfor %}
+				<li class="{{ (trips.page == trips.pages) ? 'disabled' }}"><a href="{{ (trips.page != trips.pages) ? path('tripsOverview', {'page': trips.page + 1}) : '#' }}">&raquo;</a></li>
 
-		</ul>
+			</ul>
+		</nav>
 	</td>
 </tr>
 </tfoot>

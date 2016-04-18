@@ -404,7 +404,7 @@ class Trip extends ApiEntity {
 	public function removeUser(User $user) {
 		$this->users->removeElement($user);
 	}
-
+	
 	/**
 	 * @return Collection
 	 */

@@ -22,12 +22,19 @@ function reloadTable(table, q) {
 }
 
 $(document).ready(function() {
+
+	$.material.init();
 	
 	$("table[data-source]").each(function () {
 		reloadTable($(this), '');
 	});
 
-	$("input[type='search'][data-table]").on('keyup', function (e) {
+	$("form.ajax-search").on('submit', function (e) {
+		e.preventDefault();
+	});
+
+	$("input[type='search'][data-table]").on('change', function (e) {
+		e.preventDefault();
 		var table = $(this).data('table');
 		reloadTable($(table), $(this).val());
 	});

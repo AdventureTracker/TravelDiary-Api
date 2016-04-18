@@ -14,9 +14,11 @@
 
 	<!-- CSS -->
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700">
 	<link href="{{ asset("bundles/traveldiaryinterface/css/bootstrap.css") }}" rel="stylesheet">
 	<link href="{{ asset("bundles/traveldiaryinterface/css/bootstrap-material-design.css") }}" rel="stylesheet">
 	<link href="{{ asset("bundles/traveldiaryinterface/css/ripples.css") }}" rel="stylesheet">
+	<link href="{{ asset('bundles/traveldiaryinterface/css/bootstrap-material-datetimepicker.css') }}" rel="stylesheet">
 
 	<!-- Open Graph Tags -->
 	{#<meta property="og:title" content="RB Plast - {{ block('title') }}" />#}
@@ -26,7 +28,7 @@
 	{#<meta property="og:site_name" content="RB Plast - Plastové okná" />#}
 	{#<meta property="og:description" content="Distribúcia, montáž plastových okien a dverí." />#}
 </head>
-<body class="{% block background_color %}{% endblock %}">
+<body>
 
 {% block skeleton %}
 
@@ -38,10 +40,12 @@
 
 <!-- JS -->
 <script src="{{ asset('bundles/traveldiaryinterface/js/jquery/jquery-2.2.2.min.js') }}"></script>
-<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap-sprockets.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/material.min.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/ripples.min.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap-sprockets.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/moment.js') }}"></script>
+<script src="{{ asset('bundles/traveldiaryinterface/js/bootstrap-material-datetimepicker.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/app.js') }}"></script>
 <script src="{{ asset('bundles/traveldiaryinterface/js/analytics.js') }}"></script>
 {% block javascript %}
