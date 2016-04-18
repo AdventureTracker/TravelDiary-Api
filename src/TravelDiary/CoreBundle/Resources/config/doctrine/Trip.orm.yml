@@ -97,8 +97,8 @@ TravelDiary\CoreBundle\Entity\Trip:
         tripRecords:
             targetEntity: Record
             mappedBy: idTrip
-            onDelete: CASCADE
-            cascade: [ all ]
+            orphanRemoval: true
+            cascade: [ remove ]
     manyToMany:
         users:
             targetEntity: User

@@ -43,11 +43,30 @@ class TripRecordController extends Controller
 		));
 	}
 
-	public function removeAction($trip_id, $record_id)
-	{
-		return $this->render('TravelDiaryInterfaceBundle:TripRecord:remove.html.twig', array(
-			// ...
-		));
+	public function removeAction($idTrip, $idRecord) {
+		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
+
+		if (!$trip)
+			throw new ApiException("Trip not found!", Response::HTTP_NOT_FOUND);
+
+		if (!$trip->getUsers()->contains($this->getUser()))
+			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
+
+		$tripRecord = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->find($idRecord);
+
+		if (!$tripRecord)
+			throw new ApiException("Record not found!", Response::HTTP_NOT_FOUND);
+
+		try {
+			$em = $this->getDoctrine()->getManager();
+			$em->remove($tripRecord);
+			$em->flush();
+		}
+		catch (\Exception $e) {
+			throw new ApiException("Internal server error", Response::HTTP_INTERNAL_SERVER_ERROR, $e);
+		}
+
+		return $this->redirectToRoute("viewTrip", ['idTrip' => $trip->getIdTrip()]);
 	}
 
 	public function formAction($trip_id, $record_id)

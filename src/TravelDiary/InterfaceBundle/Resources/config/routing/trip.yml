@@ -55,12 +55,12 @@ viewTripRecord:
         record_id:          \d+
 
 removeTripRecord:
-    path:                   /trip/{trip_id}/record/remove/{record_id}
+    path:                   /trip/{idTrip}/record/remove/{idRecord}
     defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:remove }
     methods:                [GET]
     requirements:
-        trip_id:            \d+
-        record_id:          \d+
+        idTrip:            \d+
+        idRecord:          \d+
 
 editTripRecord:
     path:                   /trip/{trip_id}/record/edit/{record_id}

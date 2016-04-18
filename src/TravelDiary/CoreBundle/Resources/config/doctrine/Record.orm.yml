@@ -105,4 +105,5 @@ TravelDiary\CoreBundle\Entity\Record:
         photos:
             targetEntity: Photo
             mappedBy: idRecord
+            orphanRemoval: true
     lifecycleCallbacks: {  }
