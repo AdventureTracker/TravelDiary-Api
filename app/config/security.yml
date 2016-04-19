@@ -8,8 +8,8 @@ security:
             iterations: 13
 
     role_hierarchy:
-        USER_ROLE:
-        ADMINISTRATOR_ROLE: USER_ROLE
+        ROLE_USER:
+        ROLE_ADMINISTRATOR: ROLE_USER
 
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -51,4 +51,4 @@ security:
         - { path: ^/v1/status$, roles: IS_AUTHENTICATED_ANONYMOUSLY, host: ^api\. }
         - { path: ^/v1/token$, roles: IS_AUTHENTICATED_ANONYMOUSLY, host: ^api\. }
         - { path: ^/auth/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https, host: ^www\. }
-        - { path: ^/auth/logout$, roles: USER_ROLE, requires_channel: https, host: ^www\. }
+        - { path: ^/auth/logout$, roles: ROLE_USER, requires_channel: https, host: ^www\. }

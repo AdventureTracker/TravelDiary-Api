@@ -56,6 +56,8 @@ doctrine:
             point:      CrEOF\Spatial\DBAL\Types\Geometry\PointType
             polygon:    CrEOF\Spatial\DBAL\Types\Geometry\PolygonType
             linestring: CrEOF\Spatial\DBAL\Types\Geometry\LineStringType
+        mapping_types:
+            enum:       string
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"

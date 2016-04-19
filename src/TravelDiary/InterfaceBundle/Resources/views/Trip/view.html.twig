@@ -19,7 +19,7 @@
 		<div class="col l4">
 			<ul>
 				{% for member in trip.users %}
-					<li><img src="{{ member.usrEmail|gravatar('50') }}" class="responsive-img circle" title="{{ member.getFullName() }}"></li>
+					<li style="display: inline-block;"><img src="{{ member.usrEmail|gravatar('50') }}" class="responsive-img circle" title="{{ member.getFullName() }}"></li>
 				{% endfor %}
 			</ul>
 			<ul class="collection with-header">
@@ -53,7 +53,7 @@
 		<div class="col l12">
 			<nav>
 				<div class="nav-wrapper">
-					<form>
+					<form class="ajax-search">
 						<div class="input-field">
 							<input id="tripRecordsTableSearch" type="search" required data-table="#tripRecordsTable">
 							<label for="tripRecordsTableSearch"><i class="material-icons">search</i></label>

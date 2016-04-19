@@ -28,6 +28,10 @@ TravelDiary\CoreBundle\Entity\Device:
             options:
                 fixed: false
             column: dev_uuid
+        devType:
+            type: string
+            columnDefinition: ENUM('WEB', 'PHONE')
+            column: dev_type
         devVersion:
             type: text
             nullable: true

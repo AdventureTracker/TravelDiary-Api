@@ -49,7 +49,8 @@ class TokenController extends Controller {
 
 		$device 				= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Device")->findOneBy([
 			'idUser' 			=> $user,
-			'devUUID' 			=> $deviceUUID
+			'devUUID' 			=> $deviceUUID,
+			'devType' 			=> Device::TYPE_PHONE
 		]);
 
 		if (!$device) {

@@ -7,6 +7,10 @@ namespace TravelDiary\CoreBundle\Entity;
  */
 class Device
 {
+
+	const TYPE_WEB = 'WEB';
+	const TYPE_PHONE = 'PHONE';
+
 	/**
 	 * @var integer
 	 */
@@ -16,6 +20,11 @@ class Device
 	 * @var string
 	 */
 	private $devUUID;
+
+	/**
+	 * @var string
+	 */
+	private $devType;
 
 	/**
 	 * @var string
@@ -88,6 +97,22 @@ class Device
 	public function getDevUUID()
 	{
 		return $this->devUUID;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDevType()
+	{
+		return $this->devType;
+	}
+
+	/**
+	 * @param string $devType
+	 */
+	public function setDevType($devType)
+	{
+		$this->devType = $devType;
 	}
 
 	/**

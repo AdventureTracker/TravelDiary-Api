@@ -463,11 +463,23 @@ class User extends ApiEntity implements UserInterface, \Serializable
 		return null;
 	}
 
-	function toArray() {
+	function toArray($detailed = false) {
+
+		if ($detailed) {
+			return [
+				'id' 			=> $this->getUsrUUID(),
+				'firstName' 	=> $this->getUsrFirstname(),
+				'lastName' 		=> $this->getUsrLastname(),
+				'email' 		=> $this->getUsrEmail(),
+				'role' 			=> $this->getIdRole()->getRolName()
+			];
+
+		}
+
 		return [
-			'id' 			=> $this->getUsrUUID(),
-			'name' 			=> sprintf("%s %s", $this->getUsrFirstname(), $this->getUsrLastname()),
-			'email' 		=> $this->getUsrEmail()
+			'id' 				=> $this->getUsrUUID(),
+			'name' 				=> sprintf("%s %s", $this->getUsrFirstname(), $this->getUsrLastname()),
+			'email' 			=> $this->getUsrEmail()
 		];
 	}
 

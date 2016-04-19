@@ -25,3 +25,5 @@ parameters:
     google_browser_api_key:     AIzaSyCthLCIkdxIdAewOfchWjZFls7p52lrBPo
 
     pagination.page_size:       10
+
+	api_url:					https://api.traveldiary.dev/v1

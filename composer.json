@@ -1,5 +1,5 @@
 {
-    "name": "MTAA-FIIT/TravelDiary-Api",
+    "name": "travel-diary/api",
     "license": "proprietary",
     "type": "project",
     "autoload": {
@@ -16,6 +16,12 @@
             "Tests\\": "tests/"
         }
     },
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/MTAA-FIIT/TravelDiary-ApiClient.git"
+        }
+    ],
     "require": {
         "php": ">=5.5.9",
         "symfony/symfony": "3.0.*",
@@ -27,7 +33,8 @@
         "sensio/distribution-bundle": "^5.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
-        "creof/doctrine2-spatial": "~1"
+        "creof/doctrine2-spatial": "~1",
+        "travel-diary/api-client": "@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

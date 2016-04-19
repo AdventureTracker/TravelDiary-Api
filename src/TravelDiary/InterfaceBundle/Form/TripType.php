@@ -42,10 +42,19 @@ class TripType extends AbstractType
 				'label' 		=> "Estimated arrival date"
 			])
 			->add("privacy", ChoiceType::class, [
+				"choices" 		=> $options['privacy_fields'],
+				"choice_label" 	=> "description",
 				'label' 		=> "Privacy"
 			])
 			->add("status", ChoiceType::class, [
+				"choices" 		=> $options['statuses'],
+				"choice_label" 	=> "description",
 				'label' 		=> "Status"
+			])
+			->add("users", ChoiceType::class, [
+				"choices" 		=> $options['users'],
+				"choice_label" 	=> "email",
+				"label" 		=> "Users"
 			])
 		;
 
