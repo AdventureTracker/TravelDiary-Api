@@ -2,51 +2,53 @@
 
 {% block title %}Login{% endblock %}
 
+{% block background_color %}light-green{% endblock %}
+
 {% block content %}
 
-	<div class="row">
-
-		<div class="panel col-md-4 col-md-offset-4" style="margin-top: 100px;">
-
-			{% if error %}
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="card-panel red">
-							<span class="white-text">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
-						</div>
-					</div>
-				</div>
-			{% endif %}
-
-			<div class="row">
-				<div class="col-lg-12">
-					<form action="{{ path('check') }}" method="post">
-
-						{#Logo#}
-						<div class="form-group text-center">
-							<img src="{{ asset('bundles/traveldiaryinterface/img/logo.png') }}" class="responsive-img" style="max-height: 150px;">
-							<p>TravelDiary</p>
-						</div>
-
-						<div class="form-group">
-							<label for="email">Email</label>
-							<input id="email" type="email" class="form-control" name="_username">
-						</div>
-
-						<div class="form-group">
-							<label for="password">Password</label>
-							<input id="password" type="password" class="form-control" name="_password">
-						</div>
-
-						<div class="form-group text-center">
-							<button class="btn btn-raised btn-primary" type="submit">Login</button>
-						</div>
-					</form>
+	{% if error %}
+		<div class="row">
+			<div class="col s4 m4 offset-l4 offset-m4">
+				<div class="card-panel red">
+					<span class="white-text">{{ error.messageKey|trans(error.messageData, 'security') }}</span>
 				</div>
 			</div>
-
 		</div>
+	{% endif %}
 
+	<div class="row">
+		<div class="col s4 m4 offset-l4 offset-m4 card-panel">
+			<form action="{{ path('check') }}" method="post">
+
+				{#Logo#}
+				<div class="row">
+					<div class="input-field col s12 center">
+						<img src="{{ asset('bundles/traveldiaryinterface/img/logo.png') }}" class="responsive-img valign profile-image-login" style="max-height: 150px;">
+						<p class="center">TravelDiary</p>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" name="_username">
+						<label for="email">Email</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" name="_password">
+						<label for="password">Password</label>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="input-field col s12">
+						<button class="btn waves-effect waves-light col s12" type="submit">Login</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</div>
 
 {% endblock %}

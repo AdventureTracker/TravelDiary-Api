@@ -5,79 +5,64 @@
 {% block content %}
 
  	<div class="row">
-		<div class="col s12">
-			<ol class="breadcrumb">
-				<li><a href="{{ path('tripsOverview') }}">My Trips</a></li>
-				<li class="active"><a href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}">{{ trip.trpName }}</a></li>
-			</ol>
-		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="{{ path('tripsOverview') }}" class="breadcrumb">My Trips</a>
+					<a href="{{ path('viewTrip', {'idTrip': trip.idTrip}) }}" class="breadcrumb">{{ trip.trpName }}</a>
+				</div>
+			</div>
+		</nav>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-4">
-			<ul class="list-inline list-unstyled">
+		<div class="col l4">
+			<ul>
 				{% for member in trip.users %}
-					<li><img src="{{ member.usrEmail|gravatar('50') }}" class="img-circle" title="{{ member.getFullName() }}"></li>
+					<li><img src="{{ member.usrEmail|gravatar('50') }}" class="responsive-img circle" title="{{ member.getFullName() }}"></li>
 				{% endfor %}
 			</ul>
-			<div class="panel panel-default">
-				<div class="panel-heading">{{ trip.trpName }}</div>
-				<div class="panel-body">
-					<table class="table">
-						<tr>
-							<th>Status</th>
-							<td>{{ trip.idStatus.staDescription }}</td>
-						</tr>
-						<tr>
-							<th>Privacy</th>
-							<td>{{ trip.idPrivacy.prvDescription }}</td>
-						</tr>
-						<tr>
-							<th>Destination</th>
-							<td>{{ trip.trpDestination }}</td>
-						</tr>
-						<tr>
-							<th>Start date</th>
-							<td>{{ trip.trpStartDate|date("d.m.Y") }}</td>
-						</tr>
-						<tr>
-							<th>Estimated arrival</th>
-							<td>{{ trip.trpEstimatedArrival|date("d.m.Y") }}</td>
-						</tr>
-						<tr>
-							<th>Description</th>
-							<td>{{ trip.trpDescription }}</td>
-						</tr>
-					</table>
-				</div>
-			</div>
+			<ul class="collection with-header">
+				<li class="collection-header"><h4>{{ trip.trpName }}</h4></li>
+				<li class="collection-item">
+					<strong>Status: </strong> {{ trip.idStatus.staDescription }}
+				</li>
+				<li class="collection-item">
+					<strong>Privacy: </strong> {{ trip.idPrivacy.prvDescription }}
+				</li>
+				<li class="collection-item">
+					<strong>Destination: </strong> {{ trip.trpDestination }}
+				</li>
+				<li class="collection-item">
+					<strong>Start date: </strong> {{ trip.trpStartDate|date("d.m.Y") }}
+				</li>
+				<li class="collection-item">
+					<strong>Estimated arrival: </strong> {{ trip.trpEstimatedArrival|date("d.m.Y") }}
+				</li>
+				<li class="collection-item">
+					<strong>Description: </strong> {{ trip.trpDescription }}
+				</li>
+			</ul>
 		</div>
-		<div class="col-lg-8">
+		<div class="col l8">
 			<div id="map" style="width: 100%; height: 500px;"></div>
 		</div>
 	</div>
 
-	<br />
-
 	<div class="row">
-		<div class="col-lg-12">
-
-			<nav class="navbar navbar-default" role="navigation" style="margin-bottom: 30px">
-				<div class="container-fluid">
-
-					<div class="collapse navbar-collapse">
-
-						<form class="navbar-form navbar-left ajax-search">
-							<div class="form-group">
-								<input type="search" class="form-control" placeholder="Search" id="tripRecordsTableSearch" data-table="#tripRecordsTable">
-							</div>
-						</form>
-
-					</div>
+		<div class="col l12">
+			<nav>
+				<div class="nav-wrapper">
+					<form>
+						<div class="input-field">
+							<input id="tripRecordsTableSearch" type="search" required data-table="#tripRecordsTable">
+							<label for="tripRecordsTableSearch"><i class="material-icons">search</i></label>
+							<i class="material-icons">close</i>
+						</div>
+					</form>
 				</div>
 			</nav>
-
-			<table class="table table-striped table-hover" data-source="{{ path('listTripRecords', {'page': 1, 'idTrip': trip.idTrip}) }}" data-filter="#tripRecordsTableSearch" id="tripRecordsTable">
+			<table class="responsive-table striped" data-source="{{ path('listTripRecords', {'page': 1, 'idTrip': trip.idTrip}) }}" data-filter="#tripRecordsTableSearch" id="tripRecordsTable">
 
 			</table>
 		</div>

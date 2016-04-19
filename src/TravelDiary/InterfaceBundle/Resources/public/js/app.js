@@ -23,8 +23,6 @@ function reloadTable(table, q) {
 
 $(document).ready(function() {
 
-	$.material.init();
-	
 	$("table[data-source]").each(function () {
 		reloadTable($(this), '');
 	});

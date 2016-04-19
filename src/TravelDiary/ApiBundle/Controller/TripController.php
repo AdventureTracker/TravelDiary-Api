@@ -68,7 +68,9 @@ class TripController extends Controller {
 		$trip->setTrpUpdatedAt(new \DateTime());
 
 		foreach ($data['users'] as $userArray) {
-			$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->find($userArray['id']);
+			$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findOneBy([
+				'usrUUID' 			=> $userArray['id']
+			]);
 			if (!$user)
 				throw new ApiException(sprintf("User ID %d not found!", $userArray['id']), Response::HTTP_UNPROCESSABLE_ENTITY);
 

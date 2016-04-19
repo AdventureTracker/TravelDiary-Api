@@ -5,58 +5,104 @@
 {% block content %}
 
 	<div class="row">
-		<div class="col-lg-12">
-			<ol class="breadcrumb">
-				<li><a href="{{ path('tripsOverview') }}">My Trips</a></li>
-				<li class="active"><a href="{{ path('formTrip', {'idTrip': idTrip}) }}">{{ (idTrip > 0) ? 'Edit trip' : 'Create trip' }}</a></li>
-			</ol>
-		</div>
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="{{ path('tripsOverview') }}" class="breadcrumb">My Trips</a>
+					<a href="{{ path('formTrip', {'idTrip': idTrip}) }}" class="breadcrumb">{{ (idTrip > 0) ? 'Edit trip' : 'Create trip' }}</a>
+				</div>
+			</div>
+		</nav>
 	</div>
 
 	<div class="row">
-		<div class="col-lg-12">
-			<div class="well">
-				{{ form_start(form) }}
-				{{ form_row(form.trpName) }}
 
-				<div class="row">
-					<div class="col-md-6">
-						{{ form_label(form.trpStartDate) }}
-						{{ form_widget(form.trpStartDate) }}
-					</div>
-					<div class="col-md-6">
-						{{ form_label(form.trpEstimatedArrival) }}
-						{{ form_widget(form.trpEstimatedArrival) }}
-					</div>
-				</div>
+		{{ form_start(form, {'attr': {'class': 'col s12'} }) }}
 
-				<div class="row">
-					<div class="col-md-6">
-						{{ form_label(form.idPrivacy) }}
-						{{ form_widget(form.idPrivacy) }}
-					</div>
-					<div class="col-md-6">
-						{{ form_label(form.idStatus) }}
-						{{ form_widget(form.idStatus) }}
-					</div>
-				</div>
-				{{ form_widget(form) }}
-				<div class="row">
-					<div class="col-lg-12 text-right">
-						<button type="submit" class="btn btn-primary btn-raised"><i class="material-icons">send</i> Submit </button>
-					</div>
-				</div>
-				{{ form_end(form) }}
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="{{ form.trpName.vars.id }}" name="{{ form.trpName.vars.full_name }}" type="text" value="{{ form.trpName.vars.value }}" required>
+				<label for="{{ form.trpName.vars.id }}">{{ form.trpName.vars.label }}</label>
+				{% do form.trpName.setRendered %}
+			</div>
+			<div class="input-field col s6">
+				<input id="{{ form.trpDestination.vars.id }}" name="{{ form.trpDestination.vars.full_name }}" type="text" value="{{ form.trpDestination.vars.value }}" required>
+				<label for="{{ form.trpDestination.vars.id }}">{{ form.trpDestination.vars.label }}</label>
+				{% do form.trpDestination.setRendered %}
 			</div>
 		</div>
+
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="{{ form.trpStartDate.vars.id }}" name="{{ form.trpStartDate.vars.full_name }}" type="text" class="datepicker" data-value="{{ form.trpStartDate.vars.value }}">
+				<label for="{{ form.trpStartDate.vars.id }}">{{ form.trpStartDate.vars.label }}</label>
+				{% do form.trpStartDate.setRendered %}
+			</div>
+			<div class="input-field col s6">
+				<input id="{{ form.trpEstimatedArrival.vars.id }}" name="{{ form.trpEstimatedArrival.vars.full_name }}" type="text" class="datepicker" data-value="{{ form.trpEstimatedArrival.vars.value }}">
+				<label for="{{ form.trpEstimatedArrival.vars.id }}">{{ form.trpEstimatedArrival.vars.label }}</label>
+				{% do form.trpEstimatedArrival.setRendered %}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s12">
+				<textarea id="{{ form.trpDescription.vars.id }}" name="{{ form.trpDescription.vars.full_name }}" class="materialize-textarea" required></textarea>
+				<label for="{{ form.trpDescription.vars.id }}">{{ form.trpDescription.vars.label }}</label>
+				{% do form.trpDescription.setRendered %}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s6">
+				<select id="{{ form.idPrivacy.vars.id }}" name="{{ form.idPrivacy.vars.full_name }}" required>
+					{% for option in form.idPrivacy.vars.choices %}
+						<option value="{{ option.value }}" {{ option.value == form.idPrivacy.vars.value ? 'selected' }}>{{ option.label }}</option>
+					{% endfor %}
+				</select>
+				<label for="{{ form.idPrivacy.vars.id }}">{{ form.idPrivacy.vars.label }}</label>
+				{% do form.idPrivacy.setRendered %}
+			</div>
+			<div class="input-field col s6">
+				<select id="{{ form.idStatus.vars.id }}" name="{{ form.idStatus.vars.full_name }}" required>
+					{% for option in form.idStatus.vars.choices %}
+						<option value="{{ option.value }}" {{ option.value == form.idStatus.vars.value ? 'selected' }}>{{ option.label }}</option>
+					{% endfor %}
+				</select>
+				<label for="{{ form.idStatus.vars.id }}">{{ form.idStatus.vars.label }}</label>
+				{% do form.idStatus.setRendered %}
+			</div>
+		</div>
+
+		<div class="row">
+
+			<div class="input-field col s12">
+				<select id="{{ form.users.vars.id }}" name="{{ form.users.vars.full_name }}" required multiple>
+					{% for option in form.users.vars.choices %}
+						<option value="{{ option.value }}" data-icon="{{ option.data.usrEmail|gravatar }}" {{ option.value == form.users.vars.value ? 'selected' }} class="left circle">{{ option.label }}</option>
+					{% endfor %}
+				</select>
+				<label for="{{ form.users.vars.id }}">{{ form.users.vars.label }}</label>
+				{% do form.users.setRendered %}
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col s12 right-align">
+				<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+					<i class="material-icons right">send</i>
+				</button>
+			</div>
+		</div>
+		{{ form_end(form) }}
 	</div>
 {% endblock %}
 
 {% block javascript %}
 	{{ parent() }}
 	<script>
-		$('input[type=date]').bootstrapMaterialDatePicker({ weekStart : 0, time: false });
-		{#$('#{{ form.trpDescription.vars.id }}').val('{{ form.trpDescription.vars.value }}');#}
-		{#$('#{{ form.trpDescription.vars.id }}').trigger('autoresize');#}
+		$('#{{ form.trpDescription.vars.id }}').val('{{ form.trpDescription.vars.value }}');
+		$('#{{ form.trpDescription.vars.id }}').trigger('autoresize');
 	</script>
 {% endblock %}

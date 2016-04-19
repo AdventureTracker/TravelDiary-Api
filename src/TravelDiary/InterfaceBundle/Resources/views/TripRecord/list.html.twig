@@ -12,14 +12,14 @@
 <tbody>
 {% for record in records.items %}
 	<tr>
-		<td><img src="{{ record.idUser.usrEmail|gravatar(50) }}" class="img-circle"></td>
+		<td class="valign-wrapper"><img src="{{ record.idUser.usrEmail|gravatar(50) }}" class="responsive-img circle valign"></td>
 		<td>{{ record.recDay|date("d.m.y H:i") }}</td>
 		<td>{{ record.idRecordType.retDescription }}</td>
 		<td>{{ pointToAddress(record.recLocation) }}</td>
 		<td>{{ record.recDescription }}</td>
-		<td class="btn-group-sm">
-			<a class="btn btn-danger btn-fab" data-action href="{{ path('removeTripRecord', {'idTrip': trip.idTrip, 'idRecord': record.idRecord}) }}"><i class="material-icons tiny">delete</i></a>
-			<a class="btn btn-default btn-fab" data-action href="#"><i class="material-icons tiny">share</i></a>
+		<td>
+			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">delete</i></a>
+			<a class="waves-effect waves-light btn-floating blue" data-action href="{{ path('removeTrip', {'id': trip.idTrip}) }}"><i class="material-icons tiny">share</i></a>
 		</td>
 	</tr>
 {% else %}
@@ -33,13 +33,13 @@
 
 <tfoot>
 <tr>
-	<td colspan="6" class="text-center">
+	<td colspan="6" class="center">
 		<ul class="pagination">
-			<li class="{{ (records.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != 1) ? path('listTripRecords', {'page': records.page - 1, 'idTrip': trip.idTrip}) : '#' }}">&laquo;</a></li>
+			<li class="{{ (records.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != 1) ? path('listTripRecords', {'page': records.page - 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
 			{% for i in 1..records.pages %}
 				<li class="{{ (records.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('listTripRecords', {'page': i, 'idTrip': trip.idTrip}) }}"> {{ i }} </a> </li>
 			{% endfor %}
-			<li class="{{ (records.page == records.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != records.pages) ? path('listTripRecords', {'page': records.page + 1, 'idTrip': trip.idTrip}) : '#' }}">&raquo;</a></li>
+			<li class="{{ (records.page == records.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != records.pages) ? path('listTripRecords', {'page': records.page + 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
 
 		</ul>
 	</td>

@@ -14,7 +14,8 @@ class EnumController extends Controller {
 		$enums = [
 			'statuses' 			=> ApiEntity::prepare($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Status")->findAll()),
 			'record_types' 		=> ApiEntity::prepare($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Recordtype")->findAll()),
-			'privacy_levels' 	=> ApiEntity::prepare($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Privacy")->findAll())
+			'privacy_levels' 	=> ApiEntity::prepare($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Privacy")->findAll()),
+			'users' 			=> ApiEntity::prepare($this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findAll())
 		];
 
 		return new JsonResponse($enums, Response::HTTP_OK);

@@ -6,16 +6,15 @@
 
 	<div class="row">
 		<!-- Profile -->
-		<div class="col-lg-4">
+		<div class="col l4">
+			<div class="card">
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">{{ app.user.getFullName() }}</h3>
+				<div class="card-image">
+					<img src="{{ app.user.usrEmail|gravatar('500') }}">
+					<span class="card-title">{{ app.user.getFullName() }}</span>
 				</div>
-				<div class="panel-body">
-					<img src="{{ app.user.usrEmail|gravatar('500') }}" class="img-responsive">
-				</div>
-				<div class="panel-footer">
+
+				<div class="card-content">
 					<table style="width: 100%">
 						<tr>
 							<td title="Devices"><i class="material-icons left">stay_current_portrait</i> 0</td>
@@ -24,10 +23,11 @@
 						</tr>
 					</table>
 				</div>
+
 			</div>
 		</div>
 
-		<div class="col-lg-8">
+		<div class="col l8">
 
 		</div>
 	</div>
