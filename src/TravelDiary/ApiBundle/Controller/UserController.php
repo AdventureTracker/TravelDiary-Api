@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\CoreBundle\Entity\ApiToken;
 use TravelDiary\CoreBundle\Entity\Device;
+use TravelDiary\CoreBundle\Entity\User;
 use TravelDiary\CoreBundle\Helper\UUID;
 
 class UserController extends Controller
@@ -25,8 +26,10 @@ class UserController extends Controller
 
 		$data 					= json_decode($request->getContent(), true);
 
+		$encoder 				= $this->get('security.encoder_factory')->getEncoder(new User());
+
 		$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findOneBy([
-			'usrPassword' 		=> $data['password'],
+			'usrPassword' 		=> $encoder->encodePassword($data['password'], null),
 			'usrEmail' 			=> $data['email']
 		]);
 

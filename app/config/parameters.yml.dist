@@ -26,4 +26,4 @@ parameters:
 
     pagination.page_size:       10
 
-	api_url:					https://api.traveldiary.dev/v1
+    api_url:                    https://api.traveldiary.dev/v1

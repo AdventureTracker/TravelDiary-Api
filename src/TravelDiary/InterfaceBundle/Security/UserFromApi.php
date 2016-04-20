@@ -6,12 +6,12 @@
  * Time: 16:30
  */
 
-namespace TravelDiary\ApiBundle\Security;
+namespace TravelDiary\InterfaceBundle\Security;
 
 
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class ApiUser implements UserInterface
+class UserFromApi implements UserInterface
 {
 
 	/** @var string */

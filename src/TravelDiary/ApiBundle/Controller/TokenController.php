@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
 use TravelDiary\CoreBundle\Entity\ApiToken;
 use TravelDiary\CoreBundle\Entity\Device;
+use TravelDiary\CoreBundle\Entity\User;
 use TravelDiary\CoreBundle\Helper\UUID;
 
 class TokenController extends Controller {
@@ -38,11 +39,10 @@ class TokenController extends Controller {
 		$deviceUUID 			= $request->headers->get('X-TravelDiary-Device');
 
 		$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findOneBy([
-			'usrPassword' 		=> $data['password'],
 			'usrEmail' 			=> $data['email']
 		]);
 
-		if (!$user)
+		if (!($user && password_verify($data['password'], $user->getUsrPassword())))
 			throw new ApiException("Invalid credentials!", Response::HTTP_UNAUTHORIZED);
 
 		$em 					= $this->getDoctrine()->getManager();
@@ -53,10 +53,14 @@ class TokenController extends Controller {
 			'devType' 			=> Device::TYPE_PHONE
 		]);
 
+		if (!$user->getDevices()->contains($device))
+			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
+
 		if (!$device) {
 			$device 			= new Device();
 			$device->setIdUser($user);
 			$device->setDevUUID($deviceUUID);
+			$device->setDevType(Device::TYPE_PHONE);
 			$em->persist($device);
 		}
 
