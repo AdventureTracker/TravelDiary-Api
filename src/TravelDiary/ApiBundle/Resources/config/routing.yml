@@ -35,9 +35,21 @@ apiremoveTrip:
         trip_id:        "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
 
 apiUserLogin:
-    path:               /user/login
+    path:               /users/login
     defaults:           { _controller: TravelDiaryApiBundle:User:login }
     methods:            [ POST ]
+
+apiUserView:
+    path:               /users/{userEmail}
+    defaults:           { _controller: TravelDiaryApiBundle:User:view }
+    methods:            [ GET ]
+    requirements:
+        userEmail:      .+
+
+apiUserMe:
+    path:               /user/me
+    defaults:           { _controller: TravelDiaryApiBundle:User:me }
+    methods:            [ GET ]
 
 apiCreateToken:
     path:               /token

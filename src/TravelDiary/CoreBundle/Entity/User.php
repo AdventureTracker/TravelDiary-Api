@@ -322,7 +322,7 @@ class User extends ApiEntity implements UserInterface, \Serializable
 	/**
 	 * Remove device
 	 *
-	 * @param \TravelDiary\CoreBundle\Entity\Device: $device
+	 * @param \TravelDiary\CoreBundle\Entity\Device $device
 	 */
 	public function removeDevice(\TravelDiary\CoreBundle\Entity\Device $device)
 	{
@@ -471,7 +471,7 @@ class User extends ApiEntity implements UserInterface, \Serializable
 				'firstName' 	=> $this->getUsrFirstname(),
 				'lastName' 		=> $this->getUsrLastname(),
 				'email' 		=> $this->getUsrEmail(),
-				'role' 			=> $this->getIdRole()->getRolName()
+				'role' 			=> [$this->getIdRole()->getRolName()]
 			];
 
 		}

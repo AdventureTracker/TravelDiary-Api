@@ -2216,7 +2216,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/MTAA-FIIT/TravelDiary-ApiClient.git",
-                "reference": "870224725c316756a19370f04c0df609d948fe1f"
+                "reference": "e3ca99a4ff886a5f494c7cd5a3b87e87d94bfeda"
             },
             "require": {
                 "guzzlehttp/guzzle": "~6.0"
@@ -2237,7 +2237,7 @@
                 }
             ],
             "description": "TravelDiary API client for PHP projects",
-            "time": "2016-04-19 16:47:49"
+            "time": "2016-04-20 21:06:31"
         },
         {
             "name": "twig/twig",

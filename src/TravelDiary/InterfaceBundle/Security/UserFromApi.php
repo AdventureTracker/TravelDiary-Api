@@ -158,7 +158,7 @@ class UserFromApi implements UserInterface
 	 */
 	public function getPassword()
 	{
-		return null;
+		return $this->userApiToken;
 	}
 
 	/**
@@ -184,6 +184,14 @@ class UserFromApi implements UserInterface
 	}
 
 	/**
+	 * @param array $roles
+	 */
+	public function setRoles($roles)
+	{
+		$this->roles = $roles;
+	}
+
+	/**
 	 * Removes sensitive data from the user.
 	 *
 	 * This is important if, at any given point, sensitive information like
@@ -192,5 +200,27 @@ class UserFromApi implements UserInterface
 	public function eraseCredentials()
 	{
 		// TODO: Implement eraseCredentials() method.
+	}
+
+	static public function createFromArray(array $data) {
+
+		$roles = isset($data['role']) ? $data['role'] : [];
+
+		$user = new UserFromApi($data['id'], $data['email'], $roles);
+
+		if (isset($data['firstName']))
+			$user->setFirstName($data['firstName']);
+
+		if (isset($data['lastName']))
+			$user->setFirstName($data['lastName']);
+
+		if (isset($data['secret']))
+			$user->setUserApiSecret($data['secret']);
+
+		if (isset($data['token']))
+			$user->setUserApiToken($data['token']);
+
+		return $user;
+
 	}
 }

@@ -26,14 +26,11 @@ class UserController extends Controller
 
 		$data 					= json_decode($request->getContent(), true);
 
-		$encoder 				= $this->get('security.encoder_factory')->getEncoder(new User());
-
 		$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findOneBy([
-			'usrPassword' 		=> $encoder->encodePassword($data['password'], null),
 			'usrEmail' 			=> $data['email']
 		]);
 
-		if (!$user)
+		if (!($user && password_verify($data['password'], $user->getUsrPassword())))
 			throw new ApiException("Invalid credentials!", Response::HTTP_UNAUTHORIZED);
 
 		$em 					= $this->getDoctrine()->getManager();
@@ -83,6 +80,22 @@ class UserController extends Controller
 		$response = array_merge($response, $user->toArray(true));
 
 		return new JsonResponse($response);
+
+	}
+
+	public function viewAction(Request $request, $email) {
+
+		$user 					= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:User")->findOneBy([
+			'usrEmail' 			=> $email
+		]);
+
+		return new JsonResponse($user->toArray());
+
+	}
+
+	public function meAction() {
+
+		return new JsonResponse($this->getUser()->toArray());
 
 	}
 
