@@ -7,6 +7,10 @@ security:
             algorithm: bcrypt
             cost: 13
 
+        TravelDiary\InterfaceBundle\Security\UserFromApi:
+            algorithm: bcrypt
+            cost: 13
+
     role_hierarchy:
         ROLE_USER:
         ROLE_ADMINISTRATOR: ROLE_USER
@@ -19,6 +23,8 @@ security:
                 property: usrEmail
         api_user_provider:
             id: travel_diary_api.security.api_user_provider
+        user_from_api_provider:
+            id: travel_diary_interface.security.user_from_api_provider
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -28,7 +34,7 @@ security:
 
         api_firewall:
             host: ^api\.
-            anonymous: ~
+            anonymous: true
             stateless: true
             simple_preauth:
                 authenticator: travel_diary_api.security.api_authenticator

@@ -73,9 +73,6 @@ class ApiAuthenticator implements SimplePreAuthenticatorInterface, Authenticatio
 		if ($this->httpUtils->checkRequestPath($request, '/v1/token') && ($request->getMethod() == Request::METHOD_POST))
 			return null;
 
-		if(!$apiToken)
-			throw new BadCredentialsException('No token found!');
-
 		return new PreAuthenticatedToken('anon.', $apiToken, $providerKey);
 
 	}

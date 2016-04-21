@@ -23,8 +23,3 @@ services:
     travel_diary_client.api_client_factory:
         class: TravelDiary\ApiClient\ApiClientFactory
         arguments: [ "%api_url%" ]
-
-    # Controllers
-    # Musim ich spravit ako servis pretoze ziadny trpaslik tam nejebne instanciu ApiClientFactory nech ich prosim ako len chcem. Aj cukrik by som im kupil
-
-
