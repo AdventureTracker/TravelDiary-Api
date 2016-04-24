@@ -13,7 +13,7 @@ services:
             - { name: twig.extension }
         arguments: [ "%google_browser_api_key%" ]
 
-    # Form serializer (I have no fucking idea what I have done)
+    # Form serializer (I have no fucking idea what have I done)
 
     travel_diary_interface.dependency_injection.form_errors_serializer:
         class: TravelDiary\InterfaceBundle\DependencyInjection\FormErrorsSerializer
