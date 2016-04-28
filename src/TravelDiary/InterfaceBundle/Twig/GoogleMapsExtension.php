@@ -10,6 +10,8 @@ namespace TravelDiary\InterfaceBundle\Twig;
 
 
 use CrEOF\Spatial\PHP\Types\Geometry\Point;
+use Predis\Client;
+use TravelDiary\InterfaceBundle\Helpers\PointHelper;
 
 class GoogleMapsExtension extends \Twig_Extension{
 
@@ -20,11 +22,18 @@ class GoogleMapsExtension extends \Twig_Extension{
 	private $apiKey;
 
 	/**
+	 * @var Client
+	 */
+	private $redis;
+
+	/**
 	 * GoogleMapsExtension constructor.
 	 * @param string $apiKey
+	 * @param Client $redis
 	 */
-	public function __construct($apiKey) {
+	public function __construct($apiKey, Client $redis) {
 		$this->apiKey = $apiKey;
+		$this->redis = $redis;
 	}
 
 	/**
@@ -48,22 +57,18 @@ class GoogleMapsExtension extends \Twig_Extension{
 	 * @return string
 	 */
 	public function pointToAddress(Point $point, $result_type = 'political') {
-		$ch 		= curl_init();
-		$url 		= sprintf("https://maps.googleapis.com/maps/api/geocode/json?latlng=%s,%s&key=%s&result_type=%s", (string) $point->getLatitude(), (string) $point->getLongitude(), $this->apiKey, $result_type);
 
-		curl_setopt($ch, CURLOPT_URL, $url);
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json'));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		$redisKey = sprintf("geolocation:%s", PointHelper::createHasForPoint($point));
 
-		$response = curl_exec($ch);
+		if (!$this->redis->exists($redisKey)) {
+			$address = PointHelper::pointToAddressFromGoogle($point, $result_type, $this->apiKey);
+			$this->redis->set($redisKey, $address);
+		}
+		else {
+			$address = $this->redis->get($redisKey);
+		}
 
-		$response = json_decode($response, true);
+		return $address;
 
-		if (empty($response['results']))
-			return null;
-
-		$response = $response['results'][0];
-
-		return array_key_exists('formatted_address', $response) ? $response['formatted_address'] : null;
 	}
 }

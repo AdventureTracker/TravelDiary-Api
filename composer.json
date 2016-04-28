@@ -34,7 +34,10 @@
         "sensio/framework-extra-bundle": "^3.0.2",
         "incenteev/composer-parameter-handler": "^2.0",
         "creof/doctrine2-spatial": "~1",
-        "travel-diary/api-client": "@dev"
+        "travel-diary/api-client": "@dev",
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "snc/redis-bundle": "2.x-dev",
+        "predis/predis": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

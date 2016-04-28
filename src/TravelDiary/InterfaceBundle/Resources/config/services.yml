@@ -11,7 +11,7 @@ services:
         class: TravelDiary\InterfaceBundle\Twig\GoogleMapsExtension
         tags:
             - { name: twig.extension }
-        arguments: [ "%google_browser_api_key%" ]
+        arguments: [ "%google_browser_api_key%", "@snc_redis.cache" ]
 
     # Form serializer (I have no fucking idea what have I done)
 
