@@ -75,8 +75,8 @@ Aplikacie je momentalne v stadiu vyvoja a preto nie su spristupneje jej vsetky c
  - [ ] Spravca zariadeni
  	- [ ] Odobratie zariadenia
  	- [ ] Pomenovanie zariadenia
- - [ ] Paginacia (skusit nasadit nejaky Bundle)
- 	- [X] Bundle na paginaciu
+ - [ ] Paginacia ~~(skusit nasadit nejaky Bundle)~~
+ 	- [X] ~~Bundle na paginaciu~~
  	- [ ] Nespravne sa aktualizuje pri vyhladavani
  	- [ ] Nespravne sa zobrazuje ked nemame ziadne vysledky
  - [ ] Z destinacie vyletu spravit bod, ktory bude mat pri vyplnovavi odporucania z Google Geolocation API
@@ -90,7 +90,6 @@ Aplikacie je momentalne v stadiu vyvoja a preto nie su spristupneje jej vsetky c
 ## User bundles
 
  - [SncRedisBundle](https://github.com/snc/SncRedisBundle) - Redis
- - [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) - Paginacia
 
 ## Credentials
 

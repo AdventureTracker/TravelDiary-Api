@@ -27,7 +27,6 @@ class TripController extends Controller {
 					'pages' 	=> ceil($this->getUser()->getTrips()->count() / $this->getParameter("pagination.limit"))
 				]
 			]);
-
 		}
 
 		return $this->render('TravelDiaryInterfaceBundle:Trip:overview.html.twig', [

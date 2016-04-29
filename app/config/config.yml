@@ -128,6 +128,7 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
+# My awesome redis bundle!
 snc_redis:
     clients:
         cache:
