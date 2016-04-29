@@ -86,6 +86,12 @@ Aplikacie je momentalne v stadiu vyvoja a preto nie su spristupneje jej vsetky c
  	- [ ] Users endpoint
  	- [ ] Vytvorit systemoveho pouzivatela ktory bude pristupovat zo servera
  - [ ] Autopost na socialne siete
+
+## User bundles
+
+ - [SncRedisBundle](https://github.com/snc/SncRedisBundle) - Redis
+ - [KnpPaginatorBundle](https://github.com/KnpLabs/KnpPaginatorBundle) - Paginacia
+
 ## Credentials
 
  - [Jakub Dubec](mailto:xdubec@stuba.sk)
