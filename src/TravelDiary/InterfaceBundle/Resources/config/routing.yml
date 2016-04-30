@@ -11,3 +11,8 @@ authRouting:
 dashboard:
     path:               /dashboard
     defaults:           { _controller: TravelDiaryInterfaceBundle:Dashboard:dashboard }
+
+monitor:
+    path:               /monitor
+    defaults:           { _controller: TravelDiaryInterfaceBundle:Monitor:overview }
+    methods:            [ GET ]

@@ -69,16 +69,16 @@ Aplikacie je momentalne v stadiu vyvoja a preto nie su spristupneje jej vsetky c
     - [X] Cache doctrine vysledky
     - [X] APC alebo Redis pre Doctrine metadata?
     - [X] Redis na cache vysledkov z Google Geolocation API
- - [ ] API monitor
-    - [ ] Pocet poziadavek na den v grafe za poslednych 30 dni
-    - [ ] Poslednych 20 poziadaviek (Redis by bol dost cool)
+ - [X] API monitor
+    - [X] Pocet poziadavek na den v grafe za poslednych 30 dni
+    - [X] Poslednych 20 poziadaviek (Redis by bol dost cool)
  - [ ] Spravca zariadeni
  	- [ ] Odobratie zariadenia
  	- [ ] Pomenovanie zariadenia
  - [ ] Paginacia ~~(skusit nasadit nejaky Bundle)~~
  	- [X] ~~Bundle na paginaciu~~
  	- [ ] Nespravne sa aktualizuje pri vyhladavani
- 	- [ ] Nespravne sa zobrazuje ked nemame ziadne vysledky
+ 	- [X] Nespravne sa zobrazuje ked nemame ziadne vysledky
  - [ ] Z destinacie vyletu spravit bod, ktory bude mat pri vyplnovavi odporucania z Google Geolocation API
  - [ ] Pridavanie spolucestovatelov cez HTML select ale vyhladavat na zaklade emailu, spravit asi API volanie
  - [ ] Sukromie nastavovat aj na TripRecord

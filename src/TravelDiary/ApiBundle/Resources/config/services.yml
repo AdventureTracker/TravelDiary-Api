@@ -10,3 +10,9 @@ services:
         arguments: ["@security.http_utils"]
         tags:
             - { name: monolog.logger }
+
+    app.request_listener:
+        class: TravelDiary\ApiBundle\EventListener\RequestListener
+        tags:
+            - { name: kernel.event_listener, event: kernel.request }
+        arguments: ['@snc_redis.cache']

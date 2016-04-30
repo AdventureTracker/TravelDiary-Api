@@ -31,17 +31,21 @@
 {% endfor %}
 </tbody>
 
-<tfoot>
-<tr>
-	<td colspan="6" class="center">
-		<ul class="pagination">
-			<li class="{{ (records.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != 1) ? path('listTripRecords', {'page': records.page - 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
-			{% for i in 1..records.pages %}
-				<li class="{{ (records.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('listTripRecords', {'page': i, 'idTrip': trip.idTrip}) }}"> {{ i }} </a> </li>
-			{% endfor %}
-			<li class="{{ (records.page == records.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != records.pages) ? path('listTripRecords', {'page': records.page + 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+{% if records.items is not empty %}
 
-		</ul>
-	</td>
-</tr>
-</tfoot>
+	<tfoot>
+	<tr>
+		<td colspan="6" class="center">
+			<ul class="pagination">
+				<li class="{{ (records.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != 1) ? path('listTripRecords', {'page': records.page - 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
+				{% for i in 1..records.pages %}
+					<li class="{{ (records.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('listTripRecords', {'page': i, 'idTrip': trip.idTrip}) }}"> {{ i }} </a> </li>
+				{% endfor %}
+				<li class="{{ (records.page == records.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (records.page != records.pages) ? path('listTripRecords', {'page': records.page + 1, 'idTrip': trip.idTrip}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+
+			</ul>
+		</td>
+	</tr>
+	</tfoot>
+
+{% endif %}
