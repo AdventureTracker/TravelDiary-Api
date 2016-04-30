@@ -18,10 +18,11 @@ class TripRecordController extends Controller
 		$trip = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->find($idTrip);
 
 		if (!$trip)
-			$this->createNotFoundException("Trip not found!");
+			throw $this->createNotFoundException("Trip not found!");
 
-		if (!$trip->getUsers()->contains($this->getUser()))
-			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
+		if (!$trip->getUsers()->contains($this->getUser())) {
+			// ERROR mesage for table
+		}
 
 		$records = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginated($trip, $page, $this->getParameter("pagination.limit"), $request->query->get('query', ''));
 		return $this->render("@TravelDiaryInterface/TripRecord/list.html.twig", [

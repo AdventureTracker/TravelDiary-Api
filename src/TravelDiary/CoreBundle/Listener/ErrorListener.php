@@ -6,13 +6,15 @@
  * Time: 0:39
  */
 
-namespace TravelDiary\ApiBundle\Listener;
+namespace TravelDiary\CoreBundle\Listener;
 
 
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use TravelDiary\ApiBundle\Exception\ApiException;
+use TravelDiary\InterfaceBundle\Exception\UserInterfaceException;
 
 class ErrorListener
 {
@@ -22,8 +24,7 @@ class ErrorListener
 	 */
 	private $logger;
 
-	public function __construct(LoggerInterface $logger)
-	{
+	public function __construct(LoggerInterface $logger) {
 		$this->logger = $logger;
 	}
 
@@ -38,6 +39,9 @@ class ErrorListener
 
 			$response = new JsonResponse(['message' => $exception->getMessage()], $exception->getCode());
 			$event->setResponse($response);
+		}
+		elseif ($exception instanceof UserInterfaceException) {
+			$event->setResponse(new RedirectResponse($exception->getPath()));
 		}
 	}
 

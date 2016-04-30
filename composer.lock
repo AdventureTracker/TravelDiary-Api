@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "11d938b1fe6053a215f06361a6c1579a",
-    "content-hash": "a454816d0afbaacb4fb96b9da6e757b9",
+    "hash": "19b37ad4d432c0bb139f96b54f119b4f",
+    "content-hash": "1a50fe401a471eddecfd5668122444ae",
     "packages": [
         {
             "name": "creof/doctrine2-spatial",
@@ -2417,6 +2417,54 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "ddelnano/dredd-hooks-php",
+            "version": "1.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ddelnano/dredd-hooks-php.git",
+                "reference": "c6a7231a9934759febe9ccafb1d9c13ff6d35266"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ddelnano/dredd-hooks-php/zipball/c6a7231a9934759febe9ccafb1d9c13ff6d35266",
+                "reference": "c6a7231a9934759febe9ccafb1d9c13ff6d35266",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "0.9.*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "^2.5"
+            },
+            "bin": [
+                "bin/dredd-hooks-php"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Dredd\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Domenic Del Nano",
+                    "email": "ddelnano@gmail.com"
+                }
+            ],
+            "description": "PHP hooks for the Dredd testing tool",
+            "homepage": "https://github.com/ddelnano/dredd-hooks-php/wiki",
+            "keywords": [
+                "dredd"
+            ],
+            "time": "2016-03-02 12:35:43"
+        },
         {
             "name": "sensio/generator-bundle",
             "version": "v3.0.6",

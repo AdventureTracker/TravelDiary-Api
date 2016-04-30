@@ -1,11 +1,5 @@
 services:
 
-    app.exception_listener:
-        class: TravelDiary\ApiBundle\Listener\ErrorListener
-        arguments: [ "@logger" ]
-        tags:
-            - { name: kernel.event_listener, event: kernel.exception }
-
     travel_diary_api.security.api_user_provider:
         class: TravelDiary\ApiBundle\Security\ApiUserProvider
         arguments: [ "@doctrine.orm.entity_manager" ]

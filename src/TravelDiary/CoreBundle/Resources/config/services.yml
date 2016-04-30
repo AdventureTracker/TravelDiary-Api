@@ -1,4 +1,7 @@
 services:
-#    travel_diary_core.example:
-#        class: TravelDiary\CoreBundle\Example
-#        arguments: ["@service_id", "plain_value", %parameter%]
+
+    app.exception_listener:
+        class: TravelDiary\CoreBundle\Listener\ErrorListener
+        arguments: [ "@logger" ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

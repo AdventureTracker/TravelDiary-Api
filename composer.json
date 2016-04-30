@@ -40,7 +40,8 @@
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^3.0",
+        "ddelnano/dredd-hooks-php": "^1.1"
     },
     "scripts": {
         "post-install-cmd": [
