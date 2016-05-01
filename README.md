@@ -45,6 +45,10 @@ Fotografie sa posielaju pomocou BASE64 kodovania.
 
 Kompletna dokumentacia k API rozhraniu je publikovana tu: [Apiary documentation](http://docs.traveldiaryapi.apiary.io/)
 
+#### API Monitor
+
+Aby sme zlepsili prehlad na aktivitou aplikacneho rozhrania, naprogramovali sme jednoduchy API monitor (realizacia cez Redis NoSQL). Ukladame cas, metodu a URI vykonanje poziadavky. Ukazujeme aktivitu za posledny tyzden a poslednych 20 dotazov za aktualny den.
+
 ### Web interface
 
 Hlavna cast weboveho rozhrania je poskytnutie prehladu o vyletoch a jeho zaznamoch. Pri vykreslovani mapy sa vyuziva Google API (konkretne Google Maps Javascript API – mapa samotna a Google Geolocation API – preklada suradnice na adresy).
@@ -53,9 +57,38 @@ Rozhranie tiez poskytuje CRUD operacie nad vyletmi, pouzivatelmi (registracia) a
 
 ### Database
 
-Pri navrhu a implementacii aplikacie sa pocita s pouzitim MariaDB server v 10 verzii.
+#### Relation database
 
-![Entity relation diagram](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/EER_v4.png)
+Ako hlavne ulozisko dat sa pouziva MariaDB vo verzii 10. Strultura DB je znazornena na diagrame nizsie.
+
+![Entity relation diagram](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_docs/EER_v5.png)
+
+Databazove exporty sa nachadzaju v priecinku [_db](https://github.com/MTAA-FIIT/TravelDiary-Api/raw/master/_db/)
+
+### Redis
+
+V projekte pouzivame aj nerelacnu Redis databazu. Vyuzitie sme nasli hlavne v oblasti cachovania zaznamov.
+
+Pre pracu s Redis na Symfony frameworku pouzivame [SncRedisBundle](https://github.com/snc/SncRedisBundle), ktory pouziva klientsku PHP kniznicu [Predis](https://github.com/nrk/predis).
+
+#### Cachovanie dat
+
+Redis pouzivame na ukladanie ORM mapovania pre Doctrine modely a na ukladanie PHP Sessions. Tuto funkcionalitu nam poskytuje SncRedisBundle.
+
+Dalej sme doprogramovali cachovanie vysledkov z [Google Geolocation API](https://developers.google.com/maps/documentation/geolocation/intro), ktore zobrazujeme v detailoch vyletu. Znizujeme tak pocet poziadaviek na Google API. Jedna sa o klasicku key-value tabulku. Z GPS suradnic vytvorime MD5 hash, ktory sa pouzije ako kluc.
+
+```
+geolocation:<MD5_HASH> = Sieniawa, Poland
+```
+
+#### API Monitor
+
+Vsetky data z API Monitoru sa ukladaju do Redis databazi ako list. Zaznamy ukladame na zaklade datumu.
+
+```
+api_requests:<Y-m-d> = Redis list
+```
+
 
 ## Project status
 
