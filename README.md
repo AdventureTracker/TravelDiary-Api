@@ -78,7 +78,7 @@ Redis pouzivame na ukladanie ORM mapovania pre Doctrine modely a na ukladanie PH
 Dalej sme doprogramovali cachovanie vysledkov z [Google Geolocation API](https://developers.google.com/maps/documentation/geolocation/intro), ktore zobrazujeme v detailoch vyletu. Znizujeme tak pocet poziadaviek na Google API. Jedna sa o klasicku key-value tabulku. Z GPS suradnic vytvorime MD5 hash, ktory sa pouzije ako kluc.
 
 ```
-geolocation:<MD5_HASH> = Sieniawa, Poland
+geolocation:<md5(lati:long)> = Sieniawa, Poland
 ```
 
 #### API Monitor
