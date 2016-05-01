@@ -1,0 +1,24 @@
+{% extends '@TravelDiaryInterface/_layout/base.html.twig' %}
+
+{% block title %}My devices{% endblock %}
+
+{% block content %}
+
+	<div class="row">
+		<nav>
+			<div class="nav-wrapper">
+				<div class="col s12">
+					<a href="{{ path('devicesOverview') }}" class="breadcrumb">My Trips</a>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+	<div class="row">
+		<div class="col s12">
+			<table class="responsive-table" data-source="{{ path('devicesOverview') }}">
+			</table>
+		</div>
+	</div>
+
+{% endblock %}

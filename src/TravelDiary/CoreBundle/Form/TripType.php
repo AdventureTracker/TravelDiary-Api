@@ -12,14 +12,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use TravelDiary\CoreBundle\Entity\Privacy;
 use TravelDiary\CoreBundle\Entity\Status;
 
-class TripType extends AbstractType
-{
+class TripType extends AbstractType {
 	/**
 	 * @param FormBuilderInterface $builder
 	 * @param array $options
 	 */
-	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
+	public function buildForm(FormBuilderInterface $builder, array $options) {
 		$builder
 			->add('trpName', TextType::class, [
 				'label' 		=> 'Name'
@@ -54,8 +52,7 @@ class TripType extends AbstractType
 	/**
 	 * @param OptionsResolver $resolver
 	 */
-	public function configureOptions(OptionsResolver $resolver)
-	{
+	public function configureOptions(OptionsResolver $resolver) {
 		$resolver->setDefaults(array(
 			'data_class' => 'TravelDiary\CoreBundle\Entity\Trip'
 		));

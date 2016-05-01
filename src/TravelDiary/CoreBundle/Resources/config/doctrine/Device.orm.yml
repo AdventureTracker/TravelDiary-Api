@@ -28,6 +28,13 @@ TravelDiary\CoreBundle\Entity\Device:
             options:
                 fixed: false
             column: dev_uuid
+        devName:
+            type: string
+            nullable: true
+            length: 50
+            options:
+                fixed: false
+            column: dev_name
         devType:
             type: string
             columnDefinition: ENUM('WEB', 'PHONE')
@@ -46,6 +53,10 @@ TravelDiary\CoreBundle\Entity\Device:
             options:
                 fixed: false
             column: dev_os
+        devLastActivity:
+            type: datetime
+            nullable: true
+            column: dev_lastActivity
         devCreatedAt:
             type: datetime
             nullable: false
@@ -62,6 +73,7 @@ TravelDiary\CoreBundle\Entity\Device:
         tokens:
             targetEntity: ApiToken
             mappedBy: idDevice
+            cascade: ['persist', 'remove']
     manyToOne:
         idUser:
             targetEntity: User

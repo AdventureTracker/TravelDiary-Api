@@ -24,6 +24,11 @@ class Device
 	/**
 	 * @var string
 	 */
+	private $devName;
+
+	/**
+	 * @var string
+	 */
 	private $devType;
 
 	/**
@@ -35,6 +40,11 @@ class Device
 	 * @var string
 	 */
 	private $devOs;
+
+	/**
+	 * @var \DateTime
+	 */
+	private $devLastActivity;
 
 	/**
 	 * @var \DateTime
@@ -236,6 +246,38 @@ class Device
 	public function getDevUpdatedAt()
 	{
 		return $this->devUpdatedAt;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getDevName()
+	{
+		return $this->devName;
+	}
+
+	/**
+	 * @param string $devName
+	 */
+	public function setDevName($devName)
+	{
+		$this->devName = $devName;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getDevLastActivity()
+	{
+		return $this->devLastActivity;
+	}
+
+	/**
+	 * @param \DateTime $devLastActivity
+	 */
+	public function setDevLastActivity($devLastActivity)
+	{
+		$this->devLastActivity = $devLastActivity;
 	}
 
 	/**

@@ -3,6 +3,7 @@
 namespace TravelDiary\InterfaceBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use TravelDiary\ApiBundle\Exception\ApiException;
@@ -25,20 +26,21 @@ class TripRecordController extends Controller
 		}
 
 		$records = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginated($trip, $page, $this->getParameter("pagination.limit"), $request->query->get('query', ''));
+		$recordsCount = $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->getRecordsByTripPaginatedCount($trip, $page, $this->getParameter("pagination.limit"), $request->query->get('query', ''));
+
 		return $this->render("@TravelDiaryInterface/TripRecord/list.html.twig", [
 			'records' 			=> [
 				'items' 		=> $records,
-				'count' 		=> $trip->getTripRecords()->count(),
+				'count' 		=> $recordsCount,
 				'page' 			=> $page,
-				'pages' 		=> ceil($trip->getTripRecords()->count() / $this->getParameter("pagination.limit"))
+				'pages' 		=> ceil($recordsCount / $this->getParameter("pagination.limit"))
 			],
 			'trip' 				=> $trip
 		]);
 
 	}
 
-	public function viewAction($trip_id, $record_id)
-	{
+	public function viewAction($trip_id, $record_id) {
 		return $this->render('TravelDiaryInterfaceBundle:TripRecord:view.html.twig', array(
 			// ...
 		));
@@ -67,18 +69,17 @@ class TripRecordController extends Controller
 			throw new ApiException("Internal server error", Response::HTTP_INTERNAL_SERVER_ERROR, $e);
 		}
 
-		return $this->redirectToRoute("viewTrip", ['idTrip' => $trip->getIdTrip()]);
+
+		return new JsonResponse(null, Response::HTTP_NO_CONTENT);
 	}
 
-	public function formAction($trip_id, $record_id)
-	{
+	public function formAction($trip_id, $record_id) {
 		return $this->render('TravelDiaryInterfaceBundle:TripRecord:form.html.twig', array(
 			// ...
 		));
 	}
 
-	public function processAction($trip_id, $record_id)
-	{
+	public function processAction($trip_id, $record_id) {
 		return $this->render('TravelDiaryInterfaceBundle:TripRecord:process.html.twig', array(
 			// ...
 		));

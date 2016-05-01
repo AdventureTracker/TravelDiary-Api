@@ -1,0 +1,46 @@
+<thead>
+<tr>
+	<th>Last activity</th>
+	<th>Device name</th>
+	<th>App version</th>
+	<th>Device OS</th>
+	<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+{% for device in devices.items %}
+	<tr>
+		<td>{{ device.devLastActivity is not empty ? device.devLastActivity|date("d.m.Y H:i") : "Not active" }}</td>
+		<td>{{ device.devName is not empty ? device.devName : 'No name assigned' }}</td>/
+		<td>{{ device.devVersion is not empty ? device.devVersion : 'Unknown' }}</td>
+		<td>{{ device.devOS is not empty ? device.devOS : 'Unknown' }}</td>
+		<td>
+			<a class="waves-effect waves-light btn-floating red" data-action href="{{ path('removeDevice', {'idDevice': device.idDevice}) }}"><i class="material-icons tiny">delete</i></a>
+			<a class="waves-effect waves-light btn-floating green" data-modal="#MyModal" href="{{ path('editDevice', {'idDevice': device.idDevice}) }}"><i class="material-icons tiny">mode_edit</i></a>
+		</td>
+	</tr>
+{% else %}
+	<tr>
+		<td colspan="5" class="center">
+			No devices found!
+		</td>
+	</tr>
+{% endfor %}
+</tbody>
+{% if devices.items is not empty %}
+	<tfoot>
+	<tr>
+		<td colspan="5" class="center">
+			<ul class="pagination">
+				<li class="{{ (devices.page == 1) ? 'disabled' : 'waves-effect' }}"><a href="{{ (devices.page != 1) ? path('devicesOverview', {'page': devices.page - 1}) : '#' }}"><i class="material-icons">chevron_left</i></a></li>
+				{% for i in 1..devices.pages %}
+					<li class="{{ (devices.page == i) ? 'active' : 'waves-effect' }}"><a href="{{ path('devicesOverview', {'page': i}) }}"> {{ i }} </a> </li>
+				{% endfor %}
+				<li class="{{ (devices.page == devices.pages) ? 'disabled' : 'waves-effect' }}"><a href="{{ (devices.page != devices.pages) ? path('devicesOverview', {'page': devices.page + 1}) : '#' }}"><i class="material-icons">chevron_right</i></a></li>
+
+			</ul>
+		</td>
+	</tr>
+	</tfoot>
+{% endif %}

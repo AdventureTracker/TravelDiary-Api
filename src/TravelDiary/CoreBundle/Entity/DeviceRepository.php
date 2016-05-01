@@ -24,4 +24,31 @@ class DeviceRepository extends EntityRepository {
 		return $query->getQuery()->getSingleResult();
 	}
 
+	public function getDevicesByUserPaginated(User $user, $page, $limit) {
+
+		$query = $this->getEntityManager()->createQueryBuilder();
+		$query->select("device");
+		$query->from("TravelDiaryCoreBundle:Device", 'device');
+		$query->where("device.idUser = :user");
+		$query->setParameter("user", $user);
+		$query->setFirstResult(($page - 1) * $limit);
+		$query->setMaxResults($limit);
+		$query->orderBy('device.devLastActivity', 'DESC');
+		return $query->getQuery()->getResult();
+
+	}
+
+	public function getDevicesByUserPaginatedCount(User $user, $page, $limit) {
+
+		$query = $this->getEntityManager()->createQueryBuilder();
+		$query->select("COUNT(device)");
+		$query->from("TravelDiaryCoreBundle:Device", 'device');
+		$query->where("device.idUser = :user");
+		$query->setParameter("user", $user);
+		$query->setFirstResult(($page - 1) * $limit);
+		$query->setMaxResults($limit);
+		return $query->getQuery()->getSingleScalarResult();
+
+	}
+
 }

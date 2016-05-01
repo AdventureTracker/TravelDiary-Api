@@ -8,6 +8,9 @@ subcategoryRouting:
 authRouting:
     resource:           "@TravelDiaryInterfaceBundle/Resources/config/routing/auth.yml"
 
+deviceRouting:
+    resource:           "@TravelDiaryInterfaceBundle/Resources/config/routing/device.yml"
+
 dashboard:
     path:               /dashboard
     defaults:           { _controller: TravelDiaryInterfaceBundle:Dashboard:dashboard }
