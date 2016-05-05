@@ -368,6 +368,8 @@ class Record extends ApiEntity{
 			$content['coordinates'] 		= $this->getCoordinates();
 			$content['photos'] 				= ApiEntity::prepare($this->photos->toArray());
 			$content['author'] 				= $this->idUser->toArray();
+			$content['createdAt'] 			= $this->recCreatedAt->format(\DateTime::ISO8601);
+			$content['updatedAt'] 			= $this->recUpdatedAt->format(\DateTime::ISO8601);
 		}
 
 		return $content;

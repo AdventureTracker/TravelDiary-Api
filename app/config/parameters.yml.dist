@@ -27,3 +27,5 @@ parameters:
     pagination.limit:           10
 
     api_url:                    https://api.traveldiary.dev/v1
+
+    redis_dns:                  redis://localhost/1

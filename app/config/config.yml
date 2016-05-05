@@ -134,7 +134,7 @@ snc_redis:
         cache:
             type: predis
             alias: cache
-            dsn: redis://localhost
+            dsn: "%redis_dns%"
 
     doctrine:
         metadata_cache:
