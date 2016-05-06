@@ -53,15 +53,16 @@ class TokenController extends Controller {
 			'devType' 			=> Device::TYPE_PHONE
 		]);
 
-		if (!$user->getDevices()->contains($device))
-			throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
-
 		if (!$device) {
 			$device 			= new Device();
 			$device->setIdUser($user);
 			$device->setDevUUID($deviceUUID);
 			$device->setDevType(Device::TYPE_PHONE);
 			$em->persist($device);
+		}
+		else {
+			if (!$user->getDevices()->contains($device))
+				throw new ApiException("Permission denied!", Response::HTTP_FORBIDDEN);
 		}
 
 

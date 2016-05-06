@@ -27,6 +27,9 @@ class RequestListener {
 
 	public function onKernelRequest(GetResponseEvent $event) {
 
+		if ($event->isPropagationStopped())
+			return;
+
 		$subdomain = explode('.', $event->getRequest()->getHost());
 		$subdomain = $subdomain[0];
 
