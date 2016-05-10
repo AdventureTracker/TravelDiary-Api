@@ -189,4 +189,27 @@ class TripRecordController extends Controller {
 		return new JsonResponse($tripRecord->toArray(true), Response::HTTP_OK);
 	}
 
+	public function photoUploadAction(Request $request, $idTrip, $idTripRecord) {
+
+		$trip 						= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Trip")->findOneBy([
+			'trpUUID' 				=> $idTrip
+		]);
+
+		if (!$trip)
+			throw new ApiException("Trip not found!", Response::HTTP_NOT_FOUND);
+
+		if (!$trip->getUsers()->contains($this->getUser()))
+			throw new ApiException("You don't have permissions!", Response::HTTP_FORBIDDEN);
+
+		$tripRecord 			= $this->getDoctrine()->getRepository("TravelDiaryCoreBundle:Record")->findOneBy([
+			'recUUID' 			=> strtolower($idTripRecord)
+		]);
+
+		if (!$tripRecord)
+			throw new ApiException("Trip record not found!", Response::HTTP_NOT_FOUND);
+
+		return new Response(Response::HTTP_NOT_IMPLEMENTED);
+
+	}
+
 }

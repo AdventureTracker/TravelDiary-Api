@@ -1,64 +1,64 @@
 apiStatus:
     path:               /status
-    defaults:           { _controller: TravelDiaryApiBundle:Status:status }
+    defaults:           { _controller: "TravelDiaryApiBundle:Status:status" }
     methods:            [GET]
 
 apiCreateTrip:
     path:               /trips
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:process, tripUUID: '' }
+    defaults:           { _controller: "TravelDiaryApiBundle:Trip:process", tripUUID: '' }
     methods:            [POST]
 
 apiUpdateTrip:
     path:               /trip/{tripUUID}
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:process }
+    defaults:           { _controller: "TravelDiaryApiBundle:Trip:process" }
     methods:            [PUT]
     requirements:
         tripUUID:        "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
 
 apiListTrips:
     path:               /trips
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:list }
+    defaults:           { _controller: "TravelDiaryApiBundle:Trip:list" }
     methods:            [GET]
 
 apiGetTrip:
     path:               /trip/{trip_id}
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:get }
+    defaults:           { _controller: "TravelDiaryApiBundle:Trip:get" }
     methods:            [GET]
     requirements:
         trip_id:        "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
 
 apiremoveTrip:
     path:               /trip/{trip_id}
-    defaults:           { _controller: TravelDiaryApiBundle:Trip:remove }
+    defaults:           { _controller: "TravelDiaryApiBundle:Trip:remove" }
     methods:            [DELETE]
     requirements:
         trip_id:        "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
 
 apiCreateToken:
     path:               /token
-    defaults:           { _controller: TravelDiaryApiBundle:Token:create }
+    defaults:           { _controller: "TravelDiaryApiBundle:Token:create" }
     methods:            [POST]
 
 apiDeleteToken:
     path:               /token
-    defaults:           { _controller: TravelDiaryApiBundle:Token:delete }
+    defaults:           { _controller: "TravelDiaryApiBundle:Token:delete" }
     methods:            [DELETE]
 
 apiListEnums:
     path:               /enums
-    defaults:           { _controller: TravelDiaryApiBundle:Enum:list }
+    defaults:           { _controller: "TravelDiaryApiBundle:Enum:list" }
     methods:            [GET]
 
 apiCreateTripRecord:
     path:               /trip/{idTrip}/records
-    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:process, idTripRecord: '' }
+    defaults:           { _controller: "TravelDiaryApiBundle:TripRecord:process", idTripRecord: '' }
     methods:            [POST]
     requirements:
         idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
 
 apiUpdateTripRecord:
     path:               /trip/{idTrip}/record/{idTripRecord}
-    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:process, idTripRecord: '' }
+    defaults:           { _controller: "TravelDiaryApiBundle:TripRecord:process", idTripRecord: '' }
     methods:            [PUT]
     requirements:
         idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
@@ -66,7 +66,7 @@ apiUpdateTripRecord:
 
 apiRemoveTripRecord:
     path:               /trip/{idTrip}/record/{idTripRecord}
-    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:remove }
+    defaults:           { _controller: "TravelDiaryApiBundle:TripRecord:remove" }
     methods:            [DELETE]
     requirements:
         idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
@@ -74,8 +74,16 @@ apiRemoveTripRecord:
 
 apiGetTripRecord:
     path:               /trip/{idTrip}/record/{idTripRecord}
-    defaults:           { _controller: TravelDiaryApiBundle:TripRecord:detail }
+    defaults:           { _controller: "TravelDiaryApiBundle:TripRecord:detail" }
     methods:            [GET]
+    requirements:
+        idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+        idTripRecord:   "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
+
+apiUploadRecordPhotos:
+    path:               /trip/{idTrip}/record{idTripRecord}/photos
+    defaults:           { _controller: "TravelDiaryApiBundle:TripRecord:photoUpload" }
+    methods:            [POST]
     requirements:
         idTrip:         "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"
         idTripRecord:   "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}$"

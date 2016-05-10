@@ -1,46 +1,46 @@
 tripsOverview:
     path:                   /trips/{page}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:overview, page: 1}
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:overview", page: 1}
     methods:                [GET]
     requirements:
         page:               \d+
 
 createTrip:
     path:                   /trip/create
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, idTrip: 0 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:form", idTrip: 0 }
     methods:                [GET]
 
 formTrip:
     path:                   /trip/edit/{idTrip}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:form, idTrip: 0 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:form", idTrip: 0 }
     methods:                [GET]
     requirements:
       idTrip:               \d+
 
 processTrip:
     path:                   /trip/process/{idTrip}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:process, idTrip: 0 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:process", idTrip: 0 }
     methods:                [POST]
     requirements:
         idTrip:             \d+
 
 viewTrip:
     path:                   /trip/{idTrip}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:view }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:view" }
     methods:                [GET]
     requirements:
         idTrip:                 \d+
 
 removeTrip:
     path:                   /trip/remove/{id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Trip:remove }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Trip:remove" }
     methods:                [GET]
     requirements:
         id:                 \d+
 
 listTripRecords:
     path:                   /trip/{idTrip}/records/{page}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:list, page: 1 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:TripRecord:list", page: 1 }
     methods:                [GET]
     requirements:
         idTrip:             \d+
@@ -48,7 +48,7 @@ listTripRecords:
 
 viewTripRecord:
     path:                   /trip/{trip_id}/record/{record_id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:view }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:TripRecord:view" }
     methods:                [GET]
     requirements:
         trip_id:            \d+
@@ -56,7 +56,7 @@ viewTripRecord:
 
 removeTripRecord:
     path:                   /trip/{idTrip}/record/remove/{idRecord}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:remove }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:TripRecord:remove" }
     methods:                [GET]
     requirements:
         idTrip:            \d+
@@ -64,7 +64,7 @@ removeTripRecord:
 
 editTripRecord:
     path:                   /trip/{trip_id}/record/edit/{record_id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:form }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:TripRecord:form" }
     methods:                [GET]
     requirements:
         trip_id:            \d+
@@ -72,7 +72,7 @@ editTripRecord:
 
 processTripRecord:
     path:                   /trip/{trip_id}/record/{record_id}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:TripRecord:process, record_id: 0 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:TripRecord:process", record_id: 0 }
     methods:                [POST]
     requirements:
         trip_id:            \d+

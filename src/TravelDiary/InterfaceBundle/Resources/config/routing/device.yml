@@ -1,20 +1,20 @@
 devicesOverview:
     path:                   /devices/{page}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Device:overview, page: 1 }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Device:overview", page: 1 }
     methods:                [ GET ]
     requirements:
         path:               \d+
 
 editDevice:
     path:                   /device/{idDevice}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Device:edit }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Device:edit" }
     methods:                [ GET, POST ]
     requirements:
         idDevice:           \d+
 
 removeDevice:
     path:                   /device/remove/{idDevice}
-    defaults:               { _controller: TravelDiaryInterfaceBundle:Device:remove }
+    defaults:               { _controller: "TravelDiaryInterfaceBundle:Device:remove" }
     methods:                [ GET ]
     requirements:
         idDevice:           \d+
