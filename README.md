@@ -118,11 +118,13 @@ Aplikacie je momentalne v stadiu vyvoja a preto nie su spristupneje jej vsetky c
  - [ ] API
  	- [ ] Users endpoint
  	- [ ] Vytvorit systemoveho pouzivatela ktory bude pristupovat zo servera
+ 	- [ ] Upload fotiek vyletu (VichUploaderBundle)
  - [ ] Autopost na socialne siete
 
 ## User bundles
 
  - [SncRedisBundle](https://github.com/snc/SncRedisBundle) - Redis
+ - [VichUploaderBundle](https://github.com/dustin10/VichUploaderBundle) - File upload bundle
 
 ## Credentials
 

@@ -43,6 +43,12 @@ TravelDiary\CoreBundle\Entity\Photo:
             nullable: true
             length: 10
             column: pht_mime
+        phtUploaded:
+            type: boolean
+            nullable: false
+            options:
+                default: 0
+            column: pht_uploaded
         phtCreatedAt:
             type: datetime
             nullable: false

@@ -28,6 +28,11 @@ class Photo extends ApiEntity{
 	private $phtMIME;
 
 	/**
+	 * @var boolean
+	 */
+	private $phtUploaded;
+
+	/**
 	 * @var \DateTime
 	 */
 	private $phtCreatedAt;
@@ -112,6 +117,21 @@ class Photo extends ApiEntity{
 		$this->phtMIME = $phtMIME;
 	}
 
+	/**
+	 * @return boolean
+	 */
+	public function isPhtUploaded()
+	{
+		return $this->phtUploaded;
+	}
+
+	/**
+	 * @param boolean $phtUploaded
+	 */
+	public function setPhtUploaded($phtUploaded)
+	{
+		$this->phtUploaded = $phtUploaded;
+	}
 
 	/**
 	 * Set phtCreatedAt
