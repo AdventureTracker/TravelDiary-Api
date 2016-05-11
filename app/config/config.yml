@@ -153,3 +153,6 @@ snc_redis:
 
     session:
         client: cache
+
+vich_uploader:
+    db_driver: orm

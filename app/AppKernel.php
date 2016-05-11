@@ -16,6 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new Snc\RedisBundle\SncRedisBundle(),
+            new Vich\UploaderBundle\VichUploaderBundle(),
             new TravelDiary\ApiBundle\TravelDiaryApiBundle(),
             new TravelDiary\CoreBundle\TravelDiaryCoreBundle(),
             new TravelDiary\InterfaceBundle\TravelDiaryInterfaceBundle(),
